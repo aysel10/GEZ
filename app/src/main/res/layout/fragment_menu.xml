@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.MenuFragment"
+    android:background="@drawable/menu_button_bckgr"
+    android:padding="6dp">
+
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/planeImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/menu_bckgr"
+                android:contentDescription="@string/airplane_button_menu_desc"
+                android:padding="10dp"
+                app:srcCompat="@drawable/menu_icon_plane"
+                android:tint="@android:color/white" />
+
+            <ImageButton
+                android:id="@+id/hotelImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/menu_bckgr"
+                android:contentDescription="@string/hotel_button_menu_desc"
+                android:padding="10dp"
+                app:srcCompat="@drawable/menu_icon_hotel"
+                android:tint="@android:color/white" />
+
+            <ImageButton
+                android:id="@+id/carsImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/menu_bckgr"
+                android:contentDescription="@string/cars_button_menu_desc"
+                android:padding="10dp"
+                app:srcCompat="@drawable/menu_icon_cars"
+                android:tint="@android:color/white" />
+
+            <ImageButton
+                android:id="@+id/lowerCostImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/menu_bckgr"
+                android:contentDescription="@string/lowcost_button_menu_desc"
+                android:padding="10dp"
+                app:srcCompat="@drawable/menu_icon_lowcost"
+                android:tint="@android:color/white" />
+
+            <ImageButton
+                android:id="@+id/trainImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/menu_bckgr"
+                android:contentDescription="@string/train_button_menu_desc"
+                android:padding="10dp"
+                app:srcCompat="@drawable/menu_icon_train"
+                android:tint="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+            <ImageButton
+                android:id="@+id/tranferImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/menu_bckgr"
+                android:contentDescription="@string/transfer_button_menu_desc"
+                android:padding="10dp"
+                android:tint="@android:color/white"
+                app:srcCompat="@drawable/menu_icon_transfer" />
+
+            <ImageButton
+                android:id="@+id/insuranceImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/menu_bckgr"
+                android:contentDescription="@string/insurance_button_menu_desc"
+                android:padding="10dp"
+                android:tint="@android:color/white"
+                app:srcCompat="@drawable/menu_icon_insurance" />
+
+            <ImageButton
+                android:id="@+id/visaImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/menu_bckgr"
+                android:contentDescription="@string/visa_button_menu_desc"
+                android:padding="10dp"
+                android:tint="@android:color/white"
+                app:srcCompat="@drawable/menu_icon_visa" />
+
+            <ImageButton
+                android:id="@+id/cruizeImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/menu_bckgr"
+                android:contentDescription="@string/cruize_button_menu_desc"
+                android:padding="10dp"
+                android:tint="@android:color/white"
+                app:srcCompat="@drawable/menu_icon_cruize" />
+
+            <ImageButton
+                android:id="@+id/holder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/menu_bckgr"
+                android:contentDescription="@string/cruize_button_menu_desc"
+                android:padding="10dp"
+                android:tint="@android:color/white"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/menu_icon_cruize" />
+
+        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
+
+</FrameLayout>

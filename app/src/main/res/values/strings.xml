@@ -1,0 +1,130 @@
+<resources>
+    <string name="app_name">GEZ</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!-- ## Buttons ## -->
+    <!--Menu buttons content description-->
+    <string name="airplane_button_menu_desc">Airplane Button</string>
+    <string name="hotel_button_menu_desc">Airplane Button</string>
+    <string name="cars_button_menu_desc">Airplane Button</string>
+    <string name="lowcost_button_menu_desc">Airplane Button</string>
+    <string name="train_button_menu_desc">Airplane Button</string>
+    <string name="transfer_button_menu_desc">Airplane Button</string>
+    <string name="insurance_button_menu_desc">Airplane Button</string>
+    <string name="visa_button_menu_desc">Airplane Button</string>
+    <string name="cruize_button_menu_desc">Airplane Button</string>
+
+    <string name="preview_image_desc">Preview image</string>
+    <string name="clocks_image_desc">Clocks kimage</string>
+    <!-- /////////////// -->
+
+    <!--Radio buttons and Check Boxes-->
+    <string name="roundTrip">Round Trip</string>
+    <string name="oneWay">One Way</string>
+    <string name="multiCity">Multi-City</string>
+    <string name="addFlight">Add flight</string>
+    <string name="addCar">Add car</string>
+    <string name="addTransfer">Add transfer</string>
+    <string name="pickingUp">Picking Up</string>
+    <string name="pickDate">Picking Up Date</string>
+    <string name="time">Time</string>
+    <string name="droppingOff">Dropping Off</string>
+    <string name="dropDate">Dropping Off Date</string>
+    <string name="sameAsPickUp">Same as pick up</string>
+    <string name="babyOnBoard">Baby on board</string>
+
+    <!-- /////////////// -->
+
+
+    <!--Spinner for children\adults entries-->
+    <string-array name="spinner_how_many_ppl">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <!-- /////////////// -->
+
+    <!--Spinner for price filter-->
+    <string-array name="spinner_price_filter">
+        <item>Price(Lowest)</item>
+        <item>Price(Highest)</item>
+    </string-array>
+    <!-- /////////////// -->
+
+    <!--Labels-->
+    <string name="fromLabel">From</string>
+    <string name="toLabel">To</string>
+    <string name="departLabel">Depart</string>
+    <string name="adultLabel">Adult</string>
+    <string name="childLabel">Children</string>
+    <string name="addHotelLabel">Add Hotel</string>
+    <string name="arrivalLabel">Arrival</string>
+    <string name="returnLabel">Return</string>
+    <string name="goingTo">Going To</string>
+    <string name="checkIn">Check-In</string>
+    <string name="checkOut">Check-Out</string>
+    <string name="rooms">Rooms</string>
+    <string name="typeOfCar">Type of Car</string>
+    <string name="arrivalTime">Arrival Time</string>
+
+    <string name="arrivalDate">Arrival Date</string>
+    <string name="passangers">Passangers</string>
+    <string name="transInfo">Transferring information</string>
+    <string name="travelFromCity">%1$s, \n %2$s, \n %3$s</string>
+    <string name="travelToCity">%1$s, \n %2$s, \n %3$s</string>
+    <string name="travelWhereTo">1.69 miles from center of Barcelona</string>
+    <string name="travelWhereFrom">1.69 miles from center of Barcelona</string>
+
+    <string name="transferTo">Transfer To</string>
+    <string name="transferFrom">Transfer from</string>
+    <string name="hotelName">Serennia Hotel Rooms</string>
+    <string name="hotelLocation">%1$s, %2$s, %3$s, %4$s, %5$s</string>
+    <string name="counterHotel">We have %1$s left at</string>
+    <string name="location">Location</string>
+    <string name="roomAmenities">Room Amenities</string>
+    <string name="pointsOfInterest">Points Of Interest</string>
+    <string name="chooseAccom">Choose your Accommodation</string>
+
+    <string name="roomSize">160 square feet</string>
+    <string name="roomProperty">1 twin bed</string>
+
+    <string name="fromDate">From \n %1$s</string>
+    <string name="carPrice">995$ \n total</string>
+
+
+    <!-- /////////////// -->
+
+    <!--Place Holders-->
+    <string name="fromPlaceHolder">Baku, QYD</string>
+    <string name="toPlaceHolder">Milan, XRP</string>
+    <string name="departPlaceHolder">11.02.17</string>
+    <string name="returnPlaceHolder">17.02.17</string>
+    <string name="adultSpinnerPlaceHolder">1</string>
+    <string name="childSpinnerPlaceHolder">1</string>
+
+    <string name="classTypePlaceHolder">Class type</string>
+    <string name="datePlaceHolder">%1$s, %2$s</string>
+    <string name="roadTimePlaceHolder">%1$d H\ %2%d M</string>
+    <string name="pricePlaceHolder">000$</string>
+    <string name="arrivalStationPlaceHolder">Arrival PH</string>
+    <string name="departStationPlaceHolder">Depart PH</string>
+    <string name="arrivalDatePlaceHolder">03:00</string>
+    <string name="departDatePlaceHolder">00:00</string>
+    <string name="counterAmountLeft">%1$d left at \n $2%s</string>
+    <string name="hotelProperty">%1$d \n $2%s</string>
+    <string name="typePlaceHolder">Type</string>
+    <!-- /////////////// -->
+
+    <!--Buttons-->
+    <string name="searchButton">Search</string>
+    <string name="selectButton">SELECT</string>
+    <string name="reserve">Reserve</string>
+    <string name="update">UPDATE</string>
+    <!-- /////////////// -->
+
+</resources>
