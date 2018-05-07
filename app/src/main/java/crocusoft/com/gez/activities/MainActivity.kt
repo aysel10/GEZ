@@ -1,29 +1,24 @@
 package crocusoft.com.gez.activities
 
-import android.app.DatePickerDialog
-import android.app.Fragment
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AppCompatDelegate
 import android.os.Build
-import android.widget.ImageButton
-import android.widget.TextView
 import crocusoft.com.gez.R
 import crocusoft.com.gez.Utils
-import crocusoft.com.gez.fragments.CarsFragment
-import crocusoft.com.gez.fragments.MenuFragment
-import crocusoft.com.gez.fragments.TrainFragment
-import java.text.SimpleDateFormat
-import java.util.*
+import crocusoft.com.gez.fragments.*
 
 
 class MainActivity : AppCompatActivity(), MenuFragment.OnFragmentInteractionListener,
         TrainFragment.OnFragmentInteractionListener,
-        CarsFragment.OnFragmentInteractionListener {
+        CarsFragment.OnFragmentInteractionListener,
+        HotelFragment.OnFragmentInteractionListener,
+        TransferFragment.OnFragmentInteractionListener,
+        FlightFragment.OnFragmentInteractionListener{
 
     companion object {
-        var currentFragment: Any = TrainFragment.newInstance()
+        var currentFragment: Any = FlightFragment.newInstance()
     }
 
 
@@ -35,10 +30,10 @@ class MainActivity : AppCompatActivity(), MenuFragment.OnFragmentInteractionList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_train)
+        setContentView(R.layout.activity_main)
 
         val fragmentManager = supportFragmentManager
-        Utils.changeFragment(fragmentManager, R.id.dynamicFragment, TrainFragment.newInstance())
+        Utils.changeFragment(fragmentManager, R.id.dynamicFragment, FlightFragment.newInstance())
 
     }
 

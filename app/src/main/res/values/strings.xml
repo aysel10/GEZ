@@ -96,6 +96,9 @@
     <string name="fromDate">From \n %1$s</string>
     <string name="carPrice">995$ \n total</string>
 
+    <string name="rentText">16 people have booked a car in BEV on GEZ.lv in the last 24 hours</string>
+    <string name="rateUS">Rates are quoted in US dollars. You will pay EUR 116.06 at the rental counter.</string>
+
 
     <!-- /////////////// -->
 
@@ -118,6 +121,10 @@
     <string name="counterAmountLeft">%1$d left at \n $2%s</string>
     <string name="hotelProperty">%1$d \n $2%s</string>
     <string name="typePlaceHolder">Type</string>
+    <string name="protect">Protect your trip</string>
+    <string name="protectRadio">Yes, I need collision protection</string>
+
+    <string name="insurance">Pays up 35$. Now with $0 deductible. /n Covers rental car damage from collision, theft orvandalism.</string>
     <!-- /////////////// -->
 
     <!--Buttons-->
@@ -125,6 +132,14 @@
     <string name="selectButton">SELECT</string>
     <string name="reserve">Reserve</string>
     <string name="update">UPDATE</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_register">RegisterActivity</string>
+
+    <string name="firstFlight">FIRST FLY ROUTE</string>
+    <string name="secondFlight">SECOND FLY ROUTE</string>
+    <string name="thirdFlight">THIRD FLY ROUTE</string>
+    <string name="forthFlight">FORTH FLY ROUTE</string>
+    <string name="fifthFlight">FIFTH FLY ROUTE</string>
     <!-- /////////////// -->
 
 </resources>

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.TransferFragment">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,13 +13,14 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/menu_button_bckgr"
         android:orientation="vertical">
+
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp">
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/radioButton"
@@ -55,7 +57,6 @@
         </RadioGroup>
 
 
-
         <TextView
             android:id="@+id/textView5"
             android:layout_width="match_parent"
@@ -74,14 +75,13 @@
             android:layout_height="40dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:padding="5dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/search_textf_color"
             android:drawableStart="@drawable/search_textf_icon_loc_wrap"
             android:ems="10"
             android:hint="@string/fromPlaceHolder"
             android:inputType="textPersonName"
-            />
+            android:padding="5dp" />
 
         <TextView
             android:id="@+id/textView1"
@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="16dp"
             android:text="@string/toLabel"
             android:textColor="@color/cardview_light_background"
             android:textSize="18sp"
@@ -101,14 +101,14 @@
             android:layout_height="40dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:padding="5dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/search_textf_color"
             android:drawableStart="@drawable/search_textf_icon_loc_wrap"
             android:ems="10"
             android:hint="@string/fromPlaceHolder"
             android:inputType="textPersonName"
-            />
+            android:padding="5dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -121,53 +121,53 @@
                 android:id="@+id/textView6"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="18sp"
                 android:layout_marginEnd="8dp"
-                android:text="@string/departLabel" />
+                android:layout_weight="1"
+                android:text="@string/departLabel"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView7"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="18sp"
                 android:layout_marginStart="8dp"
-                android:text="@string/returnLabel" />
+                android:layout_weight="1"
+                android:text="@string/returnLabel"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            >
+            android:orientation="horizontal">
 
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:padding="5dp"
 
-                android:drawableEnd="@drawable/search_textf_icon_date_wrap"
                 android:background="@drawable/search_textf_color"
-                android:layout_marginEnd="8dp"/>
+                android:drawableEnd="@drawable/search_textf_icon_date_wrap"
+                android:padding="5dp" />
+
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:drawableEnd="@drawable/search_textf_icon_date_wrap"
                 android:layout_marginStart="8dp"
+                android:layout_weight="1"
                 android:background="@drawable/search_textf_color"
-                />
+                android:drawableEnd="@drawable/search_textf_icon_date_wrap"
+                android:padding="5dp" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -180,52 +180,52 @@
                 android:id="@+id/textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="18sp"
                 android:layout_marginEnd="8dp"
-                android:text="@string/typeOfCar" />
+                android:layout_weight="1"
+                android:text="@string/typeOfCar"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/returnTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="18sp"
                 android:layout_marginStart="8dp"
-                android:text="@string/passangers" />
+                android:layout_weight="1"
+                android:text="@string/passangers"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            >
+            android:orientation="horizontal">
 
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:padding="5dp"
-                android:drawableEnd="@drawable/search_spinner_arrowdn_wrap"
                 android:background="@drawable/search_textf_color"
-                android:layout_marginEnd="8dp"/>
+                android:drawableEnd="@drawable/search_spinner_arrowdn_wrap"
+                android:padding="5dp" />
+
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:drawableEnd="@drawable/search_spinner_arrowdn_wrap"
                 android:layout_marginStart="8dp"
+                android:layout_weight="1"
                 android:background="@drawable/search_textf_color"
-                />
+                android:drawableEnd="@drawable/search_spinner_arrowdn_wrap"
+                android:padding="5dp" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -238,63 +238,65 @@
                 android:id="@+id/Flight"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="18sp"
                 android:layout_marginEnd="8dp"
-                android:text="Flight#" />
+                android:layout_weight="1"
+                android:text="Flight#"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/empty"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="18sp"
                 android:layout_marginStart="8dp"
-                android:text="" />
+                android:layout_weight="1"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp">
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:drawableEnd="@drawable/search_spinner_arrowdn_wrap"
-                android:background="@drawable/search_textf_color"
                 android:layout_marginEnd="8dp"
-             />
+                android:layout_weight="1"
+                android:background="@drawable/search_textf_color"
+                android:drawableEnd="@drawable/search_spinner_arrowdn_wrap"
+                android:padding="5dp" />
+
             <CheckBox
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
                 android:checked="true"
                 android:text="@string/babyOnBoard"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginBottom="16dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="8dp"
-            android:text="@string/searchButton"
+            android:layout_marginTop="16dp"
             android:background="@color/colorAccent"
+            android:text="@string/searchButton"
             android:textColor="@color/white"
-            android:textStyle="bold"
-            android:layout_marginBottom="16dp" />
+            android:textStyle="bold" />
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

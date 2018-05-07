@@ -56,6 +56,24 @@ class MenuFragment : Fragment() {
 
             Utils.changeFragment(fragmentManager!!, R.id.dynamicFragment, TrainFragment.newInstance())
         })
+        hotelImageButton.setOnClickListener({
+            MainActivity.currentFragment = HotelFragment.newInstance()
+            updateCurrentMenuPosition()
+
+            Utils.changeFragment(fragmentManager!!, R.id.dynamicFragment, HotelFragment.newInstance())
+        })
+        transferImageButton.setOnClickListener({
+            MainActivity.currentFragment = TransferFragment.newInstance()
+            updateCurrentMenuPosition()
+
+            Utils.changeFragment(fragmentManager!!, R.id.dynamicFragment, TransferFragment.newInstance())
+        })
+        planeImageButton.setOnClickListener({
+            MainActivity.currentFragment = FlightFragment.newInstance()
+            updateCurrentMenuPosition()
+
+            Utils.changeFragment(fragmentManager!!, R.id.dynamicFragment, FlightFragment.newInstance())
+        })
 
         // add more for other buttons.....
     }
@@ -88,8 +106,14 @@ class MenuFragment : Fragment() {
 
     private fun updateCurrentMenuPosition () {
         clearAllMenuButtons()
-        if(MainActivity.currentFragment is TrainFragment)  trainImageButton.setBackgroundResource(R.drawable.menu_bckgr_active)
-        else if (MainActivity.currentFragment is CarsFragment) carsImageButton.setBackgroundResource(R.drawable.menu_bckgr_active)
+        when {
+            MainActivity.currentFragment is TrainFragment -> trainImageButton.setBackgroundResource(R.drawable.menu_bckgr_active)
+            MainActivity.currentFragment is CarsFragment -> carsImageButton.setBackgroundResource(R.drawable.menu_bckgr_active)
+            MainActivity.currentFragment is HotelFragment -> hotelImageButton.setBackgroundResource(R.drawable.menu_bckgr_active)
+            MainActivity.currentFragment is TransferFragment -> transferImageButton.setBackgroundResource(R.drawable.menu_bckgr_active)
+            MainActivity.currentFragment is FlightFragment -> planeImageButton.setBackgroundResource(R.drawable.menu_bckgr_active)
+
+        }
     }
 
 

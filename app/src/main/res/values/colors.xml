@@ -6,6 +6,8 @@
     <color name="white">#ffffff</color>
     <color name="orange">#f7be3c</color>
     <color name="fontColor">#4e524f</color>
+    <color name="greenFont">#387317</color>
+    <color name="lightGrey">#ededed</color>
     <color name="propertyColor">#ddefd2</color>
 
     <style name="RadioButtonStyle" parent="AppTheme">

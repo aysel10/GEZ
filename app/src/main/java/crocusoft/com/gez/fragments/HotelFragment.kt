@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 
 import crocusoft.com.gez.R
 
@@ -91,7 +90,7 @@ class HotelFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance() =
                 HotelFragment().apply {
                     arguments = Bundle().apply {
                         putString(ARG_PARAM1, param1)

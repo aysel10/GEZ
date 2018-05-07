@@ -1,30 +1,52 @@
 package crocusoft.com.gez.fragments
 
 import android.content.Context
+import android.graphics.Typeface
+import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.widget.NestedScrollView
+import android.util.TypedValue
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.RadioButton
+import android.widget.TextView
 import crocusoft.com.gez.R
+import kotlinx.android.synthetic.main.flight_multy_city.view.*
+import org.w3c.dom.Text
 
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+private lateinit var radioMultyCity : RadioButton
+private lateinit var multyCityLinearLayout : LinearLayout
+private lateinit var buttonLinearLayout : LinearLayout
+private lateinit var elementsLinearLayout: LinearLayout
+private lateinit var scrollView : NestedScrollView
+private lateinit var secondFlightMultiCity : View
+private lateinit var thirdFlightMultiCity : View
+private lateinit var forthFlightMultiCity : View
+private lateinit var fifthFlightMultiCity : View
+private lateinit var flightCountLabel : TextView
+private lateinit var mainSearchButton : Button
+private lateinit var firstLabel : TextView
+private var clickCounter : Int = 0
 
-/**
- * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [Flight.OnFragmentInteractionListener] interface
- * to handle interaction events.
- * Use the [Flight.newInstance] factory method to
- * create an instance of this fragment.
- *
- */
-class Flight : Fragment() {
+
+private lateinit var mainLinearLayout : LinearLayout
+private lateinit var addRemoveView : View
+private lateinit var addButton: Button
+private lateinit var removeButton: Button
+private lateinit var searchButton: Button
+
+class FlightFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -41,8 +63,99 @@ class Flight : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_flight, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_flight, container, false)
+        radioMultyCity = view.findViewById(R.id.radioMultyCity)
+        scrollView = view.findViewById(R.id.scrollView)
+        mainSearchButton = view.findViewById(R.id.searchButton)
+        elementsLinearLayout = view.findViewById(R.id.elementsLinearLayout)
+        mainLinearLayout = view.findViewById(R.id.mainLinearLayout)
+        
+        radioMultyCity.setOnClickListener(View.OnClickListener {
+            mainSearchButton.visibility = View.GONE
+            firstLabel = TextView(context)
+            firstLabel.setText(R.string.firstFlight)
+            firstLabel.setTextColor(resources.getColor(R.color.colorAccent))
+            firstLabel.setBackgroundDrawable(resources.getDrawable(R.drawable.grey_round))
+            firstLabel.setTextSize(TypedValue.COMPLEX_UNIT_PX,resources.getDimension(R.dimen.fontSize))
+            firstLabel.gravity = Gravity.CENTER
+           // firstLabel.layoutParams.height = 100
+            firstLabel.setTypeface(null,Typeface.BOLD)
+            elementsLinearLayout.addView(firstLabel)
+
+            addMultyCityView(inflater,container)
+        })
+
+        return  view
+
+
+
     }
+
+
+    private fun addMultyCityView(inflater: LayoutInflater, container: ViewGroup?){
+        initMultyViews(inflater,container)
+        multyCityLinearLayout = LinearLayout(context)
+        multyCityLinearLayout.orientation = LinearLayout.VERTICAL
+        multyCityLinearLayout.addView(secondFlightMultiCity)
+        buttonLinearLayout = LinearLayout(context)
+        buttonLinearLayout.addView(addRemoveView)
+
+        mainLinearLayout.addView(multyCityLinearLayout)
+        mainLinearLayout.addView(buttonLinearLayout)
+
+        addButton.setOnClickListener(View.OnClickListener {
+            addFlightView()
+        })
+        removeButton.setOnClickListener(View.OnClickListener {
+            removeFlightView()
+        })
+
+    }
+    private fun initMultyViews(inflater: LayoutInflater, container: ViewGroup?){
+        secondFlightMultiCity = inflater.inflate(R.layout.flight_multy_city,container,false)
+        thirdFlightMultiCity = inflater.inflate(R.layout.flight_multy_city,container,false)
+        forthFlightMultiCity = inflater.inflate(R.layout.flight_multy_city,container,false)
+        fifthFlightMultiCity = inflater.inflate(R.layout.flight_multy_city,container, false)
+        addRemoveView = inflater.inflate(R.layout.add_remove_buttons,container,false)
+        addButton = addRemoveView.findViewById(R.id.addButton)
+        removeButton = addRemoveView.findViewById(R.id.removeButton)
+        flightCountLabel = secondFlightMultiCity.findViewById(R.id.flightCountLabel)
+        secondFlightMultiCity.flightCountLabel.setText(R.string.secondFlight)
+    }
+    private fun addFlightView(){
+        if (clickCounter<3) {
+            clickCounter++
+            when(clickCounter){
+                1-> {
+                    multyCityLinearLayout.addView(thirdFlightMultiCity)
+                    thirdFlightMultiCity.flightCountLabel.setText(R.string.thirdFlight)
+                }
+                2-> {
+                    multyCityLinearLayout.addView(forthFlightMultiCity)
+                    forthFlightMultiCity.flightCountLabel.setText(R.string.forthFlight)
+                }
+
+                3-> {
+                    multyCityLinearLayout.addView(fifthFlightMultiCity)
+                    fifthFlightMultiCity.flightCountLabel.setText(R.string.fifthFlight)
+                }
+            }
+        }
+
+    }
+    private fun removeFlightView(){
+        if(clickCounter>0){
+            when(clickCounter){
+                1-> multyCityLinearLayout.removeView(thirdFlightMultiCity)
+                2-> multyCityLinearLayout.removeView(forthFlightMultiCity)
+                3-> multyCityLinearLayout.removeView(fifthFlightMultiCity)
+            }
+            clickCounter--
+        }
+    }
+
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri: Uri) {
@@ -63,35 +176,17 @@ class Flight : Fragment() {
         listener = null
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson [Communicating with Other Fragments]
-     * (http://developer.android.com/training/basics/fragments/communicating.html)
-     * for more information.
-     */
     interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         fun onFragmentInteraction(uri: Uri)
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Flight.
-         */
+
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-                Flight().apply {
+        fun newInstance() =
+                FlightFragment().apply {
                     arguments = Bundle().apply {
                         putString(ARG_PARAM1, param1)
                         putString(ARG_PARAM2, param2)

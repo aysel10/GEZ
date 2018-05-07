@@ -1,0 +1,143 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-39:12
+MERGED from [com.android.support:design:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/design-27.1.0.aar/76d852ce925d4ac154cb6983089b66a4/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:appcompat-v7:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/cde178872decd53dd498d10901b95b08/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/c219695b304b68ade715ef3c2166a9ad/AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:support-v4:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-v4-27.1.0.aar/26aa7a5007af71edf2efc9d0573082a7/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:recyclerview-v7:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-27.1.0.aar/ea95e9dadcc364b83983570028d8cc2d/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:cardview-v7:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/cardview-v7-27.1.0.aar/b9eceaf1513184b6324ab2f20b4c8bd6/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-fragment:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.0.aar/8b578c07bc93218e2275a5295c63299e/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.0.aar/cdf5b6c2e227ab7de4d8b135b5117d9e/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.0.aar/a2c8dd8905e6d0c10be4ddc62ce4fbb3/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.0.aar/18b7fb4270750bf1abec30de5dc4585f/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.0.aar/d1a6b86ea6dda1a8d98d018f68c5448e/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-media-compat:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.0.aar/8a3430911f4511f1a8044a67b9bc336b/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:transition:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/transition-27.1.0.aar/c7ee7f7770cbe030365cd81876a5855c/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/2ce6857345ac41b6f32a68833c817303/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/3f2c42bb1fbdbe0a35abf51ca15924e2/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/777bd511d7a53d922715c0e3f78f8ff3/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/c3c224480426e8d123936e6cdf5c2ea4/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/cc9fe7c3774f2c755cfea6248a6bf485/AndroidManifest.xml:17:1-22:12
+INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-39:12
+	package
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:3:5-32
+		INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-39:12
+		INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-39:12
+		INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:11-69
+application
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:5:5-37:19
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/c219695b304b68ade715ef3c2166a9ad/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/c219695b304b68ade715ef3c2166a9ad/AndroidManifest.xml:9:5-20
+	android:supportsRtl
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:10:9-35
+	android:label
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:8:9-41
+	android:roundIcon
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:9:9-54
+	android:icon
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:7:9-43
+	android:allowBackup
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:6:9-35
+	android:theme
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:11:9-52
+activity#crocusoft.com.gez.activities.MainActivity
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:12:9-19:20
+	android:name
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:12:19-58
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:13:13-17:29
+action#android.intent.action.MAIN
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:14:17-69
+	android:name
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:14:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:16:17-77
+	android:name
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:16:27-74
+activity#crocusoft.com.gez.activities.LoginActivity
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:20:9-25:20
+	android:label
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:22:13-57
+	android:theme
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:23:13-56
+	android:name
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:21:13-53
+activity#crocusoft.com.gez.activities.RegisterActivity
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:26:9-36:20
+	android:label
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:29:13-60
+	android:theme
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:30:13-44
+	android:name
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:27:13-56
+meta-data#android.support.PARENT_ACTIVITY
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:31:13-33:61
+	android:value
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:33:17-58
+	android:name
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:32:17-63
+uses-sdk
+INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
+INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
+MERGED from [com.android.support:design:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/design-27.1.0.aar/76d852ce925d4ac154cb6983089b66a4/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:design:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/design-27.1.0.aar/76d852ce925d4ac154cb6983089b66a4/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/cde178872decd53dd498d10901b95b08/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/cde178872decd53dd498d10901b95b08/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/c219695b304b68ade715ef3c2166a9ad/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/c219695b304b68ade715ef3c2166a9ad/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:support-v4:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-v4-27.1.0.aar/26aa7a5007af71edf2efc9d0573082a7/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-v4-27.1.0.aar/26aa7a5007af71edf2efc9d0573082a7/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-27.1.0.aar/ea95e9dadcc364b83983570028d8cc2d/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-27.1.0.aar/ea95e9dadcc364b83983570028d8cc2d/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/cardview-v7-27.1.0.aar/b9eceaf1513184b6324ab2f20b4c8bd6/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/cardview-v7-27.1.0.aar/b9eceaf1513184b6324ab2f20b4c8bd6/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.0.aar/8b578c07bc93218e2275a5295c63299e/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.0.aar/8b578c07bc93218e2275a5295c63299e/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.0.aar/cdf5b6c2e227ab7de4d8b135b5117d9e/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.0.aar/cdf5b6c2e227ab7de4d8b135b5117d9e/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.0.aar/a2c8dd8905e6d0c10be4ddc62ce4fbb3/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.0.aar/a2c8dd8905e6d0c10be4ddc62ce4fbb3/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.0.aar/18b7fb4270750bf1abec30de5dc4585f/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.0.aar/18b7fb4270750bf1abec30de5dc4585f/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.0.aar/d1a6b86ea6dda1a8d98d018f68c5448e/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.0.aar/d1a6b86ea6dda1a8d98d018f68c5448e/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.0.aar/8a3430911f4511f1a8044a67b9bc336b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.0.aar/8a3430911f4511f1a8044a67b9bc336b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/transition-27.1.0.aar/c7ee7f7770cbe030365cd81876a5855c/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/transition-27.1.0.aar/c7ee7f7770cbe030365cd81876a5855c/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/2ce6857345ac41b6f32a68833c817303/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/2ce6857345ac41b6f32a68833c817303/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/3f2c42bb1fbdbe0a35abf51ca15924e2/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/3f2c42bb1fbdbe0a35abf51ca15924e2/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/777bd511d7a53d922715c0e3f78f8ff3/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/777bd511d7a53d922715c0e3f78f8ff3/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/c3c224480426e8d123936e6cdf5c2ea4/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/c3c224480426e8d123936e6cdf5c2ea4/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/cc9fe7c3774f2c755cfea6248a6bf485/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/cc9fe7c3774f2c755cfea6248a6bf485/AndroidManifest.xml:20:5-44
+INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
+INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
