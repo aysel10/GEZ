@@ -11,14 +11,15 @@
         android:id="@+id/mainLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/elementsLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginBottom="16dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/menu_button_bckgr"
             android:orientation="vertical">
@@ -90,7 +91,8 @@
                 android:ems="10"
                 android:hint="@string/fromPlaceHolder"
                 android:inputType="textPersonName"
-                android:padding="5dp" />
+                android:padding="5dp"
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/textView1"
@@ -116,7 +118,8 @@
                 android:ems="10"
                 android:hint="@string/fromPlaceHolder"
                 android:inputType="textPersonName"
-                android:padding="5dp" />
+                android:padding="5dp"
+                android:textSize="13sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -138,7 +141,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView7"
+                    android:id="@+id/returnTextView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -158,23 +161,27 @@
                 android:orientation="horizontal">
 
                 <EditText
+                    android:id="@+id/departDate"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
 
+                    android:layout_weight="1"
                     android:background="@drawable/search_textf_color"
                     android:drawableEnd="@drawable/search_textf_icon_date_wrap"
-                    android:padding="5dp" />
+                    android:padding="5dp"
+                    android:textSize="13sp" />
 
                 <EditText
+                    android:id="@+id/returnDate"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
                     android:background="@drawable/search_textf_color"
                     android:drawableEnd="@drawable/search_textf_icon_date_wrap"
-                    android:padding="5dp" />
+                    android:padding="5dp"
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -223,7 +230,8 @@
                     android:layout_weight="1"
                     android:background="@drawable/search_textf_color"
                     android:drawableEnd="@drawable/search_spinner_arrowdn_wrap"
-                    android:padding="5dp" />
+                    android:padding="5dp"
+                    android:textSize="13sp" />
 
                 <EditText
                     android:layout_width="0dp"
@@ -232,7 +240,8 @@
                     android:layout_weight="1"
                     android:background="@drawable/search_textf_color"
                     android:drawableEnd="@drawable/search_spinner_arrowdn_wrap"
-                    android:padding="5dp" />
+                    android:padding="5dp"
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout

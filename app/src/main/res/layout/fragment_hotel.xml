@@ -41,7 +41,8 @@
             android:ems="10"
             android:hint="@string/fromPlaceHolder"
             android:inputType="textPersonName"
-            android:padding="5dp" />
+            android:padding="5dp"
+            android:textSize="13sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -90,7 +91,8 @@
 
                 android:background="@drawable/search_textf_color"
                 android:drawableEnd="@drawable/search_textf_icon_date_wrap"
-                android:padding="5dp" />
+                android:padding="5dp"
+                android:textSize="13sp" />
 
             <EditText
                 android:layout_width="0dp"
@@ -99,7 +101,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/search_textf_color"
                 android:drawableEnd="@drawable/search_textf_icon_date_wrap"
-                android:padding="5dp" />
+                android:padding="5dp"
+                android:textSize="13sp" />
         </LinearLayout>
 
 
@@ -159,7 +162,8 @@
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/search_textf_color"
-                android:drawableEnd="@drawable/search_spinner_arrowdn_wrap" />
+                android:drawableEnd="@drawable/search_spinner_arrowdn_wrap"
+                android:textSize="13sp" />
 
             <EditText
                 android:layout_width="0dp"
@@ -168,7 +172,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/search_textf_color"
-                android:drawableEnd="@drawable/search_spinner_arrowdn_wrap" />
+                android:drawableEnd="@drawable/search_spinner_arrowdn_wrap"
+                android:textSize="13sp" />
 
             <EditText
                 android:layout_width="0dp"
@@ -176,7 +181,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/search_textf_color"
-                android:drawableEnd="@drawable/search_spinner_arrowdn_wrap" />
+                android:drawableEnd="@drawable/search_spinner_arrowdn_wrap"
+                android:textSize="13sp" />
 
         </LinearLayout>
 
@@ -221,7 +227,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:background="@color/colorAccent"
+            android:background="@drawable/search_button_background"
             android:text="@string/searchButton"
             android:textColor="@color/white"
             android:textStyle="bold" />

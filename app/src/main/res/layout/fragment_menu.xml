@@ -31,9 +31,12 @@
                 android:layout_weight="1"
                 android:background="@drawable/menu_bckgr"
                 android:contentDescription="@string/airplane_button_menu_desc"
-                android:padding="10dp"
-                app:srcCompat="@drawable/menu_icon_plane"
-                android:tint="@android:color/white" />
+                android:paddingBottom="15dp"
+                android:paddingEnd="18dp"
+                android:paddingStart="18dp"
+                android:paddingTop="15dp"
+                android:tint="@android:color/white"
+                app:srcCompat="@drawable/menu_icon_plane" />
 
             <ImageButton
                 android:id="@+id/hotelImageButton"
@@ -43,9 +46,12 @@
                 android:layout_weight="1"
                 android:background="@drawable/menu_bckgr"
                 android:contentDescription="@string/hotel_button_menu_desc"
-                android:padding="10dp"
-                app:srcCompat="@drawable/menu_icon_hotel"
-                android:tint="@android:color/white" />
+                android:paddingBottom="15dp"
+                android:paddingEnd="18dp"
+                android:paddingStart="18dp"
+                android:paddingTop="15dp"
+                android:tint="@android:color/white"
+                app:srcCompat="@drawable/menu_icon_hotel" />
 
             <ImageButton
                 android:id="@+id/carsImageButton"
@@ -55,9 +61,12 @@
                 android:layout_weight="1"
                 android:background="@drawable/menu_bckgr"
                 android:contentDescription="@string/cars_button_menu_desc"
-                android:padding="10dp"
-                app:srcCompat="@drawable/menu_icon_cars"
-                android:tint="@android:color/white" />
+                android:paddingBottom="15dp"
+                android:paddingEnd="18dp"
+                android:paddingStart="18dp"
+                android:paddingTop="15dp"
+                android:tint="@android:color/white"
+                app:srcCompat="@drawable/menu_icon_cars" />
 
             <ImageButton
                 android:id="@+id/lowerCostImageButton"
@@ -67,9 +76,12 @@
                 android:layout_weight="1"
                 android:background="@drawable/menu_bckgr"
                 android:contentDescription="@string/lowcost_button_menu_desc"
-                android:padding="10dp"
-                app:srcCompat="@drawable/menu_icon_lowcost"
-                android:tint="@android:color/white" />
+                android:paddingBottom="15dp"
+                android:paddingEnd="18dp"
+                android:paddingStart="18dp"
+                android:paddingTop="15dp"
+                android:tint="@android:color/white"
+                app:srcCompat="@drawable/menu_icon_lowcost" />
 
             <ImageButton
                 android:id="@+id/trainImageButton"
@@ -79,9 +91,12 @@
                 android:layout_weight="1"
                 android:background="@drawable/menu_bckgr"
                 android:contentDescription="@string/train_button_menu_desc"
-                android:padding="10dp"
-                app:srcCompat="@drawable/menu_icon_train"
-                android:tint="@android:color/white" />
+                android:paddingBottom="15dp"
+                android:paddingEnd="18dp"
+                android:paddingStart="18dp"
+                android:paddingTop="15dp"
+                android:tint="@android:color/white"
+                app:srcCompat="@drawable/menu_icon_train" />
         </LinearLayout>
 
         <LinearLayout
@@ -102,7 +117,10 @@
                 android:layout_weight="1"
                 android:background="@drawable/menu_bckgr"
                 android:contentDescription="@string/transfer_button_menu_desc"
-                android:padding="10dp"
+                android:paddingBottom="15dp"
+                android:paddingEnd="18dp"
+                android:paddingStart="18dp"
+                android:paddingTop="15dp"
                 android:tint="@android:color/white"
                 app:srcCompat="@drawable/menu_icon_transfer" />
 
@@ -114,7 +132,10 @@
                 android:layout_weight="1"
                 android:background="@drawable/menu_bckgr"
                 android:contentDescription="@string/insurance_button_menu_desc"
-                android:padding="10dp"
+                android:paddingBottom="15dp"
+                android:paddingEnd="18dp"
+                android:paddingStart="18dp"
+                android:paddingTop="15dp"
                 android:tint="@android:color/white"
                 app:srcCompat="@drawable/menu_icon_insurance" />
 
@@ -126,7 +147,10 @@
                 android:layout_weight="1"
                 android:background="@drawable/menu_bckgr"
                 android:contentDescription="@string/visa_button_menu_desc"
-                android:padding="10dp"
+                android:paddingBottom="15dp"
+                android:paddingEnd="18dp"
+                android:paddingStart="18dp"
+                android:paddingTop="15dp"
                 android:tint="@android:color/white"
                 app:srcCompat="@drawable/menu_icon_visa" />
 
@@ -138,7 +162,10 @@
                 android:layout_weight="1"
                 android:background="@drawable/menu_bckgr"
                 android:contentDescription="@string/cruize_button_menu_desc"
-                android:padding="10dp"
+                android:paddingBottom="15dp"
+                android:paddingEnd="18dp"
+                android:paddingStart="18dp"
+                android:paddingTop="15dp"
                 android:tint="@android:color/white"
                 app:srcCompat="@drawable/menu_icon_cruize" />
 
@@ -150,7 +177,10 @@
                 android:layout_weight="1"
                 android:background="@drawable/menu_bckgr"
                 android:contentDescription="@string/cruize_button_menu_desc"
-                android:padding="10dp"
+                android:paddingBottom="15dp"
+                android:paddingEnd="18dp"
+                android:paddingStart="18dp"
+                android:paddingTop="15dp"
                 android:tint="@android:color/white"
                 android:visibility="invisible"
                 app:srcCompat="@drawable/menu_icon_cruize" />

@@ -20,16 +20,16 @@
         "source": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/res/drawable/ic_location.xml"
     },
     {
-        "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/drawable-ldrtl-xxxhdpi-v17_abc_spinner_mtrl_am_alpha.9.png.flat",
-        "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/cde178872decd53dd498d10901b95b08/res/drawable-ldrtl-xxxhdpi-v17/abc_spinner_mtrl_am_alpha.9.png"
+        "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/color-v23_design_tint_password_toggle.xml.flat",
+        "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/design-27.1.0.aar/76d852ce925d4ac154cb6983089b66a4/res/color-v23/design_tint_password_toggle.xml"
     },
     {
         "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/drawable_abc_ic_go_search_api_material.xml.flat",
         "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/cde178872decd53dd498d10901b95b08/res/drawable/abc_ic_go_search_api_material.xml"
     },
     {
-        "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/color-v23_design_tint_password_toggle.xml.flat",
-        "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/design-27.1.0.aar/76d852ce925d4ac154cb6983089b66a4/res/color-v23/design_tint_password_toggle.xml"
+        "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/drawable-ldrtl-xxxhdpi-v17_abc_spinner_mtrl_am_alpha.9.png.flat",
+        "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/cde178872decd53dd498d10901b95b08/res/drawable-ldrtl-xxxhdpi-v17/abc_spinner_mtrl_am_alpha.9.png"
     },
     {
         "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/color_abc_secondary_text_material_dark.xml.flat",
@@ -144,12 +144,12 @@
         "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/cde178872decd53dd498d10901b95b08/res/color/abc_background_cache_hint_selector_material_light.xml"
     },
     {
-        "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_list_selector_disabled_holo_light.9.png.flat",
-        "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/cde178872decd53dd498d10901b95b08/res/drawable-xhdpi-v4/abc_list_selector_disabled_holo_light.9.png"
-    },
-    {
         "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_textfield_search_activated_mtrl_alpha.9.png.flat",
         "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/cde178872decd53dd498d10901b95b08/res/drawable-xxhdpi-v4/abc_textfield_search_activated_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_list_selector_disabled_holo_light.9.png.flat",
+        "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/cde178872decd53dd498d10901b95b08/res/drawable-xhdpi-v4/abc_list_selector_disabled_holo_light.9.png"
     },
     {
         "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_popup_background_mtrl_mult.9.png.flat",
@@ -188,12 +188,12 @@
         "source": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/res/layout/fragment_register.xml"
     },
     {
-        "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/anim_abc_slide_out_bottom.xml.flat",
-        "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/cde178872decd53dd498d10901b95b08/res/anim/abc_slide_out_bottom.xml"
-    },
-    {
         "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/layout_notification_template_part_time.xml.flat",
         "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/2ce6857345ac41b6f32a68833c817303/res/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/anim_abc_slide_out_bottom.xml.flat",
+        "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/cde178872decd53dd498d10901b95b08/res/anim/abc_slide_out_bottom.xml"
     },
     {
         "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/drawable-ldrtl-hdpi-v17_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
@@ -300,12 +300,12 @@
         "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/2ce6857345ac41b6f32a68833c817303/res/drawable-mdpi-v4/notification_bg_low_normal.9.png"
     },
     {
-        "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
-    },
-    {
         "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/drawable_notification_bg.xml.flat",
         "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/2ce6857345ac41b6f32a68833c817303/res/drawable/notification_bg.xml"
+    },
+    {
+        "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
     },
     {
         "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/drawable_abc_vector_test.xml.flat",
@@ -332,12 +332,12 @@
         "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/cde178872decd53dd498d10901b95b08/res/drawable-xxxhdpi-v4/abc_btn_check_to_on_mtrl_015.png"
     },
     {
-        "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/layout_design_layout_tab_text.xml.flat",
-        "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/design-27.1.0.aar/76d852ce925d4ac154cb6983089b66a4/res/layout/design_layout_tab_text.xml"
-    },
-    {
         "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/layout_abc_action_mode_close_item_material.xml.flat",
         "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/cde178872decd53dd498d10901b95b08/res/layout/abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/layout_design_layout_tab_text.xml.flat",
+        "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/design-27.1.0.aar/76d852ce925d4ac154cb6983089b66a4/res/layout/design_layout_tab_text.xml"
     },
     {
         "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_ic_menu_selectall_mtrl_alpha.png.flat",
@@ -364,16 +364,16 @@
         "source": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/res/mipmap-hdpi/ic_launcher.png"
     },
     {
-        "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/drawable_notification_icon_background.xml.flat",
-        "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/2ce6857345ac41b6f32a68833c817303/res/drawable/notification_icon_background.xml"
+        "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/drawable_menu_icon_visa.xml.flat",
+        "source": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/res/drawable/menu_icon_visa.xml"
     },
     {
         "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_ic_star_black_16dp.png.flat",
         "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/cde178872decd53dd498d10901b95b08/res/drawable-xxxhdpi-v4/abc_ic_star_black_16dp.png"
     },
     {
-        "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/drawable_menu_icon_visa.xml.flat",
-        "source": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/res/drawable/menu_icon_visa.xml"
+        "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/drawable_notification_icon_background.xml.flat",
+        "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/2ce6857345ac41b6f32a68833c817303/res/drawable/notification_icon_background.xml"
     },
     {
         "merged": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_scrubber_control_to_pressed_mtrl_005.png.flat",

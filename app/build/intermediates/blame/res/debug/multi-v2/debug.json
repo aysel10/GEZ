@@ -272,6 +272,38 @@
             ]
         },
         {
+            "outputFile": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/values-hy_values-hy.arsc.flat",
+            "map": [
+                {
+                    "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/cde178872decd53dd498d10901b95b08/res/values-hy/values-hy.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,208,309,419,508,614,729,811,892,977,1084,1191,1290,1400,1507,1607,1764,1863",
+                        "endColumns": "102,100,109,88,105,114,81,80,84,106,106,98,109,106,99,156,98,81",
+                        "endOffsets": "203,304,414,503,609,724,806,887,972,1079,1186,1285,1395,1502,1602,1759,1858,1940"
+                    }
+                },
+                {
+                    "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/2ce6857345ac41b6f32a68833c817303/res/values-hy/values-hy.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "20",
+                        "startColumns": "4",
+                        "startOffsets": "1945",
+                        "endColumns": "100",
+                        "endOffsets": "2041"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/values-land_values-land.arsc.flat",
             "map": [
                 {
@@ -301,38 +333,6 @@
                         "startOffsets": "55,125,189,260",
                         "endColumns": "69,63,70,67",
                         "endOffsets": "120,184,255,323"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/res/merged/debug/values-hy_values-hy.arsc.flat",
-            "map": [
-                {
-                    "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/cde178872decd53dd498d10901b95b08/res/values-hy/values-hy.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,208,309,419,508,614,729,811,892,977,1084,1191,1290,1400,1507,1607,1764,1863",
-                        "endColumns": "102,100,109,88,105,114,81,80,84,106,106,98,109,106,99,156,98,81",
-                        "endOffsets": "203,304,414,503,609,724,806,887,972,1079,1186,1285,1395,1502,1602,1759,1858,1940"
-                    }
-                },
-                {
-                    "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/2ce6857345ac41b6f32a68833c817303/res/values-hy/values-hy.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "20",
-                        "startColumns": "4",
-                        "startOffsets": "1945",
-                        "endColumns": "100",
-                        "endOffsets": "2041"
                     }
                 }
             ]
@@ -1292,11 +1292,9 @@
                 {
                     "source": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/res/values/dimens.xml",
                     "from": {
-                        "startLines": "-1,2",
-                        "startColumns": "-1,4",
-                        "startOffsets": "-1,58",
-                        "endColumns": "-1,39",
-                        "endOffsets": "-1,93"
+                        "startLines": "-1,-1",
+                        "startColumns": "-1,-1",
+                        "startOffsets": "-1,-1"
                     },
                     "to": {
                         "startLines": "689,693",
@@ -1387,9 +1385,11 @@
                 {
                     "source": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/res/values/colors.xml",
                     "from": {
-                        "startLines": "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
-                        "startColumns": "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
-                        "startOffsets": "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1"
+                        "startLines": "-1,-1,3,-1,-1,-1,-1,-1,-1,-1",
+                        "startColumns": "-1,-1,4,-1,-1,-1,-1,-1,-1,-1",
+                        "startOffsets": "-1,-1,102,-1,-1,-1,-1,-1,-1,-1",
+                        "endColumns": "-1,-1,50,-1,-1,-1,-1,-1,-1,-1",
+                        "endOffsets": "-1,-1,148,-1,-1,-1,-1,-1,-1,-1"
                     },
                     "to": {
                         "startLines": "134,135,136,151,154,157,173,182,195,2146",

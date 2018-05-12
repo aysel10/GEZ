@@ -2,7 +2,6 @@ package crocusoft.com.gez.fragments
 
 import android.content.Context
 import android.graphics.Typeface
-import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -12,13 +11,10 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.RadioButton
-import android.widget.TextView
+import android.widget.*
 import crocusoft.com.gez.R
+import crocusoft.com.gez.Utils
 import kotlinx.android.synthetic.main.flight_multy_city.view.*
-import org.w3c.dom.Text
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -34,9 +30,16 @@ private lateinit var secondFlightMultiCity : View
 private lateinit var thirdFlightMultiCity : View
 private lateinit var forthFlightMultiCity : View
 private lateinit var fifthFlightMultiCity : View
+private lateinit var radioRoundTrip : RadioButton
+private lateinit var radioOneWay : RadioButton
 private lateinit var flightCountLabel : TextView
 private lateinit var mainSearchButton : Button
 private lateinit var firstLabel : TextView
+private lateinit var returnTextView : TextView
+private lateinit var returnDatePicker : EditText
+private lateinit var departDatePicker : EditText
+
+
 private var clickCounter : Int = 0
 
 
@@ -64,44 +67,72 @@ class FlightFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_flight, container, false)
+        firstLabel = TextView(context)
         radioMultyCity = view.findViewById(R.id.radioMultyCity)
         scrollView = view.findViewById(R.id.scrollView)
         mainSearchButton = view.findViewById(R.id.searchButton)
         elementsLinearLayout = view.findViewById(R.id.elementsLinearLayout)
         mainLinearLayout = view.findViewById(R.id.mainLinearLayout)
-        
+        radioRoundTrip = view.findViewById(R.id.radioRoundTrip)
+        radioOneWay = view.findViewById(R.id.radioOneWay)
+        returnTextView = view.findViewById(R.id.returnTextView)
+        returnDatePicker = view.findViewById(R.id.returnDate)
+        departDatePicker = view.findViewById(R.id.departDate)
+
+
+        Utils.datePicker(returnDatePicker, context!!)
+        Utils.datePicker(departDatePicker, context!!)
+
+
         radioMultyCity.setOnClickListener(View.OnClickListener {
             mainSearchButton.visibility = View.GONE
-            firstLabel = TextView(context)
-            firstLabel.setText(R.string.firstFlight)
-            firstLabel.setTextColor(resources.getColor(R.color.colorAccent))
-            firstLabel.setBackgroundDrawable(resources.getDrawable(R.drawable.grey_round))
-            firstLabel.setTextSize(TypedValue.COMPLEX_UNIT_PX,resources.getDimension(R.dimen.fontSize))
-            firstLabel.gravity = Gravity.CENTER
-           // firstLabel.layoutParams.height = 100
-            firstLabel.setTypeface(null,Typeface.BOLD)
-            elementsLinearLayout.addView(firstLabel)
-
+            addFirstLabel()
             addMultyCityView(inflater,container)
+            radioMultyCity.isEnabled = false
+        })
+        radioOneWay.setOnClickListener(View.OnClickListener {
+            mainSearchButton.visibility = View.VISIBLE
+            returnTextView.visibility = View.INVISIBLE
+            returnDatePicker.visibility = View.INVISIBLE
+            firstLabel.visibility = View.GONE
+            radioMultyCity.isEnabled = true
+        })
+        radioRoundTrip.setOnClickListener(View.OnClickListener {
+            mainSearchButton.visibility = View.VISIBLE
+            returnTextView.visibility = View.VISIBLE
+            returnDatePicker.visibility = View.VISIBLE
+            firstLabel.visibility = View.GONE
+            radioMultyCity.isEnabled = true
         })
 
         return  view
-
-
-
     }
 
+    private fun addFirstLabel(){
+        firstLabel.setText(R.string.firstFlight)
+        firstLabel.setTextColor(resources.getColor(R.color.colorAccent))
+        firstLabel.setBackgroundDrawable(resources.getDrawable(R.drawable.grey_round))
+        firstLabel.setTextSize(TypedValue.COMPLEX_UNIT_PX,resources.getDimension(R.dimen.fontSize))
+        firstLabel.gravity = Gravity.CENTER
+        //firstLabel.layoutParams.height = 100
+        firstLabel.setTypeface(null,Typeface.BOLD)
+        elementsLinearLayout.addView(firstLabel)
 
+    }
     private fun addMultyCityView(inflater: LayoutInflater, container: ViewGroup?){
         initMultyViews(inflater,container)
         multyCityLinearLayout = LinearLayout(context)
         multyCityLinearLayout.orientation = LinearLayout.VERTICAL
         multyCityLinearLayout.addView(secondFlightMultiCity)
+
         buttonLinearLayout = LinearLayout(context)
         buttonLinearLayout.addView(addRemoveView)
 
+        
+
         mainLinearLayout.addView(multyCityLinearLayout)
         mainLinearLayout.addView(buttonLinearLayout)
+
 
         addButton.setOnClickListener(View.OnClickListener {
             addFlightView()
@@ -193,4 +224,8 @@ class FlightFragment : Fragment() {
                     }
                 }
     }
+}
+
+private operator fun ViewGroup.LayoutParams.invoke(params: LinearLayout.LayoutParams) {
+
 }
