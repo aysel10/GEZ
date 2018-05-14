@@ -68,6 +68,10 @@ class FlightFragment : Fragment() {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_flight, container, false)
         firstLabel = TextView(context)
+        multyCityLinearLayout = LinearLayout(context)
+        buttonLinearLayout = LinearLayout(context)
+
+
         radioMultyCity = view.findViewById(R.id.radioMultyCity)
         scrollView = view.findViewById(R.id.scrollView)
         mainSearchButton = view.findViewById(R.id.searchButton)
@@ -94,14 +98,20 @@ class FlightFragment : Fragment() {
             mainSearchButton.visibility = View.VISIBLE
             returnTextView.visibility = View.INVISIBLE
             returnDatePicker.visibility = View.INVISIBLE
-            firstLabel.visibility = View.GONE
+            elementsLinearLayout.removeView(firstLabel)
+            multyCityLinearLayout.removeAllViews()
+            mainLinearLayout.removeView(multyCityLinearLayout)
+            mainLinearLayout.removeView(buttonLinearLayout)
             radioMultyCity.isEnabled = true
         })
         radioRoundTrip.setOnClickListener(View.OnClickListener {
             mainSearchButton.visibility = View.VISIBLE
             returnTextView.visibility = View.VISIBLE
             returnDatePicker.visibility = View.VISIBLE
-            firstLabel.visibility = View.GONE
+            elementsLinearLayout.removeView(firstLabel)
+            multyCityLinearLayout.removeAllViews()
+            mainLinearLayout.removeView(multyCityLinearLayout)
+            mainLinearLayout.removeView(buttonLinearLayout)
             radioMultyCity.isEnabled = true
         })
 
@@ -121,11 +131,10 @@ class FlightFragment : Fragment() {
     }
     private fun addMultyCityView(inflater: LayoutInflater, container: ViewGroup?){
         initMultyViews(inflater,container)
-        multyCityLinearLayout = LinearLayout(context)
         multyCityLinearLayout.orientation = LinearLayout.VERTICAL
+
         multyCityLinearLayout.addView(secondFlightMultiCity)
 
-        buttonLinearLayout = LinearLayout(context)
         buttonLinearLayout.addView(addRemoveView)
 
         
@@ -142,6 +151,8 @@ class FlightFragment : Fragment() {
         })
 
     }
+
+
     private fun initMultyViews(inflater: LayoutInflater, container: ViewGroup?){
         secondFlightMultiCity = inflater.inflate(R.layout.flight_multy_city,container,false)
         thirdFlightMultiCity = inflater.inflate(R.layout.flight_multy_city,container,false)

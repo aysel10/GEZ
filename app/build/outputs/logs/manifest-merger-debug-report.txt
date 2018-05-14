@@ -10,6 +10,7 @@ MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/ayse
 MERGED from [com.android.support:support-v4:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-v4-27.1.0.aar/26aa7a5007af71edf2efc9d0573082a7/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:recyclerview-v7:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-27.1.0.aar/ea95e9dadcc364b83983570028d8cc2d/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:cardview-v7:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/cardview-v7-27.1.0.aar/b9eceaf1513184b6324ab2f20b4c8bd6/AndroidManifest.xml:17:1-22:12
+MERGED from [com.robohorse.gpversionchecker:gpversionchecker:1.5.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/gpversionchecker-1.5.0.aar/7cb71a95fff7505ba09b1e471809f458/AndroidManifest.xml:2:1-21:12
 MERGED from [com.android.support:support-fragment:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.0.aar/8b578c07bc93218e2275a5295c63299e/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:animated-vector-drawable:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.0.aar/cdf5b6c2e227ab7de4d8b135b5117d9e/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-core-ui:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.0.aar/a2c8dd8905e6d0c10be4ddc62ce4fbb3/AndroidManifest.xml:17:1-22:12
@@ -39,10 +40,18 @@ INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidMani
 		INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:4:5-83
+MERGED from [com.robohorse.gpversionchecker:gpversionchecker:1.5.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/gpversionchecker-1.5.0.aar/7cb71a95fff7505ba09b1e471809f458/AndroidManifest.xml:11:5-67
+MERGED from [com.robohorse.gpversionchecker:gpversionchecker:1.5.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/gpversionchecker-1.5.0.aar/7cb71a95fff7505ba09b1e471809f458/AndroidManifest.xml:11:5-67
+	android:name
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:4:22-64
 application
 ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:5:5-37:19
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/c219695b304b68ade715ef3c2166a9ad/AndroidManifest.xml:9:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/c219695b304b68ade715ef3c2166a9ad/AndroidManifest.xml:9:5-20
+MERGED from [com.robohorse.gpversionchecker:gpversionchecker:1.5.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/gpversionchecker-1.5.0.aar/7cb71a95fff7505ba09b1e471809f458/AndroidManifest.xml:13:5-19:19
+MERGED from [com.robohorse.gpversionchecker:gpversionchecker:1.5.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/gpversionchecker-1.5.0.aar/7cb71a95fff7505ba09b1e471809f458/AndroidManifest.xml:13:5-19:19
 	android:supportsRtl
 		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:10:9-35
 	android:label
@@ -107,6 +116,8 @@ MERGED from [com.android.support:recyclerview-v7:27.1.0] /Users/ayselkas/.gradle
 MERGED from [com.android.support:recyclerview-v7:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-27.1.0.aar/ea95e9dadcc364b83983570028d8cc2d/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:cardview-v7:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/cardview-v7-27.1.0.aar/b9eceaf1513184b6324ab2f20b4c8bd6/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:cardview-v7:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/cardview-v7-27.1.0.aar/b9eceaf1513184b6324ab2f20b4c8bd6/AndroidManifest.xml:20:5-44
+MERGED from [com.robohorse.gpversionchecker:gpversionchecker:1.5.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/gpversionchecker-1.5.0.aar/7cb71a95fff7505ba09b1e471809f458/AndroidManifest.xml:7:5-9:41
+MERGED from [com.robohorse.gpversionchecker:gpversionchecker:1.5.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/gpversionchecker-1.5.0.aar/7cb71a95fff7505ba09b1e471809f458/AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:support-fragment:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.0.aar/8b578c07bc93218e2275a5295c63299e/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-fragment:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.0.aar/8b578c07bc93218e2275a5295c63299e/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:animated-vector-drawable:27.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.0.aar/cdf5b6c2e227ab7de4d8b135b5117d9e/AndroidManifest.xml:20:5-44
@@ -141,3 +152,9 @@ INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidMani
 		INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
 		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
+service#com.robohorse.gpversionchecker.VersionCheckerService
+ADDED from [com.robohorse.gpversionchecker:gpversionchecker:1.5.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/gpversionchecker-1.5.0.aar/7cb71a95fff7505ba09b1e471809f458/AndroidManifest.xml:16:9-18:40
+	android:exported
+		ADDED from [com.robohorse.gpversionchecker:gpversionchecker:1.5.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/gpversionchecker-1.5.0.aar/7cb71a95fff7505ba09b1e471809f458/AndroidManifest.xml:18:13-37
+	android:name
+		ADDED from [com.robohorse.gpversionchecker:gpversionchecker:1.5.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/gpversionchecker-1.5.0.aar/7cb71a95fff7505ba09b1e471809f458/AndroidManifest.xml:17:13-80
