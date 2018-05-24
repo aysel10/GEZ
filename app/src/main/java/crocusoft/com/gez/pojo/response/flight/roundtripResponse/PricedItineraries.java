@@ -4,8 +4,6 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import crocusoft.com.gez.pojo.response.flight.defaultFlight.FreeBaggages;
-import crocusoft.com.gez.pojo.response.flight.defaultFlight.PricedItineraryItem;
 
 public class PricedItineraries{
 

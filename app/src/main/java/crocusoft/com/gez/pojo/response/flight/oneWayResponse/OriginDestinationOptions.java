@@ -4,13 +4,11 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.annotations.SerializedName;
 
-import crocusoft.com.gez.pojo.response.flight.defaultFlight.OriginDestinationOptionItem;
-
 public class OriginDestinationOptions{
 	@SerializedName("OriginDestinationOption")
 	@JsonProperty("OriginDestinationOption")
 	private Object OriginDestinationOptionItem;
-	private List<crocusoft.com.gez.pojo.response.flight.defaultFlight.OriginDestinationOptionItem> originDestinationOption;
+	private List<OriginDestinationOptionItem> originDestinationOption;
 
 	public Object getOriginDestinationOptionItem() {
 		return OriginDestinationOptionItem;

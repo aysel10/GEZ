@@ -184,7 +184,8 @@ class FlightFragment : Fragment(){
             when(clickCounter){
                 1-> {
                     multyCityLinearLayout.addView(thirdFlightMultiCity)
-                    thirdFlightMultiCity.flightCountLabel.setText(R.string.thirdFlight)
+                    thirdFlightMultiCity.
+                            flightCountLabel.setText(R.string.thirdFlight)
                 }
                 2-> {
                     multyCityLinearLayout.addView(forthFlightMultiCity)

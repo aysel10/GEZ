@@ -1,25 +1,19 @@
 package crocusoft.com.gez.pojo.request.searchOnewayFlight;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.gson.annotations.SerializedName;
-
-import crocusoft.com.gez.pojo.request.defaultFlight.DestinationLocation;
 
 public class OriginDestinationInformation{
 
-	@SerializedName("OriginLocation")
 	@JsonProperty("OriginLocation")
 	private OriginLocation originLocation;
 
-	@SerializedName("DepartureDateTime")
 	@JsonProperty("DepartureDateTime")
 	private String departureDateTime;
 
 	@JsonProperty("DestinationLocation")
-	@SerializedName("DestinationLocation")
 	private DestinationLocation destinationLocation;
 
-	public OriginDestinationInformation(OriginLocation originLocation, DestinationLocation destinationLocation, String departureDateTime) {
+	public OriginDestinationInformation(OriginLocation originLocation, String departureDateTime, DestinationLocation destinationLocation) {
 		this.originLocation = originLocation;
 		this.departureDateTime = departureDateTime;
 		this.destinationLocation = destinationLocation;

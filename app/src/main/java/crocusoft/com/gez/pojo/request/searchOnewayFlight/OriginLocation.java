@@ -10,7 +10,6 @@ public class OriginLocation{
 	@JsonProperty("@MultiAirportCityInd")
 	private String multiAirportCityInd;
 
-
 	public OriginLocation(String locationCode, String multiAirportCityInd) {
 		this.locationCode = locationCode;
 		this.multiAirportCityInd = multiAirportCityInd;

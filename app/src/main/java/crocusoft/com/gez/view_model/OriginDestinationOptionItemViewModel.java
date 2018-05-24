@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import crocusoft.com.gez.pojo.response.flight.defaultFlight.FlightSegment;
+import crocusoft.com.gez.pojo.response.flight.roundtripResponse.FlightSegment;
 import crocusoft.com.gez.pojo.response.flight.roundtripResponse.OptionPricingInfo;
 
 

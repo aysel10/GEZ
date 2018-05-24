@@ -10,10 +10,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import crocusoft.com.gez.pojo.response.flight.defaultFlight.FlightSegment;
-import crocusoft.com.gez.pojo.response.flight.defaultFlight.OriginDestinationOptionItem;
-import crocusoft.com.gez.pojo.response.flight.defaultFlight.PricedItineraryItem;
-import crocusoft.com.gez.pojo.response.flight.defaultFlight.Response;
+import crocusoft.com.gez.pojo.response.flight.roundtripResponse.FlightSegment;
+import crocusoft.com.gez.pojo.response.flight.roundtripResponse.OriginDestinationOptionItem;
+import crocusoft.com.gez.pojo.response.flight.roundtripResponse.PricedItineraryItem;
+import crocusoft.com.gez.pojo.response.flight.roundtripResponse.RoundtripResponse;
 import crocusoft.com.gez.view_model.OriginDestinationOptionItemViewModel;
 import crocusoft.com.gez.view_model.PricedItineraryItemViewModel;
 import crocusoft.com.gez.view_model.TicketDataViewModel;
@@ -23,7 +23,7 @@ import crocusoft.com.gez.view_model.TicketDataViewModel;
  */
 public class Utility {
 
-    public static TicketDataViewModel getTicketList(Response response) {
+    public static TicketDataViewModel getTicketList(RoundtripResponse response) {
         TicketDataViewModel ticketDataViewModel = new TicketDataViewModel();
         try {
             List<PricedItineraryItem> pricedItineraryItemList = response

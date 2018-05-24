@@ -5,9 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.google.gson.annotations.Expose;
 
-import crocusoft.com.gez.pojo.request.defaultFlight.DestinationLocation;
-import crocusoft.com.gez.pojo.request.defaultFlight.OriginLocation;
-
 @JsonAutoDetect(fieldVisibility=JsonAutoDetect.Visibility.ANY, getterVisibility=JsonAutoDetect.Visibility.NONE, setterVisibility= JsonAutoDetect.Visibility.NONE, creatorVisibility=JsonAutoDetect.Visibility.NONE)
 @JsonPropertyOrder({"originLocation","destinationLocation","departureDateTime"})
 public class OriginDestinationInformation_ {

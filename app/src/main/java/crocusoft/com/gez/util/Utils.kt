@@ -7,32 +7,17 @@ import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import crocusoft.com.gez.adapters.FlightTicketsAdapter
-import crocusoft.com.gez.pojo.response.flight.defaultFlight.Response
+import crocusoft.com.gez.pojo.request.searchRoundtripFlight.*
+import crocusoft.com.gez.pojo.response.flight.oneWayResponse.Response
+import crocusoft.com.gez.pojo.response.flight.roundtripResponse.RoundtripResponse
 import crocusoft.com.gez.services.RetrofitService
-import crocusoft.com.gez.pojo.request.searchOnewayFlight.OriginDestinationInformation
-import crocusoft.com.gez.pojo.request.searchRoundtripFlight.OriginDestinationInformation_
-import crocusoft.com.gez.pojo.request.searchRoundtripFlight.TravelerInfoSummary
-import crocusoft.com.gez.pojo.request.defaultFlight.OTAAirLowFareSearchRQ
-import crocusoft.com.gez.pojo.request.defaultFlight.SearchFlight
-import crocusoft.com.gez.pojo.request.defaultFlight.SoapBody
-import crocusoft.com.gez.pojo.request.defaultFlight.SoapHeader
-import crocusoft.com.gez.pojo.request.defaultFlight.SoapEnvelope
-import crocusoft.com.gez.pojo.request.defaultFlight.AuthenticationSoapHeader
-import crocusoft.com.gez.pojo.request.defaultFlight.FlightRequest
-import crocusoft.com.gez.pojo.request.defaultFlight.DestinationLocation
-import crocusoft.com.gez.pojo.request.defaultFlight.OriginLocation
-
+//хахахахха
 
 import retrofit2.Call
 import retrofit2.Callback
 import java.util.ArrayList
 import java.text.SimpleDateFormat
 import java.util.*
-import crocusoft.com.gez.pojo.request.searchOnewayFlight.OneWayRequest
-import crocusoft.com.gez.pojo.request.searchRoundtripFlight.AirTravelerAvail
-import crocusoft.com.gez.pojo.request.searchRoundtripFlight.CabinPref
-import crocusoft.com.gez.pojo.request.searchRoundtripFlight.PassengerTypeQuantity
-import crocusoft.com.gez.pojo.request.searchRoundtripFlight.TravelPreferences
 import crocusoft.com.gez.view_model.TicketDataViewModel
 
 
@@ -48,23 +33,22 @@ class Utils {
 
 
         fun oneWayFlightSearch(service: RetrofitService){
+
             val originLocation = crocusoft.com.gez.pojo.request.searchOnewayFlight.OriginLocation("BAK","true")
             val destinationLocation = crocusoft.com.gez.pojo.request.searchOnewayFlight.DestinationLocation("IST", "true")
 
-            val originLocationInformation = OriginDestinationInformation(originLocation,
-                    destinationLocation,"2018-05-25T12:00:00")
-            val passengerTypeQuantity = crocusoft.com.gez.pojo.request.defaultFlight.PassengerTypeQuantity("ADT")
-            val airTravelerAvail = crocusoft.com.gez.pojo.request.defaultFlight.AirTravelerAvail(passengerTypeQuantity)
-            val travelerInfoSummary = crocusoft.com.gez.pojo.request.defaultFlight.TravelerInfoSummary(airTravelerAvail)
-            val otaAirLowFareSearchRQ = crocusoft.com.gez.pojo.request.searchOnewayFlight.OTAAirLowFareSearchRQ(originLocationInformation,travelerInfoSummary)
+            val originLocationInformation = crocusoft.com.gez.pojo.request.searchOnewayFlight.OriginDestinationInformation(originLocation,
+                    "2018-05-25T12:00:00", destinationLocation)
+            val passengerTypeQuantity = crocusoft.com.gez.pojo.request.searchOnewayFlight.PassengerTypeQuantity("ADT")
+            val airTravelerAvail = crocusoft.com.gez.pojo.request.searchOnewayFlight.AirTravelerAvail(passengerTypeQuantity)
+            val travelerInfoSummary = crocusoft.com.gez.pojo.request.searchOnewayFlight.TravelerInfoSummary(airTravelerAvail)
+            val otaAirLowFareSearchRQ = crocusoft.com.gez.pojo.request.searchOnewayFlight.OTAAirLowFareSearchRQ(originLocationInformation, travelerInfoSummary)
             val searchFlight = crocusoft.com.gez.pojo.request.searchOnewayFlight.SearchFlight(otaAirLowFareSearchRQ)
             val soapBody = crocusoft.com.gez.pojo.request.searchOnewayFlight.SoapBody(searchFlight)
             val authenticationSoapHeader = crocusoft.com.gez.pojo.request.searchOnewayFlight.AuthenticationSoapHeader()
             val soapHeader = crocusoft.com.gez.pojo.request.searchOnewayFlight.SoapHeader(authenticationSoapHeader)
             val soapEnvelope = crocusoft.com.gez.pojo.request.searchOnewayFlight.SoapEnvelope(soapHeader,soapBody)
-            var searchOneWay = OneWayRequest(soapEnvelope)
-
-
+            var searchOneWay = crocusoft.com.gez.pojo.request.searchOnewayFlight.Request(soapEnvelope)
 
             val call : Call<Response> = service.oneWayFlightSearch(searchOneWay)
 
@@ -112,46 +96,21 @@ class Utils {
             val soapEnvelope = SoapEnvelope(soapHeader, soapBody)
             val searchRoundtripFlight = FlightRequest(soapEnvelope)
 
-
             val flightTicketsAdapter = FlightTicketsAdapter()
+            val call : Call<RoundtripResponse> = service.roundTripFlightSearch(searchRoundtripFlight)
 
-
-            val call : Call<Response> = service.roundTripFlightSearch(searchRoundtripFlight)
-
-            //var tickets : ArrayList<OriginDestinationOptionItem> = ArrayList()
-
-
-            call.enqueue(object :Callback<Response>{
-                override fun onFailure(call: Call<Response>?, t: Throwable?) {
+            call.enqueue(object :Callback<RoundtripResponse>{
+                override fun onFailure(call: Call<RoundtripResponse>?, t: Throwable?) {
                     Log.e("ERROR",t!!.message)
                 }
 
-                override fun onResponse(call: Call<Response>?, response: retrofit2.Response<Response>?) {
+                override fun onResponse(call: Call<RoundtripResponse>?, response: retrofit2.Response<RoundtripResponse>?) {
 
 
                     val ticketDataViewModel: TicketDataViewModel = Utility.getTicketList(response!!.body())
                     flightTicketsAdapter
                             .addViewModel(ticketDataViewModel)
                     flightTicketsAdapter.notifyDataSetChanged()
-
-//                    var itinerarySize = myResponse!!.soapEnvelope.soapBody.searchFlightResponse.
-//                            otaAirLowFareSearchRS.pricedItineraries.pricedItinerary.size
-//
-//
-//
-//                    for (i in 0 until itinerarySize) {
-//                        var originSize = myResponse!!.soapEnvelope.soapBody.searchFlightResponse.
-//                                otaAirLowFareSearchRS.pricedItineraries.pricedItinerary[i].
-//                                airItinerary.originDestinationOptions.originDestinationOption.size
-//
-//                        for(j in 0 until originSize){
-//                            var ticket = myResponse!!.soapEnvelope.soapBody.searchFlightResponse.otaAirLowFareSearchRS.
-//                                    pricedItineraries.pricedItinerary[i].airItinerary.originDestinationOptions.originDestinationOption[j]
-//
-//
-//                            val gson = Gson()
-//                            val jsonInString = gson.toJson(myResponse!!.soapEnvelope.soapBody.searchFlightResponse.otaAirLowFareSearchRS.
-//                                    pricedItineraries.pricedItinerary[i].airItinerary.originDestinationOptions.originDestinationOption[j].flightSegment)
                 }
             })
 

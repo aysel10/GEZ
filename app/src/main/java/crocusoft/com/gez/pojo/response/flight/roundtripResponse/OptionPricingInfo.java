@@ -2,7 +2,6 @@ package crocusoft.com.gez.pojo.response.flight.roundtripResponse;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import crocusoft.com.gez.pojo.response.flight.defaultFlight.ItinTotalFare;
 
 public class OptionPricingInfo{
 

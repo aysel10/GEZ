@@ -3,8 +3,6 @@ package crocusoft.com.gez.pojo.response.flight.oneWayResponse;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import crocusoft.com.gez.pojo.response.flight.defaultFlight.OriginDestinationCombinationItem;
-
 public class OriginDestinationCombinations{
 
 	@JsonProperty("OriginDestinationCombination")
