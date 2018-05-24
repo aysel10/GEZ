@@ -1,6 +1,5 @@
 package crocusoft.com.gez.fragments
 
-import android.app.DatePickerDialog
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
@@ -11,9 +10,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 import crocusoft.com.gez.R
-import crocusoft.com.gez.Utils.Companion.datePicker
-import java.text.SimpleDateFormat
-import java.util.*
+import crocusoft.com.gez.util.Utils.Companion.datePicker
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

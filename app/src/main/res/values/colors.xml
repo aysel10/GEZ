@@ -7,8 +7,10 @@
     <color name="orange">#f7be3c</color>
     <color name="fontColor">#4e524f</color>
     <color name="greenFont">#387317</color>
+    <color name="blueGez">#1284f3</color>
     <color name="lightGrey">#ededed</color>
     <color name="propertyColor">#ddefd2</color>
+    <color name="blueButton">#1284f3</color>
 
     <style name="RadioButtonStyle" parent="AppTheme">
         <item name="colorControlNormal">@color/white</item>

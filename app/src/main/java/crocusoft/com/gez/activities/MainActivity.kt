@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatDelegate
 import android.os.Build
 import crocusoft.com.gez.R
-import crocusoft.com.gez.Utils
+import crocusoft.com.gez.util.Utils
 import crocusoft.com.gez.fragments.*
 
 
@@ -15,7 +15,8 @@ class MainActivity : AppCompatActivity(), MenuFragment.OnFragmentInteractionList
         CarsFragment.OnFragmentInteractionListener,
         HotelFragment.OnFragmentInteractionListener,
         TransferFragment.OnFragmentInteractionListener,
-        FlightFragment.OnFragmentInteractionListener{
+        FlightFragment.OnFragmentInteractionListener,
+        FlightTicketsFragment.OnFragmentInteractionListener{
 
     companion object {
         var currentFragment: Any = FlightFragment.newInstance()

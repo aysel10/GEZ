@@ -112,7 +112,18 @@
 
     <string name="classTypePlaceHolder">Class type</string>
     <string name="datePlaceHolder">%1$s, %2$s</string>
-    <string name="roadTimePlaceHolder">%1$d H\ %2%d M</string>
+    <string name="roadTimePlaceHolder">%1$d h\ %2$d m</string>
+    <string name="airwayName">%1$d \n %2$d</string>
+
+    <string name="flightTime">%1$d h %2$d m \ %3%s</string>
+    <string name="flightDate">%1$s, %2$s</string>
+    <string name="flightDepartAirport">GYD</string>
+    <string name="flightArrivalAirport">MXP</string>
+    <string name="flightArrivalTime">%1$s</string>
+    <string name="flightDepartTime">%1$s</string>
+    <string name="flightBagFees">Bag Fees</string>
+
+
     <string name="pricePlaceHolder">000$</string>
     <string name="arrivalStationPlaceHolder">Arrival PH</string>
     <string name="departStationPlaceHolder">Depart PH</string>

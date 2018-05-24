@@ -97,7 +97,7 @@
             android:id="@+id/button7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/search_sort_background"
+            android:background="@drawable/search_button_background"
             android:text="REGISTER"
             android:textColor="@color/white"
             android:textStyle="bold" />

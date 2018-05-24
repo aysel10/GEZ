@@ -29,8 +29,7 @@
         <activity
             android:name="crocusoft.com.gez.activities.LoginActivity"
             android:label="@string/title_activity_login"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="crocusoft.com.gez.activities.RegisterActivity"
             android:label="@string/title_activity_register"
@@ -39,6 +38,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.LoginActivity" />
         </activity>
+        <activity
+            android:name="crocusoft.com.gez.activities.FlightTicketsActivity"
+            android:parentActivityName="crocusoft.com.gez.activities.MainActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
+
+        <service
+            android:name="com.robohorse.gpversionchecker.VersionCheckerService"
+            android:exported="false" />
 
         <provider
             android:name="com.android.tools.ir.server.InstantRunContentProvider"

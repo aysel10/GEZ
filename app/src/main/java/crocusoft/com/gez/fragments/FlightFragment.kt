@@ -1,6 +1,7 @@
 package crocusoft.com.gez.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
@@ -13,8 +14,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import crocusoft.com.gez.R
-import crocusoft.com.gez.Utils
+import crocusoft.com.gez.util.Utils
+import crocusoft.com.gez.activities.FlightTicketsActivity
+import crocusoft.com.gez.services.RetrofitClient
+import crocusoft.com.gez.services.RetrofitService
 import kotlinx.android.synthetic.main.flight_multy_city.view.*
+import okhttp3.internal.Util
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -32,24 +37,25 @@ private lateinit var forthFlightMultiCity : View
 private lateinit var fifthFlightMultiCity : View
 private lateinit var radioRoundTrip : RadioButton
 private lateinit var radioOneWay : RadioButton
-private lateinit var flightCountLabel : TextView
+private lateinit var secondCountLabel : TextView
+private lateinit var thirdCountLabel : TextView
+private lateinit var fourthCountLabel : TextView
+private lateinit var fifthCountLabel : TextView
 private lateinit var mainSearchButton : Button
 private lateinit var firstLabel : TextView
 private lateinit var returnTextView : TextView
 private lateinit var returnDatePicker : EditText
 private lateinit var departDatePicker : EditText
-
-
 private var clickCounter : Int = 0
-
 
 private lateinit var mainLinearLayout : LinearLayout
 private lateinit var addRemoveView : View
 private lateinit var addButton: Button
 private lateinit var removeButton: Button
-private lateinit var searchButton: Button
 
-class FlightFragment : Fragment() {
+class FlightFragment : Fragment(){
+
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -67,10 +73,19 @@ class FlightFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_flight, container, false)
+
+
+
+        initMainView(inflater,container,view)
+
+        return  view
+    }
+
+    private fun initMainView(inflater: LayoutInflater, container: ViewGroup?,view : View){
+
         firstLabel = TextView(context)
         multyCityLinearLayout = LinearLayout(context)
         buttonLinearLayout = LinearLayout(context)
-
 
         radioMultyCity = view.findViewById(R.id.radioMultyCity)
         scrollView = view.findViewById(R.id.scrollView)
@@ -83,15 +98,25 @@ class FlightFragment : Fragment() {
         returnDatePicker = view.findViewById(R.id.returnDate)
         departDatePicker = view.findViewById(R.id.departDate)
 
-
         Utils.datePicker(returnDatePicker, context!!)
         Utils.datePicker(departDatePicker, context!!)
 
+        setClickListeners(inflater,container)
+        mainSearchButton.setOnClickListener(View.OnClickListener {
+//            var intent: Intent = Intent(context,FlightTicketsActivity::class.java)
+//            startActivity(intent)
 
+            val service = RetrofitClient().getClient()!!.create<RetrofitService>(RetrofitService::class.java!!)
+
+            Utils.oneWayFlightSearch(service)
+        })
+    }
+
+    private fun setClickListeners(inflater: LayoutInflater, container: ViewGroup?){
         radioMultyCity.setOnClickListener(View.OnClickListener {
             mainSearchButton.visibility = View.GONE
             addFirstLabel()
-            addMultyCityView(inflater,container)
+            addMultiCityView(inflater,container)
             radioMultyCity.isEnabled = false
         })
         radioOneWay.setOnClickListener(View.OnClickListener {
@@ -114,8 +139,6 @@ class FlightFragment : Fragment() {
             mainLinearLayout.removeView(buttonLinearLayout)
             radioMultyCity.isEnabled = true
         })
-
-        return  view
     }
 
     private fun addFirstLabel(){
@@ -127,33 +150,25 @@ class FlightFragment : Fragment() {
         //firstLabel.layoutParams.height = 100
         firstLabel.setTypeface(null,Typeface.BOLD)
         elementsLinearLayout.addView(firstLabel)
-
     }
-    private fun addMultyCityView(inflater: LayoutInflater, container: ViewGroup?){
-        initMultyViews(inflater,container)
+
+    private fun addMultiCityView(inflater: LayoutInflater, container: ViewGroup?){
+        initMultiViews(inflater,container)
         multyCityLinearLayout.orientation = LinearLayout.VERTICAL
-
         multyCityLinearLayout.addView(secondFlightMultiCity)
-
         buttonLinearLayout.addView(addRemoveView)
-
-        
-
         mainLinearLayout.addView(multyCityLinearLayout)
         mainLinearLayout.addView(buttonLinearLayout)
-
-
         addButton.setOnClickListener(View.OnClickListener {
-            addFlightView()
+            addMultiFlightView()
         })
         removeButton.setOnClickListener(View.OnClickListener {
-            removeFlightView()
+            removeLastMultiFlightView()
         })
 
     }
 
-
-    private fun initMultyViews(inflater: LayoutInflater, container: ViewGroup?){
+    private fun initMultiViews(inflater: LayoutInflater, container: ViewGroup?){
         secondFlightMultiCity = inflater.inflate(R.layout.flight_multy_city,container,false)
         thirdFlightMultiCity = inflater.inflate(R.layout.flight_multy_city,container,false)
         forthFlightMultiCity = inflater.inflate(R.layout.flight_multy_city,container,false)
@@ -161,10 +176,9 @@ class FlightFragment : Fragment() {
         addRemoveView = inflater.inflate(R.layout.add_remove_buttons,container,false)
         addButton = addRemoveView.findViewById(R.id.addButton)
         removeButton = addRemoveView.findViewById(R.id.removeButton)
-        flightCountLabel = secondFlightMultiCity.findViewById(R.id.flightCountLabel)
         secondFlightMultiCity.flightCountLabel.setText(R.string.secondFlight)
     }
-    private fun addFlightView(){
+    private fun addMultiFlightView(){
         if (clickCounter<3) {
             clickCounter++
             when(clickCounter){
@@ -185,7 +199,7 @@ class FlightFragment : Fragment() {
         }
 
     }
-    private fun removeFlightView(){
+    private fun removeLastMultiFlightView(){
         if(clickCounter>0){
             when(clickCounter){
                 1-> multyCityLinearLayout.removeView(thirdFlightMultiCity)

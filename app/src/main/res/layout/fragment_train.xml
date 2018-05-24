@@ -26,7 +26,7 @@
                 android:layout_margin="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/menu_button_bckgr"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -84,11 +84,11 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="16dp"
                     android:layout_weight="1"
                     android:text="@string/fromLabel"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <EditText
@@ -115,7 +115,7 @@
                     android:layout_marginTop="16dp"
                     android:text="@string/toLabel"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <EditText
@@ -137,8 +137,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="2dp">
+                    android:layout_marginStart="8dp">
 
                     <TableRow
                         android:layout_width="wrap_content"
@@ -153,7 +152,7 @@
                             android:layout_weight="1"
                             android:text="@string/departLabel"
                             android:textColor="@color/white"
-                            android:textSize="18sp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -164,7 +163,7 @@
                             android:layout_weight="1"
                             android:text="@string/returnLabel"
                             android:textColor="@color/white"
-                            android:textSize="18sp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
                     </TableRow>
 
@@ -219,7 +218,7 @@
                             android:layout_weight="1"
                             android:text="@string/adultLabel"
                             android:textColor="@color/white"
-                            android:textSize="18sp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -230,7 +229,7 @@
                             android:layout_weight="1"
                             android:text="@string/childLabel"
                             android:textColor="@color/white"
-                            android:textSize="18sp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
 
                     </TableRow>
@@ -267,7 +266,7 @@
                             android:gravity="center"
                             android:text="@string/addHotelLabel"
                             android:textColor="@color/white"
-                            android:textSize="18sp"
+                            android:textSize="14sp"
                             android:textStyle="bold"
                             app:buttonTint="@color/colorAccent" />
 

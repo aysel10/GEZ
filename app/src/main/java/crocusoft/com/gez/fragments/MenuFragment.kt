@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import crocusoft.com.gez.R
-import crocusoft.com.gez.Utils
+import crocusoft.com.gez.util.Utils
 import crocusoft.com.gez.activities.MainActivity
 
 

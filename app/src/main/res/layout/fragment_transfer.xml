@@ -63,10 +63,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="16dp"
             android:text="@string/fromLabel"
             android:textColor="@color/cardview_light_background"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <EditText
@@ -81,7 +81,8 @@
             android:ems="10"
             android:hint="@string/fromPlaceHolder"
             android:inputType="textPersonName"
-            android:padding="5dp" />
+            android:padding="5dp"
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/textView1"
@@ -92,7 +93,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/toLabel"
             android:textColor="@color/cardview_light_background"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <EditText
@@ -107,7 +108,8 @@
             android:ems="10"
             android:hint="@string/fromPlaceHolder"
             android:inputType="textPersonName"
-            android:padding="5dp" />
+            android:padding="5dp"
+            android:textSize="13sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -121,22 +123,22 @@
                 android:id="@+id/textView6"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="12dp"
                 android:layout_weight="1"
                 android:text="@string/departLabel"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView7"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="12dp"
                 android:layout_weight="1"
                 android:text="@string/returnLabel"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -151,21 +153,23 @@
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="12dp"
                 android:layout_weight="1"
 
                 android:background="@drawable/search_textf_color"
                 android:drawableEnd="@drawable/search_textf_icon_date_wrap"
-                android:padding="5dp" />
+                android:padding="5dp"
+                android:textSize="13sp" />
 
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="12dp"
                 android:layout_weight="1"
                 android:background="@drawable/search_textf_color"
                 android:drawableEnd="@drawable/search_textf_icon_date_wrap"
-                android:padding="5dp" />
+                android:padding="5dp"
+                android:textSize="13sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -180,22 +184,22 @@
                 android:id="@+id/textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="12dp"
                 android:layout_weight="1"
                 android:text="@string/typeOfCar"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/returnTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="12dp"
                 android:layout_weight="1"
                 android:text="@string/passangers"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -210,20 +214,22 @@
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="12dp"
                 android:layout_weight="1"
                 android:background="@drawable/search_textf_color"
                 android:drawableEnd="@drawable/search_spinner_arrowdn_wrap"
-                android:padding="5dp" />
+                android:padding="5dp"
+                android:textSize="13sp" />
 
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="12dp"
                 android:layout_weight="1"
                 android:background="@drawable/search_textf_color"
                 android:drawableEnd="@drawable/search_spinner_arrowdn_wrap"
-                android:padding="5dp" />
+                android:padding="5dp"
+                android:textSize="13sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -242,7 +248,7 @@
                 android:layout_weight="1"
                 android:text="Flight#"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -268,16 +274,17 @@
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="12dp"
                 android:layout_weight="1"
                 android:background="@drawable/search_textf_color"
                 android:drawableEnd="@drawable/search_spinner_arrowdn_wrap"
-                android:padding="5dp" />
+                android:padding="5dp"
+                android:textSize="13sp" />
 
             <CheckBox
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="12dp"
                 android:layout_weight="1"
                 android:checked="true"
                 android:text="@string/babyOnBoard"
