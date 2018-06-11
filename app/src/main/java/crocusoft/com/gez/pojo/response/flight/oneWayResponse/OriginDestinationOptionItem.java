@@ -1,31 +1,45 @@
 package crocusoft.com.gez.pojo.response.flight.oneWayResponse;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import crocusoft.com.gez.pojo.response.flight.roundtripResponse.OptionPricingInfo;
 
-public class OriginDestinationOptionItem {
 
+public class OriginDestinationOptionItem{
+
+    @SerializedName("@ElapsedTime")
     @JsonProperty("@ElapsedTime")
     private String elapsedTime;
 
+    @SerializedName("FlightSegment")
     @JsonProperty("FlightSegment")
     private Object flightSegment;
     private List<FlightSegment> flightSegmentList;
 
-
+    @SerializedName("@DirectionId")
     @JsonProperty("@DirectionId")
     private String directionId;
 
 
+    @SerializedName("@ProviderType")
     @JsonProperty("@ProviderType")
     private String providerType;
 
+    @JsonProperty("OptionPricingInfo")
+    private OptionPricingInfo optionPricingInfo;
+
+    @SerializedName("@RefNumber")
     @JsonProperty("@RefNumber")
     private String refNumber;
+
 
     public OriginDestinationOptionItem(String elapsedTime, Object flightSegment, String directionId, String providerType, String refNumber) {
         this.elapsedTime = elapsedTime;
@@ -36,6 +50,14 @@ public class OriginDestinationOptionItem {
     }
     public OriginDestinationOptionItem(){
 
+    }
+
+    public OptionPricingInfo getOptionPricingInfo() {
+        return optionPricingInfo;
+    }
+
+    public void setOptionPricingInfo(OptionPricingInfo optionPricingInfo) {
+        this.optionPricingInfo = optionPricingInfo;
     }
 
     public void setElapsedTime(String elapsedTime) {
@@ -100,5 +122,6 @@ public class OriginDestinationOptionItem {
                 ", refNumber='" + refNumber + '\'' +
                 '}';
     }
+
 
 }

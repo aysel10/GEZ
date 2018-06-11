@@ -1,15 +1,24 @@
 package crocusoft.com.gez.pojo.response.flight.roundtripResponse;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
-public class ItinTotalFare{
+import java.io.Serializable;
 
+public class ItinTotalFare implements Parcelable{
+
+	@SerializedName("TotalFare")
 	@JsonProperty("TotalFare")
 	private TotalFare totalFare;
 
+	@SerializedName("BaseFare")
 	@JsonProperty("BaseFare")
 	private BaseFare baseFare;
 
+	@SerializedName("MarkupFare")
 	@JsonProperty("MarkupFare")
 	private MarkupFare markupFare;
 
@@ -56,4 +65,34 @@ public class ItinTotalFare{
 			",markupFare = '" + markupFare + '\'' + 
 			"}";
 		}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeParcelable(this.totalFare, flags);
+		dest.writeParcelable(this.baseFare, flags);
+		dest.writeParcelable(this.markupFare, flags);
+	}
+
+	protected ItinTotalFare(Parcel in) {
+		this.totalFare = in.readParcelable(TotalFare.class.getClassLoader());
+		this.baseFare = in.readParcelable(BaseFare.class.getClassLoader());
+		this.markupFare = in.readParcelable(MarkupFare.class.getClassLoader());
+	}
+
+	public static final Creator<ItinTotalFare> CREATOR = new Creator<ItinTotalFare>() {
+		@Override
+		public ItinTotalFare createFromParcel(Parcel source) {
+			return new ItinTotalFare(source);
+		}
+
+		@Override
+		public ItinTotalFare[] newArray(int size) {
+			return new ItinTotalFare[size];
+		}
+	};
 }

@@ -1,24 +1,34 @@
 package crocusoft.com.gez.pojo.response.flight.roundtripResponse;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
-public class OriginDestinationCombinationItem{
+public class OriginDestinationCombinationItem implements Parcelable{
 
+	@SerializedName("@CombinationID")
 	@JsonProperty("@CombinationID")
 	private String combinationID;
 
+	@SerializedName("@E_TicketEligibility")
 	@JsonProperty("@E_TicketEligibility")
 	private String eTicketEligibility;
 
+	@SerializedName("@ValidatingAirlineCode")
 	@JsonProperty("@ValidatingAirlineCode")
 	private String validatingAirlineCode;
 
+	@SerializedName("@IndexList")
 	@JsonProperty("@IndexList")
 	private String indexList;
 
+	@SerializedName("@ServiceFeeAmount")
 	@JsonProperty("@ServiceFeeAmount")
 	private String serviceFeeAmount;
 
+	@SerializedName("@ForceETicket")
 	@JsonProperty("@ForceETicket")
 	private String forceETicket;
 
@@ -85,7 +95,7 @@ public class OriginDestinationCombinationItem{
 	@Override
  	public String toString(){
 		return 
-			"OriginDestinationCombinationItem{" + 
+			"OriginDestinationCombinationItemViewModel{" +
 			"@CombinationID = '" + combinationID + '\'' + 
 			",@E_TicketEligibility = '" + eTicketEligibility + '\'' + 
 			",@ValidatingAirlineCode = '" + validatingAirlineCode + '\'' + 
@@ -94,4 +104,40 @@ public class OriginDestinationCombinationItem{
 			",@ForceETicket = '" + forceETicket + '\'' + 
 			"}";
 		}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(this.combinationID);
+		dest.writeString(this.eTicketEligibility);
+		dest.writeString(this.validatingAirlineCode);
+		dest.writeString(this.indexList);
+		dest.writeString(this.serviceFeeAmount);
+		dest.writeString(this.forceETicket);
+	}
+
+	protected OriginDestinationCombinationItem(Parcel in) {
+		this.combinationID = in.readString();
+		this.eTicketEligibility = in.readString();
+		this.validatingAirlineCode = in.readString();
+		this.indexList = in.readString();
+		this.serviceFeeAmount = in.readString();
+		this.forceETicket = in.readString();
+	}
+
+	public static final Creator<OriginDestinationCombinationItem> CREATOR = new Creator<OriginDestinationCombinationItem>() {
+		@Override
+		public OriginDestinationCombinationItem createFromParcel(Parcel source) {
+			return new OriginDestinationCombinationItem(source);
+		}
+
+		@Override
+		public OriginDestinationCombinationItem[] newArray(int size) {
+			return new OriginDestinationCombinationItem[size];
+		}
+	};
 }

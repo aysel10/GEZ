@@ -1,8 +1,12 @@
 package crocusoft.com.gez.pojo.response.flight.roundtripResponse;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class PTCFareBreakdown{
+public class PTCFareBreakdown implements Parcelable{
 
 	@JsonProperty("PassengerTypeQuantity")
 	private PassengerTypeQuantity passengerTypeQuantity;
@@ -18,6 +22,9 @@ public class PTCFareBreakdown{
 		this.ticketDesignators = ticketDesignators;
 		this.passengerFare = passengerFare;
 	}
+	//Сиди в муте - мама пришла :D кстати оранжевый красивый - плачь
+
+
 	public PTCFareBreakdown(){
 
 	}
@@ -51,8 +58,38 @@ public class PTCFareBreakdown{
 		return 
 			"PTCFareBreakdown{" + 
 			"passengerTypeQuantity = '" + passengerTypeQuantity + '\'' + 
-			",ticketDesignators = '" + ticketDesignators + '\'' + 
-			",passengerFare = '" + passengerFare + '\'' + 
+			",ticketDesignators = '" + ticketDesignators + '\'' +
+			",passengerFare = '" + passengerFare + '\'' +
 			"}";
 		}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeParcelable(this.passengerTypeQuantity, flags);
+		dest.writeParcelable(this.ticketDesignators, flags);
+		dest.writeParcelable(this.passengerFare, flags);
+	}
+
+	private PTCFareBreakdown(Parcel in) {
+		this.passengerTypeQuantity = in.readParcelable(PassengerTypeQuantity.class.getClassLoader());
+		this.ticketDesignators = in.readParcelable(TicketDesignators.class.getClassLoader());
+		this.passengerFare = in.readParcelable(PassengerFare.class.getClassLoader());
+	}
+
+	public static final Creator<PTCFareBreakdown> CREATOR = new Creator<PTCFareBreakdown>() {
+		@Override
+		public PTCFareBreakdown createFromParcel(Parcel source) {
+			return new PTCFareBreakdown(source);
+		}
+
+		@Override
+		public PTCFareBreakdown[] newArray(int size) {
+			return new PTCFareBreakdown[size];
+		}
+	};
 }

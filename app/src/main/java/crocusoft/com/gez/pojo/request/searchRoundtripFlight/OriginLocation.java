@@ -34,6 +34,7 @@ public class OriginLocation {
     public OriginLocation(String locationCode) {
         this.locationCode = locationCode;
     }
+    public OriginLocation(){}
 
     public String getLocationCode() {
         return locationCode;

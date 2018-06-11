@@ -1,9 +1,12 @@
 package crocusoft.com.gez.pojo.response.flight.roundtripResponse;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.annotations.SerializedName;
 
-public class FlightSegment{
+public class FlightSegment implements Parcelable{
 
 	@JsonProperty("DepartureAirport")
 
@@ -186,4 +189,52 @@ public class FlightSegment{
 						",@ArrivalDateTime = '" + arrivalDateTime + '\'' +
 						"}";
 	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeParcelable(this.departureAirport, flags);
+		dest.writeString(this.resBookDesigCode);
+		dest.writeParcelable(this.arrivalAirport, flags);
+		dest.writeParcelable(this.equipment, flags);
+		dest.writeParcelable(this.marketingAirline, flags);
+		dest.writeParcelable(this.baggages, flags);
+		dest.writeParcelable(this.bookingClassAvails, flags);
+		dest.writeString(this.flightDuration);
+		dest.writeString(this.flightNumber);
+		dest.writeParcelable(this.operatingAirline, flags);
+		dest.writeString(this.departureDateTime);
+		dest.writeString(this.arrivalDateTime);
+	}
+
+	protected FlightSegment(Parcel in) {
+		this.departureAirport = in.readParcelable(DepartureAirport.class.getClassLoader());
+		this.resBookDesigCode = in.readString();
+		this.arrivalAirport = in.readParcelable(ArrivalAirport.class.getClassLoader());
+		this.equipment = in.readParcelable(Equipment.class.getClassLoader());
+		this.marketingAirline = in.readParcelable(MarketingAirline.class.getClassLoader());
+		this.baggages = in.readParcelable(Baggages.class.getClassLoader());
+		this.bookingClassAvails = in.readParcelable(BookingClassAvails.class.getClassLoader());
+		this.flightDuration = in.readString();
+		this.flightNumber = in.readString();
+		this.operatingAirline = in.readParcelable(OperatingAirline.class.getClassLoader());
+		this.departureDateTime = in.readString();
+		this.arrivalDateTime = in.readString();
+	}
+
+	public static final Creator<FlightSegment> CREATOR = new Creator<FlightSegment>() {
+		@Override
+		public FlightSegment createFromParcel(Parcel source) {
+			return new FlightSegment(source);
+		}
+
+		@Override
+		public FlightSegment[] newArray(int size) {
+			return new FlightSegment[size];
+		}
+	};
 }

@@ -4,10 +4,17 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import com.google.gson.GsonBuilder
 import com.google.gson.Gson
+import okhttp3.JavaNetCookieJar
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.converter.jackson.JacksonConverterFactory
 import okhttp3.OkHttpClient
+import java.net.CookieHandler
+import java.net.CookieManager
+import java.net.CookiePolicy
 import java.util.concurrent.TimeUnit
+import java.net.CookiePolicy.ACCEPT_ALL
+
+
 
 
 class RetrofitClient {
@@ -16,9 +23,12 @@ class RetrofitClient {
     }
     private val baseUrl: String = "http://88.99.186.108/"
 
+     fun getClient() : Retrofit? {
+         val cookieManager = CookieManager()
+         cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL)
+         val jncj = JavaNetCookieJar(cookieManager)
 
-    public fun getClient() : Retrofit? {
-        if(client==null){
+         if(client==null){
             val gson = GsonBuilder()
                     .setLenient()
                     .create()
@@ -26,15 +36,17 @@ class RetrofitClient {
 //                    .baseUrl(baseUrl)
 //                    .addConverterFactory(GsonConverterFactory.create(gson))
 //                    .build();
-            var logging :  HttpLoggingInterceptor =  HttpLoggingInterceptor();
+            val logging :  HttpLoggingInterceptor =  HttpLoggingInterceptor();
 
             logging.level = HttpLoggingInterceptor.Level.BODY
             var okHttpClient = OkHttpClient()
+
             okHttpClient = okHttpClient.newBuilder()
                     .addInterceptor(logging)
-                    .connectTimeout(30,TimeUnit.SECONDS)
-                    .writeTimeout(30, TimeUnit.SECONDS)
-                    .readTimeout(30, TimeUnit.SECONDS)
+                    .cookieJar(jncj)
+                    .connectTimeout(60,TimeUnit.SECONDS)
+                    .writeTimeout(60, TimeUnit.SECONDS)
+                    .readTimeout(60, TimeUnit.SECONDS)
                     .build()
             client = Retrofit.Builder()
                     .baseUrl(baseUrl)

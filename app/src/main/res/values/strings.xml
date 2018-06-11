@@ -47,6 +47,14 @@
         <item>4</item>
         <item>5</item>
     </string-array>
+    <string-array name="spinner_how_many_chld">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
     <!-- /////////////// -->
 
     <!--Spinner for price filter-->
@@ -122,14 +130,20 @@
     <string name="flightArrivalTime">%1$s</string>
     <string name="flightDepartTime">%1$s</string>
     <string name="flightBagFees">Bag Fees</string>
+    <string name="baggageFees">Baggage fees when purchase at the airport</string>
+    <string name="baggageCarry">Carry On: No fee</string>
+    <string name="baggageInfo">Baggage Information: AZAL</string>
+    <string name="firstBag">1st checked bag: </string>
+    <string name="marketingAirline">Marketing Airline: </string>
+    <string name="flightNumber">Flight number: </string>
 
 
-    <string name="pricePlaceHolder">000$</string>
+    <string name="pricePlaceHolder">%1$s$</string>
     <string name="arrivalStationPlaceHolder">Arrival PH</string>
     <string name="departStationPlaceHolder">Depart PH</string>
     <string name="arrivalDatePlaceHolder">03:00</string>
     <string name="departDatePlaceHolder">00:00</string>
-    <string name="counterAmountLeft">%1$d left at \n $2%s</string>
+    <string name="counterAmountLeft">1 left at \n +44$</string>
     <string name="hotelProperty">%1$d \n $2%s</string>
     <string name="typePlaceHolder">Type</string>
     <string name="protect">Protect your trip</string>

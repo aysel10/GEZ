@@ -15,8 +15,7 @@ class MainActivity : AppCompatActivity(), MenuFragment.OnFragmentInteractionList
         CarsFragment.OnFragmentInteractionListener,
         HotelFragment.OnFragmentInteractionListener,
         TransferFragment.OnFragmentInteractionListener,
-        FlightFragment.OnFragmentInteractionListener,
-        FlightTicketsFragment.OnFragmentInteractionListener{
+        FlightFragment.OnFragmentInteractionListener{
 
     companion object {
         var currentFragment: Any = FlightFragment.newInstance()

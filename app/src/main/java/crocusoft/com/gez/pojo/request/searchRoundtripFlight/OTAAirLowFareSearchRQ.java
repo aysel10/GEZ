@@ -9,8 +9,21 @@ import com.google.gson.annotations.Expose;
 import java.util.List;
 
 @JsonAutoDetect(fieldVisibility=JsonAutoDetect.Visibility.ANY, getterVisibility=JsonAutoDetect.Visibility.NONE, setterVisibility= JsonAutoDetect.Visibility.NONE, creatorVisibility=JsonAutoDetect.Visibility.NONE)
-@JsonPropertyOrder({"providerType","refundableType","xmlnsXsi","xmlnsXsd","version","maxPrice"})
+@JsonPropertyOrder({"providerType","refundableType","xmlnsXsi","xmlnsXsd","version","maxPrice","directFlightsOnly"})
 public class OTAAirLowFareSearchRQ {
+
+    @JsonProperty("@DirectFlightsOnly")
+    @Expose
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String directFlightsOnly;
+
+    public String getDirectFlightsOnly() {
+        return directFlightsOnly;
+    }
+
+    public void setDirectFlightsOnly(String directFlightsOnly) {
+        this.directFlightsOnly = directFlightsOnly;
+    }
 
     @JsonProperty("@ProviderType")
     @Expose
@@ -47,6 +60,21 @@ public class OTAAirLowFareSearchRQ {
         this.refundableType = "AllFlights";
         this.version = "0";
         this.maxPrice = "2000";
+        this.xmlnsXsi = "http://www.w3.org/2001/XMLSchema-instance";
+        this.xmlnsXsd = "http://www.w3.org/2001/XMLSchema";
+        this.originDestinationInformation = originDestinationInformation;
+        this.travelPreferences = travelPreferences;
+        this.travelerInfoSummary = travelerInfoSummary;
+
+    }
+    public OTAAirLowFareSearchRQ(List<OriginDestinationInformation_> originDestinationInformation,
+                                 TravelPreferences travelPreferences, String directFlightsOnly,
+                                 TravelerInfoSummary travelerInfoSummary) {
+        this.providerType = "OnlyAmadeus";
+        this.refundableType = "AllFlights";
+        this.version = "0";
+        this.maxPrice = "2000";
+        this.directFlightsOnly = directFlightsOnly;
         this.xmlnsXsi = "http://www.w3.org/2001/XMLSchema-instance";
         this.xmlnsXsd = "http://www.w3.org/2001/XMLSchema";
         this.originDestinationInformation = originDestinationInformation;

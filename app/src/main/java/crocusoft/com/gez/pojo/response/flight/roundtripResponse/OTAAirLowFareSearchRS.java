@@ -1,8 +1,11 @@
 package crocusoft.com.gez.pojo.response.flight.roundtripResponse;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class OTAAirLowFareSearchRS{
+public class OTAAirLowFareSearchRS implements Parcelable{
 
 	@JsonProperty("@Version")
 	private String version;
@@ -68,4 +71,36 @@ public class OTAAirLowFareSearchRS{
 			",success = '" + success + '\'' + 
 			"}";
 		}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(this.version);
+		dest.writeParcelable(this.pricedItineraries, flags);
+		dest.writeString(this.hasMoreResult);
+		dest.writeParcelable((Parcelable)this.success, flags);
+	}
+
+	protected OTAAirLowFareSearchRS(Parcel in) {
+		this.version = in.readString();
+		this.pricedItineraries = in.readParcelable(PricedItineraries.class.getClassLoader());
+		this.hasMoreResult = in.readString();
+		this.success = in.readParcelable(Object.class.getClassLoader());
+	}
+
+	public static final Creator<OTAAirLowFareSearchRS> CREATOR = new Creator<OTAAirLowFareSearchRS>() {
+		@Override
+		public OTAAirLowFareSearchRS createFromParcel(Parcel source) {
+			return new OTAAirLowFareSearchRS(source);
+		}
+
+		@Override
+		public OTAAirLowFareSearchRS[] newArray(int size) {
+			return new OTAAirLowFareSearchRS[size];
+		}
+	};
 }

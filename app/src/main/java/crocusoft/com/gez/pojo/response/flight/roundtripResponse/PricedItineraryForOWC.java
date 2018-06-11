@@ -1,9 +1,12 @@
 package crocusoft.com.gez.pojo.response.flight.roundtripResponse;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
-public class PricedItineraryForOWC{
+public class PricedItineraryForOWC implements Parcelable{
 
 	@JsonProperty("AirItinerary")
 	private AirItinerary airItinerary;
@@ -69,4 +72,36 @@ public class PricedItineraryForOWC{
 			",@IsOneWayCombinable = '" + isOneWayCombinable + '\'' + 
 			"}";
 		}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeParcelable(this.airItinerary, flags);
+		dest.writeString(this.currency);
+		dest.writeString(this.sequenceNumber);
+		dest.writeString(this.isOneWayCombinable);
+	}
+
+	protected PricedItineraryForOWC(Parcel in) {
+		this.airItinerary = in.readParcelable(AirItinerary.class.getClassLoader());
+		this.currency = in.readString();
+		this.sequenceNumber = in.readString();
+		this.isOneWayCombinable = in.readString();
+	}
+
+	public static final Creator<PricedItineraryForOWC> CREATOR = new Creator<PricedItineraryForOWC>() {
+		@Override
+		public PricedItineraryForOWC createFromParcel(Parcel source) {
+			return new PricedItineraryForOWC(source);
+		}
+
+		@Override
+		public PricedItineraryForOWC[] newArray(int size) {
+			return new PricedItineraryForOWC[size];
+		}
+	};
 }

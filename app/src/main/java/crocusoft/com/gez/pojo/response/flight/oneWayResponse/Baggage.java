@@ -1,8 +1,11 @@
 package crocusoft.com.gez.pojo.response.flight.oneWayResponse;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Baggage{
+public class Baggage implements Parcelable{
 
 	@JsonProperty("@Type")
 	private String type;
@@ -34,4 +37,35 @@ public class Baggage{
 			",@Index = '" + index + '\'' + 
 			"}";
 		}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(this.type);
+		dest.writeString(this.index);
+	}
+
+	public Baggage() {
+	}
+
+	protected Baggage(Parcel in) {
+		this.type = in.readString();
+		this.index = in.readString();
+	}
+
+	public static final Creator<Baggage> CREATOR = new Creator<Baggage>() {
+		@Override
+		public Baggage createFromParcel(Parcel source) {
+			return new Baggage(source);
+		}
+
+		@Override
+		public Baggage[] newArray(int size) {
+			return new Baggage[size];
+		}
+	};
 }

@@ -11,8 +11,10 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.constraint.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:baselineAligned="false"
             android:layout_height="wrap_content">
 
             <LinearLayout
@@ -22,7 +24,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_weight="1.5"
+                android:layout_weight="0.6"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -65,16 +67,18 @@
                     android:id="@+id/imageView12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_margin="0dp"
+                    android:layout_marginBottom="10dp"
                     app:srcCompat="@drawable/ic_access_time_black_24dp" />
 
                 <TextView
                     android:id="@+id/flightTime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:text="@string/flightTime"
                     android:textAlignment="center"
-                    android:textSize="10sp"
+                    android:textSize="14sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -84,7 +88,7 @@
                     android:layout_marginTop="8dp"
                     android:text="@string/flightDate"
                     android:textAlignment="center"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -113,8 +117,7 @@
                         android:id="@+id/textView53"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="10dp"
                         android:text="@string/departLabel"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -124,7 +127,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="@string/flightDepartAirport"
+                        android:text="as"
                         android:textStyle="bold" />
 
                     <TextView
@@ -140,6 +143,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -147,7 +151,7 @@
                         android:id="@+id/textView54"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="10dp"
                         android:text="@string/arrivalLabel"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -169,14 +173,14 @@
                         android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
-        </android.support.constraint.ConstraintLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:baselineAligned="false"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -197,24 +201,31 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:text="TextView" />
+                    android:layout_marginTop="5dp"
+                    android:text="@string/baggageFees"
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/textView63"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:layout_marginTop="3dp"
+                    android:text="@string/baggageCarry"
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/textView64"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:layout_marginTop="3dp"
+                    android:text="@string/baggageInfo"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -227,25 +238,32 @@
                     android:id="@+id/textView65"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:layout_marginTop="5dp"
+                    android:text="@string/firstBag"
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/textView66"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:layout_marginTop="5dp"
+                    android:text="@string/marketingAirline"
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/textView67"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:layout_marginTop="5dp"
+                    android:text="@string/flightNumber"
+                    android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:baselineAligned="false"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -272,15 +290,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
+                    android:layout_marginTop="2dp"
                     android:layout_weight="1"
                     android:background="@drawable/train_cardview_price"
-                    android:paddingBottom="8dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:paddingBottom="10dp"
                     android:paddingEnd="16dp"
                     android:paddingStart="16dp"
-                    android:paddingTop="8dp"
-                    android:text="@string/pricePlaceHolder"
-                    android:textStyle="bold"
+                    android:paddingTop="10dp"
 
+                    android:text="@string/pricePlaceHolder"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
                     tools:layout_editor_absoluteX="82dp"
                     tools:layout_editor_absoluteY="120dp" />
 
@@ -297,7 +318,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:focusableInTouchMode="true"
                     android:background="@drawable/search_button_background"
                     android:text="@string/selectButton"
                     android:textColor="@color/white" />

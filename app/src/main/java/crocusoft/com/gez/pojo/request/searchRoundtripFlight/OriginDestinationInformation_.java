@@ -24,6 +24,7 @@ public class OriginDestinationInformation_ {
         this.destinationLocation = destinationLocation;
         this.departureDateTime = departureDateTime;
     }
+    public OriginDestinationInformation_(){}
 
     public OriginLocation getOriginLocation() {
         return originLocation;
@@ -49,4 +50,12 @@ public class OriginDestinationInformation_ {
         this.departureDateTime = departureDateTime;
     }
 
+    @Override
+    public String toString() {
+        return "OriginDestinationInformation_{" +
+                "originLocation=" + originLocation +
+                ", destinationLocation=" + destinationLocation +
+                ", departureDateTime='" + departureDateTime + '\'' +
+                '}';
+    }
 }

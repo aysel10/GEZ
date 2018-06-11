@@ -1,12 +1,16 @@
 package crocusoft.com.gez.pojo.response.flight.roundtripResponse;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public class OriginDestinationOptionItem {
+public class OriginDestinationOptionItem implements Parcelable{
 
     @JsonProperty("@ElapsedTime")
     private String elapsedTime;
@@ -14,6 +18,10 @@ public class OriginDestinationOptionItem {
     @JsonProperty("FlightSegment")
     private Object flightSegment;
     private List<FlightSegment> flightSegmentList;
+
+    @JsonProperty("@SequenceNumber")
+    @JsonIgnore
+    private String sequenceNumber;
 
 
     @JsonProperty("@DirectionId")
@@ -35,9 +43,19 @@ public class OriginDestinationOptionItem {
         this.optionPricingInfo = optionPricingInfo;
         this.providerType = providerType;
         this.refNumber = refNumber;
+        this.sequenceNumber = "";
     }
     public OriginDestinationOptionItem(){
+        this.sequenceNumber = "";
 
+    }
+
+    public String getSequenceNumber() {
+        return sequenceNumber;
+    }
+
+    public void setSequenceNumber(String sequenceNumber) {
+        this.sequenceNumber = sequenceNumber;
     }
 
     public void setElapsedTime(String elapsedTime) {
@@ -110,4 +128,43 @@ public class OriginDestinationOptionItem {
                 '}';
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.elapsedTime);
+        dest.writeParcelable((Parcelable) this.flightSegment, flags);
+        dest.writeTypedList(this.flightSegmentList);
+        dest.writeString(this.sequenceNumber);
+        dest.writeString(this.directionId);
+        dest.writeParcelable(this.optionPricingInfo, flags);
+        dest.writeString(this.providerType);
+        dest.writeString(this.refNumber);
+    }
+
+    protected OriginDestinationOptionItem(Parcel in) {
+        this.elapsedTime = in.readString();
+        this.flightSegment = in.readParcelable(Object.class.getClassLoader());
+        this.flightSegmentList = in.createTypedArrayList(FlightSegment.CREATOR);
+        this.sequenceNumber = in.readString();
+        this.directionId = in.readString();
+        this.optionPricingInfo = in.readParcelable(OptionPricingInfo.class.getClassLoader());
+        this.providerType = in.readString();
+        this.refNumber = in.readString();
+    }
+
+    public static final Creator<OriginDestinationOptionItem> CREATOR = new Creator<OriginDestinationOptionItem>() {
+        @Override
+        public OriginDestinationOptionItem createFromParcel(Parcel source) {
+            return new OriginDestinationOptionItem(source);
+        }
+
+        @Override
+        public OriginDestinationOptionItem[] newArray(int size) {
+            return new OriginDestinationOptionItem[size];
+        }
+    };
 }

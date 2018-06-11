@@ -1,13 +1,19 @@
 package crocusoft.com.gez.pojo.response.flight.oneWayResponse;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 
-public class AirItinerary{
+public class AirItinerary {
 
+	@SerializedName("OriginDestinationOptions")
 	@JsonProperty("OriginDestinationOptions")
 	private OriginDestinationOptions originDestinationOptions;
 
+	@SerializedName("OriginDestinationCombinations")
 	@JsonProperty("OriginDestinationCombinations")
 	private OriginDestinationCombinations originDestinationCombinations;
 
@@ -35,4 +41,6 @@ public class AirItinerary{
 			",originDestinationCombinations = '" + originDestinationCombinations + '\'' + 
 			"}";
 		}
+
+
 }

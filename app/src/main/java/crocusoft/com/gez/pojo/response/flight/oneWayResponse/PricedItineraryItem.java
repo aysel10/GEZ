@@ -1,31 +1,40 @@
 package crocusoft.com.gez.pojo.response.flight.oneWayResponse;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class PricedItineraryItem{
+public class PricedItineraryItem {
 
+	@SerializedName("AirItinerary")
 	@JsonProperty("AirItinerary")
 	private AirItinerary airItinerary;
 
+	@SerializedName("@Currency")
 	@JsonProperty("@Currency")
 	private String currency;
 
+	@SerializedName("@SequenceNumber")
 	@JsonProperty("@SequenceNumber")
 	private String sequenceNumber;
 
+	@SerializedName("AirItineraryPricingInfo")
 	@JsonProperty("AirItineraryPricingInfo")
 	private AirItineraryPricingInfo airItineraryPricingInfo;
 
+	@SerializedName("@ProviderType")
 	@JsonProperty("@ProviderType")
 	private String providerType;
 
-	public PricedItineraryItem(AirItinerary airItinerary, String currency, String sequenceNumber, List<OriginDestinationOptionItem> customOriginDestinationOptionItemList, AirItineraryPricingInfo airItineraryPricingInfo, String providerType) {
+
+	public PricedItineraryItem(AirItinerary airItinerary, String currency, String sequenceNumber,  AirItineraryPricingInfo airItineraryPricingInfo, String providerType) {
 		this.airItinerary = airItinerary;
 		this.currency = currency;
 		this.sequenceNumber = sequenceNumber;
-		this.customOriginDestinationOptionItemList = customOriginDestinationOptionItemList;
 		this.airItineraryPricingInfo = airItineraryPricingInfo;
 		this.providerType = providerType;
 	}
@@ -33,7 +42,6 @@ public class PricedItineraryItem{
 
 	}
 
-	private List<OriginDestinationOptionItem> customOriginDestinationOptionItemList;
 
 
 	public void setAirItinerary(AirItinerary airItinerary){
@@ -76,13 +84,6 @@ public class PricedItineraryItem{
 		return providerType;
 	}
 
-	public List<OriginDestinationOptionItem> getCustomOriginDestinationOptionItemList() {
-		return customOriginDestinationOptionItemList;
-	}
-
-	public void setCustomOriginDestinationOptionItemList(List<OriginDestinationOptionItem> customOriginDestinationOptionItemList) {
-		this.customOriginDestinationOptionItemList = customOriginDestinationOptionItemList;
-	}
 
 	@Override
 	public String toString() {
@@ -90,9 +91,10 @@ public class PricedItineraryItem{
 				"airItinerary=" + airItinerary +
 				", currency='" + currency + '\'' +
 				", sequenceNumber='" + sequenceNumber + '\'' +
-				", customOriginDestinationOptionItemList=" + customOriginDestinationOptionItemList +
 				", airItineraryPricingInfo=" + airItineraryPricingInfo +
 				", providerType='" + providerType + '\'' +
 				'}';
 	}
+
+
 }

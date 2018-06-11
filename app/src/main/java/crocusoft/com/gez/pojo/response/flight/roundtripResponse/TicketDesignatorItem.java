@@ -1,8 +1,11 @@
 package crocusoft.com.gez.pojo.response.flight.roundtripResponse;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class TicketDesignatorItem{
+public class TicketDesignatorItem implements Parcelable{
 
 	@JsonProperty("@TicketDesignatorCode")
 	private String ticketDesignatorCode;
@@ -42,4 +45,32 @@ public class TicketDesignatorItem{
 			",@TicketDesignatorExtension = '" + ticketDesignatorExtension + '\'' + 
 			"}";
 		}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(this.ticketDesignatorCode);
+		dest.writeString(this.ticketDesignatorExtension);
+	}
+
+	protected TicketDesignatorItem(Parcel in) {
+		this.ticketDesignatorCode = in.readString();
+		this.ticketDesignatorExtension = in.readString();
+	}
+
+	public static final Creator<TicketDesignatorItem> CREATOR = new Creator<TicketDesignatorItem>() {
+		@Override
+		public TicketDesignatorItem createFromParcel(Parcel source) {
+			return new TicketDesignatorItem(source);
+		}
+
+		@Override
+		public TicketDesignatorItem[] newArray(int size) {
+			return new TicketDesignatorItem[size];
+		}
+	};
 }

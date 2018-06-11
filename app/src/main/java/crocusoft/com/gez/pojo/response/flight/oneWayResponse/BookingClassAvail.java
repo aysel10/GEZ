@@ -1,9 +1,12 @@
 package crocusoft.com.gez.pojo.response.flight.oneWayResponse;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.annotations.SerializedName;
 
-public class BookingClassAvail{
+public class BookingClassAvail implements Parcelable{
 
 	@JsonProperty("@ResBookDesigCode")
 	private String resBookDesigCode;
@@ -94,4 +97,40 @@ public class BookingClassAvail{
 			",@ResBookDesigCabinCode = '" + resBookDesigCabinCode + '\'' + 
 			"}";
 		}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(this.resBookDesigCode);
+		dest.writeString(this.resBookDesigQuantity);
+		dest.writeString(this.rPH);
+		dest.writeString(this.fareBasis);
+		dest.writeString(this.availablePTC);
+		dest.writeString(this.resBookDesigCabinCode);
+	}
+
+	protected BookingClassAvail(Parcel in) {
+		this.resBookDesigCode = in.readString();
+		this.resBookDesigQuantity = in.readString();
+		this.rPH = in.readString();
+		this.fareBasis = in.readString();
+		this.availablePTC = in.readString();
+		this.resBookDesigCabinCode = in.readString();
+	}
+
+	public static final Creator<BookingClassAvail> CREATOR = new Creator<BookingClassAvail>() {
+		@Override
+		public BookingClassAvail createFromParcel(Parcel source) {
+			return new BookingClassAvail(source);
+		}
+
+		@Override
+		public BookingClassAvail[] newArray(int size) {
+			return new BookingClassAvail[size];
+		}
+	};
 }

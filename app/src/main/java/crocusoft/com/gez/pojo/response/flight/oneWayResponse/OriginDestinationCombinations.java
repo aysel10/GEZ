@@ -1,5 +1,8 @@
 package crocusoft.com.gez.pojo.response.flight.oneWayResponse;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -33,4 +36,8 @@ public class OriginDestinationCombinations{
 			"originDestinationCombination = '" + originDestinationCombinationList + '\'' +
 			"}";
 		}
+
+
+
+
 }

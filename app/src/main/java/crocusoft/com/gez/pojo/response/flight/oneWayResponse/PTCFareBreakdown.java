@@ -1,8 +1,11 @@
 package crocusoft.com.gez.pojo.response.flight.oneWayResponse;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class PTCFareBreakdown{
+public class PTCFareBreakdown implements Parcelable{
 
 	@JsonProperty("PassengerTypeQuantity")
 	private PassengerTypeQuantity passengerTypeQuantity;
@@ -55,4 +58,34 @@ public class PTCFareBreakdown{
 			",passengerFare = '" + passengerFare + '\'' + 
 			"}";
 		}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeParcelable(this.passengerTypeQuantity, flags);
+		dest.writeParcelable(this.ticketDesignators, flags);
+		dest.writeParcelable(this.passengerFare, flags);
+	}
+
+	protected PTCFareBreakdown(Parcel in) {
+		this.passengerTypeQuantity = in.readParcelable(PassengerTypeQuantity.class.getClassLoader());
+		this.ticketDesignators = in.readParcelable(TicketDesignators.class.getClassLoader());
+		this.passengerFare = in.readParcelable(PassengerFare.class.getClassLoader());
+	}
+
+	public static final Creator<PTCFareBreakdown> CREATOR = new Creator<PTCFareBreakdown>() {
+		@Override
+		public PTCFareBreakdown createFromParcel(Parcel source) {
+			return new PTCFareBreakdown(source);
+		}
+
+		@Override
+		public PTCFareBreakdown[] newArray(int size) {
+			return new PTCFareBreakdown[size];
+		}
+	};
 }

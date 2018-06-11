@@ -1,8 +1,11 @@
 package crocusoft.com.gez.pojo.response.flight.oneWayResponse;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Tax{
+public class Tax implements Parcelable{
 
 	@JsonProperty("@Amount")
 	private String amount;
@@ -22,4 +25,33 @@ public class Tax{
 			"@Amount = '" + amount + '\'' + 
 			"}";
 		}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(this.amount);
+	}
+
+	public Tax() {
+	}
+
+	protected Tax(Parcel in) {
+		this.amount = in.readString();
+	}
+
+	public static final Creator<Tax> CREATOR = new Creator<Tax>() {
+		@Override
+		public Tax createFromParcel(Parcel source) {
+			return new Tax(source);
+		}
+
+		@Override
+		public Tax[] newArray(int size) {
+			return new Tax[size];
+		}
+	};
 }
