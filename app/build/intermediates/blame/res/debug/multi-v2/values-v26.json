@@ -4,7 +4,7 @@
             "outputFile": "/Users/ayselkas/AndroidStudioProjects/GEZ/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v26/values-v26.xml",
             "map": [
                 {
-                    "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/design-27.1.1.aar/8f3a43fa11990cca1384cb35bb67dd8e/res/values-v26/values-v26.xml",
+                    "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/design-27.1.1.aar/11fccd9ba5e89e868b7fea1e266c109d/res/values-v26/values-v26.xml",
                     "from": {
                         "startLines": "2,6",
                         "startColumns": "4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/a91348757eb7c63aa03f239d335ca60b/res/values-v26/values-v26.xml",
+                    "source": "/Users/ayselkas/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/6d62c2b47b3fce2cb6a6692f681d603d/res/values-v26/values-v26.xml",
                     "from": {
                         "startLines": "2,3,4,8,12,16",
                         "startColumns": "4,4,4,4,4,4",

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imageView17"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    app:srcCompat="@android:color/holo_green_dark" />
+
+                <TextView
+                    android:id="@+id/textView81"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/train_cardview_price"
+                    android:paddingBottom="5dp"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="20dp"
+                    android:paddingTop="5dp"
+                    android:text="1359$"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/textView82"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="BAKU - QUBA"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView83"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:padding="8dp"
+                android:text="It was popularised in the 1960s with the release oometimes on purpose (injected humour and the like).   "
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+</FrameLayout>

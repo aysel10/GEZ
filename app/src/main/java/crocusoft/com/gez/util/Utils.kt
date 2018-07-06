@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import crocusoft.com.gez.view_model.TicketDataViewModel
 import okhttp3.ResponseBody
+import kotlin.collections.HashMap
 
 
 class Utils {
@@ -64,9 +65,11 @@ class Utils {
 
 
 
-        fun getAirportsList(service: RetrofitService,keyword : String,airportListApiCallback: AirportListApiCallback):List<AirportSearchModel> {
+        fun getAirportsList(service: RetrofitService,keyword : String,
+                            airportListApiCallback: AirportListApiCallback,
+                            header: HashMap<String, String>):List<AirportSearchModel> {
             val airportsList : List<AirportSearchModel> = ArrayList()
-            val call : Call<List<AirportSearchModel>> = service.getAirportsList(keyword)
+            val call : Call<List<AirportSearchModel>> = service.getAirportsList(keyword, header)
             call.enqueue(object :Callback<List<AirportSearchModel>>{
                 override fun onFailure(call: Call<List<AirportSearchModel>>?, t: Throwable?) {
                     Log.e("error",t!!.message.toString())
@@ -79,122 +82,123 @@ class Utils {
         }
 
 
-        fun oneWayFlightSearch(service: RetrofitService){
-
-            val originLocation = crocusoft.com.gez.pojo.request.searchOnewayFlight.OriginLocation("BAK","true")
-            val destinationLocation = crocusoft.com.gez.pojo.request.searchOnewayFlight.DestinationLocation("IST", "true")
-
-            val originLocationInformation = crocusoft.com.gez.pojo.request.searchOnewayFlight.OriginDestinationInformation(originLocation,
-                    "2018-05-25T12:00:00", destinationLocation)
-            val passengerTypeQuantity = crocusoft.com.gez.pojo.request.searchOnewayFlight.PassengerTypeQuantity("ADT")
-            val airTravelerAvail = crocusoft.com.gez.pojo.request.searchOnewayFlight.AirTravelerAvail(passengerTypeQuantity)
-            val travelerInfoSummary = crocusoft.com.gez.pojo.request.searchOnewayFlight.TravelerInfoSummary(airTravelerAvail)
-            val otaAirLowFareSearchRQ = crocusoft.com.gez.pojo.request.searchOnewayFlight.OTAAirLowFareSearchRQ(originLocationInformation, travelerInfoSummary)
-            val searchFlight = crocusoft.com.gez.pojo.request.searchOnewayFlight.SearchFlight(otaAirLowFareSearchRQ)
-            val soapBody = crocusoft.com.gez.pojo.request.searchOnewayFlight.SoapBody(searchFlight)
-            val authenticationSoapHeader = crocusoft.com.gez.pojo.request.searchOnewayFlight.AuthenticationSoapHeader()
-            val soapHeader = crocusoft.com.gez.pojo.request.searchOnewayFlight.SoapHeader(authenticationSoapHeader)
-            val soapEnvelope = crocusoft.com.gez.pojo.request.searchOnewayFlight.SoapEnvelope(soapHeader,soapBody)
-            var searchOneWay = crocusoft.com.gez.pojo.request.searchOnewayFlight.Request(soapEnvelope)
-
-            val call : Call<Response> = service.oneWayFlightSearch(searchOneWay)
-
-            call.enqueue(object :Callback<Response>{
-                override fun onFailure(call: Call<Response>?, t: Throwable?) {
-                    Log.e("ERROR",t!!.message)
-                }
-                override fun onResponse(call: Call<Response>?, response: retrofit2.Response<Response>?) {
-
-                }
-            })
-        }
-
-        fun rroundTripFlightSearch(service:RetrofitService, apiCallback: ApiCallback){
-            val originLocation = OriginLocation("GYD")
-            val destinationLocation = DestinationLocation("IST", "true")
-            val newOriginLocation = OriginLocation("IST", "true")
-            val newDestinationLocation = DestinationLocation("BAK", "true")
-            val originLocationInformation = OriginDestinationInformation_(originLocation,
-                    destinationLocation,"2018-05-28T12:00:00")
-            val originDestinationInformation = OriginDestinationInformation_(newOriginLocation,
-                    newDestinationLocation, "2018-05-29T12:00:00")
-            val  originDestinationList : ArrayList<OriginDestinationInformation_> = ArrayList()
-            originDestinationList.add(originLocationInformation)
-            originDestinationList.add(originDestinationInformation)
-            val passengerTypeQuantity = PassengerTypeQuantity("ADT")
-            val airTravelerAvail = AirTravelerAvail(passengerTypeQuantity)
-            val cabinPref = CabinPref()
-            val travelPreferences = TravelPreferences(cabinPref)
-            val travelerInfoSummary = TravelerInfoSummary(airTravelerAvail)
-            val otaAirLowFareSearchRQ = OTAAirLowFareSearchRQ(originDestinationList, travelPreferences, travelerInfoSummary)
-            val searchFlight = SearchFlight(otaAirLowFareSearchRQ)
-            val soapBody = SoapBody(searchFlight)
-            val authenticationSoapHeader = AuthenticationSoapHeader()
-            val soapHeader = SoapHeader(authenticationSoapHeader)
-            val soapEnvelope = SoapEnvelope(soapHeader, soapBody)
-            val searchRoundtripFlight = FlightRequest(soapEnvelope)
-            val call : Call<RoundtripResponse> = service.roundTripFlightSearch(searchRoundtripFlight)
-            call.enqueue(object :Callback<RoundtripResponse>{
-                override fun onFailure(call: Call<RoundtripResponse>?, t: Throwable?) {
-                    Log.e("ERROR",t!!.message)
-                }
-                override fun onResponse(call: Call<RoundtripResponse>?, response: retrofit2.Response<RoundtripResponse>?) {
-                    apiCallback.onSuccess(call, response)
-                }
-
-            })
-        }
-
-        fun roundTripFlightSearch(service:RetrofitService):FlightRoundtripTicketsAdapter{
-            val originLocation = OriginLocation("GYD")
-            val destinationLocation = DestinationLocation("IST", "true")
-            val newOriginLocation = OriginLocation("IST", "true")
-            val newDestinationLocation = DestinationLocation("BAK", "true")
-            val originLocationInformation = OriginDestinationInformation_(originLocation,
-                    destinationLocation,"2018-05-28T12:00:00")
-            val originDestinationInformation = OriginDestinationInformation_(newOriginLocation,
-                    newDestinationLocation, "2018-05-29T12:00:00")
-            val  originDestinationList : ArrayList<OriginDestinationInformation_> = ArrayList()
-            originDestinationList.add(originLocationInformation)
-            originDestinationList.add(originDestinationInformation)
-            val passengerTypeQuantity = PassengerTypeQuantity("ADT")
-            val airTravelerAvail = AirTravelerAvail(passengerTypeQuantity)
-            val cabinPref = CabinPref()
-            val travelPreferences = TravelPreferences(cabinPref)
-            val travelerInfoSummary = TravelerInfoSummary(airTravelerAvail)
-            val otaAirLowFareSearchRQ = OTAAirLowFareSearchRQ(originDestinationList, travelPreferences, travelerInfoSummary)
-            val searchFlight = SearchFlight(otaAirLowFareSearchRQ)
-            val soapBody = SoapBody(searchFlight)
-            val authenticationSoapHeader = AuthenticationSoapHeader()
-            val soapHeader = SoapHeader(authenticationSoapHeader)
-            val soapEnvelope = SoapEnvelope(soapHeader, soapBody)
-            val searchRoundtripFlight = FlightRequest(soapEnvelope)
-
-            val flightTicketsAdapter = FlightRoundtripTicketsAdapter()
-            val call : Call<RoundtripResponse> = service.roundTripFlightSearch(searchRoundtripFlight)
-
-            call.enqueue(object :Callback<RoundtripResponse>{
-                override fun onFailure(call: Call<RoundtripResponse>?, t: Throwable?) {
-                    Log.e("ERROR",t!!.message)
-                }
-
-                override fun onResponse(call: Call<RoundtripResponse>?, response: retrofit2.Response<RoundtripResponse>?) {
-
-                    var comb = response!!.body()!!.soapEnvelope.soapBody.searchFlightResponse.otaAirLowFareSearchRS.pricedItineraries.pricedItinerary[0].airItinerary.originDestinationCombinations.originDestinationCombination
-                  //  Log.e("comb",comb.toString())
-
-
-                    val ticketDataViewModel: TicketDataViewModel = Utility.getTicketList(response!!.body())
-                    flightTicketsAdapter
-                            .addViewModel(ticketDataViewModel)
-
-                    flightTicketsAdapter.notifyDataSetChanged()
-                }
-            })
-
-            return flightTicketsAdapter
-
-        }
+//        fun oneWayFlightSearch(service: RetrofitService, context: Context){
+//            val myPreferences = AppSharedPreferences(context!!)
+//            val originLocation = crocusoft.com.gez.pojo.request.searchOnewayFlight.OriginLocation("BAK","true")
+//            val destinationLocation = crocusoft.com.gez.pojo.request.searchOnewayFlight.DestinationLocation("IST", "true")
+//
+//            val originLocationInformation = crocusoft.com.gez.pojo.request.searchOnewayFlight.OriginDestinationInformation(originLocation,
+//                    "2018-05-25T12:00:00", destinationLocation)
+//            val passengerTypeQuantity = crocusoft.com.gez.pojo.request.searchOnewayFlight.PassengerTypeQuantity("ADT")
+//            val airTravelerAvail = crocusoft.com.gez.pojo.request.searchOnewayFlight.AirTravelerAvail(passengerTypeQuantity)
+//            val travelerInfoSummary = crocusoft.com.gez.pojo.request.searchOnewayFlight.TravelerInfoSummary(airTravelerAvail)
+//            val otaAirLowFareSearchRQ = crocusoft.com.gez.pojo.request.searchOnewayFlight.OTAAirLowFareSearchRQ(originLocationInformation, travelerInfoSummary)
+//            val searchFlight = crocusoft.com.gez.pojo.request.searchOnewayFlight.SearchFlight(otaAirLowFareSearchRQ)
+//            val soapBody = crocusoft.com.gez.pojo.request.searchOnewayFlight.SoapBody(searchFlight)
+//            val authenticationSoapHeader = crocusoft.com.gez.pojo.request.searchOnewayFlight.AuthenticationSoapHeader()
+//            val soapHeader = crocusoft.com.gez.pojo.request.searchOnewayFlight.SoapHeader(authenticationSoapHeader)
+//            val soapEnvelope = crocusoft.com.gez.pojo.request.searchOnewayFlight.SoapEnvelope(soapHeader,soapBody)
+//            var searchOneWay = crocusoft.com.gez.pojo.request.searchOnewayFlight.Request(soapEnvelope)
+//
+//            val call : Call<Response> = service.oneWayFlightSearch(searchOneWay, Utils.getHeader(myPreferences))
+//
+//            call.enqueue(object :Callback<Response>{
+//                override fun onFailure(call: Call<Response>?, t: Throwable?) {
+//                    Log.e("ERROR",t!!.message)
+//                }
+//                override fun onResponse(call: Call<Response>?, response: retrofit2.Response<Response>?) {
+//
+//                }
+//            })
+//        }
+//
+//        fun rroundTripFlightSearch(service:RetrofitService, apiCallback: ApiCallback){
+//            //val myPreferences = AppSharedPreferences()
+//            val originLocation = OriginLocation("GYD")
+//            val destinationLocation = DestinationLocation("IST", "true")
+//            val newOriginLocation = OriginLocation("IST", "true")
+//            val newDestinationLocation = DestinationLocation("BAK", "true")
+//            val originLocationInformation = OriginDestinationInformation_(originLocation,
+//                    destinationLocation,"2018-05-28T12:00:00")
+//            val originDestinationInformation = OriginDestinationInformation_(newOriginLocation,
+//                    newDestinationLocation, "2018-05-29T12:00:00")
+//            val  originDestinationList : ArrayList<OriginDestinationInformation_> = ArrayList()
+//            originDestinationList.add(originLocationInformation)
+//            originDestinationList.add(originDestinationInformation)
+//            val passengerTypeQuantity = PassengerTypeQuantity("ADT")
+//            val airTravelerAvail = AirTravelerAvail(passengerTypeQuantity)
+//            val cabinPref = CabinPref()
+//            val travelPreferences = TravelPreferences(cabinPref)
+//            val travelerInfoSummary = TravelerInfoSummary(airTravelerAvail)
+//            val otaAirLowFareSearchRQ = OTAAirLowFareSearchRQ(originDestinationList, travelPreferences, travelerInfoSummary)
+//            val searchFlight = SearchFlight(otaAirLowFareSearchRQ)
+//            val soapBody = SoapBody(searchFlight)
+//            val authenticationSoapHeader = AuthenticationSoapHeader()
+//            val soapHeader = SoapHeader(authenticationSoapHeader)
+//            val soapEnvelope = SoapEnvelope(soapHeader, soapBody)
+//            val searchRoundtripFlight = FlightRequest(soapEnvelope)
+//            val call : Call<RoundtripResponse> = service.roundTripFlightSearch(searchRoundtripFlight, Utils.getHeader(myPreferences))
+//            call.enqueue(object :Callback<RoundtripResponse>{
+//                override fun onFailure(call: Call<RoundtripResponse>?, t: Throwable?) {
+//                    Log.e("ERROR",t!!.message)
+//                }
+//                override fun onResponse(call: Call<RoundtripResponse>?, response: retrofit2.Response<RoundtripResponse>?) {
+//                    apiCallback.onSuccess(call, response)
+//                }
+//
+//            })
+//        }
+//
+//        fun roundTripFlightSearch(service:RetrofitService):FlightRoundtripTicketsAdapter{
+//            val originLocation = OriginLocation("GYD")
+//            val destinationLocation = DestinationLocation("IST", "true")
+//            val newOriginLocation = OriginLocation("IST", "true")
+//            val newDestinationLocation = DestinationLocation("BAK", "true")
+//            val originLocationInformation = OriginDestinationInformation_(originLocation,
+//                    destinationLocation,"2018-05-28T12:00:00")
+//            val originDestinationInformation = OriginDestinationInformation_(newOriginLocation,
+//                    newDestinationLocation, "2018-05-29T12:00:00")
+//            val  originDestinationList : ArrayList<OriginDestinationInformation_> = ArrayList()
+//            originDestinationList.add(originLocationInformation)
+//            originDestinationList.add(originDestinationInformation)
+//            val passengerTypeQuantity = PassengerTypeQuantity("ADT")
+//            val airTravelerAvail = AirTravelerAvail(passengerTypeQuantity)
+//            val cabinPref = CabinPref()
+//            val travelPreferences = TravelPreferences(cabinPref)
+//            val travelerInfoSummary = TravelerInfoSummary(airTravelerAvail)
+//            val otaAirLowFareSearchRQ = OTAAirLowFareSearchRQ(originDestinationList, travelPreferences, travelerInfoSummary)
+//            val searchFlight = SearchFlight(otaAirLowFareSearchRQ)
+//            val soapBody = SoapBody(searchFlight)
+//            val authenticationSoapHeader = AuthenticationSoapHeader()
+//            val soapHeader = SoapHeader(authenticationSoapHeader)
+//            val soapEnvelope = SoapEnvelope(soapHeader, soapBody)
+//            val searchRoundtripFlight = FlightRequest(soapEnvelope)
+//
+//            val flightTicketsAdapter = FlightRoundtripTicketsAdapter()
+//            val call : Call<RoundtripResponse> = service.roundTripFlightSearch(searchRoundtripFlight)
+//
+//            call.enqueue(object :Callback<RoundtripResponse>{
+//                override fun onFailure(call: Call<RoundtripResponse>?, t: Throwable?) {
+//                    Log.e("ERROR",t!!.message)
+//                }
+//
+//                override fun onResponse(call: Call<RoundtripResponse>?, response: retrofit2.Response<RoundtripResponse>?) {
+//
+//                    var comb = response!!.body()!!.soapEnvelope.soapBody.searchFlightResponse.otaAirLowFareSearchRS.pricedItineraries.pricedItinerary[0].airItinerary.originDestinationCombinations.originDestinationCombination
+//                  //  Log.e("comb",comb.toString())
+//
+//
+//                    val ticketDataViewModel: TicketDataViewModel = Utility.getTicketList(response!!.body())
+//                    flightTicketsAdapter
+//                            .addViewModel(ticketDataViewModel)
+//
+//                    flightTicketsAdapter.notifyDataSetChanged()
+//                }
+//            })
+//
+//            return flightTicketsAdapter
+//
+//        }
 
 
 
@@ -229,7 +233,15 @@ class Utils {
 
         }
 
+
+        fun getHeader(myPreferences: AppSharedPreferences): HashMap<String, String> {
+            var hederMap: HashMap<String, String> = HashMap()
+            hederMap["Authorization"] = "Basic ${myPreferences.getString("token").trim()}"
+            hederMap["Content-Type"] = "application/json"
+            return hederMap
+        }
     }
+
 }
 
 

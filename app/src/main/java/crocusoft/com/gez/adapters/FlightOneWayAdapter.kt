@@ -1,23 +1,30 @@
 package crocusoft.com.gez.adapters
 
+import android.os.Looper
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import com.squareup.picasso.Picasso
 import crocusoft.com.gez.R
+import crocusoft.com.gez.database.AppDatabase
+import crocusoft.com.gez.pojo.response.flight.AirportImageResponse
 import crocusoft.com.gez.pojo.response.flight.oneWayResponse.OriginDestinationCombinationItem
 import crocusoft.com.gez.view_model.OriginDestinationOptionItemViewModel
 import crocusoft.com.gez.view_model.TicketDataViewModel
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.logging.Handler
 
 class FlightOneWayAdapter(): RecyclerView.Adapter<FlightOneWayAdapter.ViewHolder>()  {
-
     private var ticketModel:TicketDataViewModel = TicketDataViewModel()
-
+    private lateinit var db:AppDatabase
     private var ticketsListDepart: ArrayList<OriginDestinationOptionItemViewModel> = ArrayList()
     private var ticketListArrive: ArrayList<OriginDestinationOptionItemViewModel> = ArrayList()
     private var combinationsList: ArrayList<OriginDestinationCombinationItem> = ArrayList()
@@ -34,7 +41,6 @@ class FlightOneWayAdapter(): RecyclerView.Adapter<FlightOneWayAdapter.ViewHolder
         for(k in 0 until ticketModel.pricedItineraryItemList.size) {
             val customOriginDestinationOptionItemListSize = ticketModel.pricedItineraryItemList[k].customOriginDestinationOptionItemList.size
             for (j in 0 until customOriginDestinationOptionItemListSize) {
-                Log.e("sdf",ticketModel.pricedItineraryItemList[k].customOriginDestinationOptionItemList[0].sequenceNumber)
                 val originDestinationOptionItem: OriginDestinationOptionItemViewModel = ticketModel.pricedItineraryItemList[k].customOriginDestinationOptionItemList[j]
                     originDestinationOptionItem.sequenceNumber =  ticketModel.pricedItineraryItemList[k].customOriginDestinationOptionItemList[j].sequenceNumber
                     ticketsListDepart.add(originDestinationOptionItem)
@@ -83,11 +89,25 @@ class FlightOneWayAdapter(): RecyclerView.Adapter<FlightOneWayAdapter.ViewHolder
         }
         holder.departAirport.text = flightSegmentItem.flighTSegmentList[0].departureAirport.locationCode
         holder.price.text = holder.view.context.resources.getString(R.string.pricePlaceHolder, flightSegmentItem.airItineraryPricingInfo.itinTotalFare.baseFare.amount)
-
+      //  holder.baggageIndex.text= flightSegmentItem.flighTSegmentList[0].baggages.baggage.index[1].toString()
         for(i in 0 until flightSegmentListSize) {
             val currentTicket = flightSegmentItem.flighTSegmentList[i]
             val r = formatDate(currentTicket.flightDuration)
             holder.flightDate.text = r
+
+
+            val operatingAirLineCode = flightSegmentItem.flighTSegmentList[i].operatingAirline.code.toString() // 0---------
+            val codeLine = "%$operatingAirLineCode%"
+            doAsync {
+                //val image: List<AirportImageResponse> = db!!.imagesDataDAO().fetchAllImages()
+                val image: AirportImageResponse? = db!!.imagesDataDAO().getImage(codeLine)
+                val t = image!!.airlineName.substring(image!!.airlineName.lastIndexOf("_")+1).substringBefore(".")
+                holder.airportName.text = t
+                uiThread {
+                    Picasso.get().load("http://88.99.186.108:8888/Content/images/airline_logo/${image!!.airlineName}").into(holder.airportImage)
+                }
+            }
+
             holder.arrivalAirport.text = currentTicket.arrivalAirport.locationCode
             holder.arrivalTime.text= currentTicket.arrivalDateTime.substring(currentTicket.arrivalDateTime.lastIndexOf("T")+1).substring(0,5)
             //holder.departAirport.text = currentTicket.departureAirport.locationCode
@@ -110,13 +130,13 @@ class FlightOneWayAdapter(): RecyclerView.Adapter<FlightOneWayAdapter.ViewHolder
     override fun getItemId(position: Int): Long {
         return super.getItemId(position)
     }
-
     override fun getItemViewType(position: Int): Int {
         return super.getItemViewType(position)
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlightOneWayAdapter.ViewHolder{
         val layoutInflater: LayoutInflater = LayoutInflater.from(parent.context)
+        db = AppDatabase.getInstance(parent.context)!!
+
         val view : View = layoutInflater.inflate(R.layout.item_flight_ticket,parent,false) as View
 
         return ViewHolder(view)
@@ -142,6 +162,7 @@ class FlightOneWayAdapter(): RecyclerView.Adapter<FlightOneWayAdapter.ViewHolder
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         //find views
         var airportName : TextView = view.findViewById(R.id.airportName)
+        var airportImage : ImageView = view.findViewById(R.id.airportImage)
         var flightTime : TextView = view. findViewById(R.id.flightTime)
         var flightDate : TextView = view.findViewById(R.id.flightDate)
         var departTime : TextView = view.findViewById(R.id.departTime)
@@ -149,6 +170,7 @@ class FlightOneWayAdapter(): RecyclerView.Adapter<FlightOneWayAdapter.ViewHolder
         var arrivalAirport : TextView = view.findViewById(R.id.arrivalAirport)
         var departAirport : TextView = view.findViewById(R.id.departAirport)
         var price : TextView = view.findViewById(R.id.priceTextView)
+        var baggageIndex: TextView = view.findViewById(R.id.firstBag)
     }
 
 

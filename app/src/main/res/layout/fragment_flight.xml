@@ -89,10 +89,13 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/white_corners"
                 android:completionThreshold="1"
+                android:inputType="text"
+                android:imeOptions="actionNext"
                 android:drawablePadding="8dp"
                 android:drawableStart="@drawable/search_textf_icon_loc_wrap"
                 android:hint="@string/fromPlaceHolder"
                 android:padding="8dp"
+                android:singleLine="true"
                 android:textColor="@color/fontColor" />
 
             <!--<EditText-->
@@ -153,9 +156,12 @@
                 android:background="@drawable/white_corners"
                 android:completionThreshold="1"
                 android:drawablePadding="8dp"
+                android:inputType="text"
+                android:imeOptions="actionNext"
                 android:drawableStart="@drawable/search_textf_icon_loc_wrap"
                 android:hint="@string/fromPlaceHolder"
                 android:padding="8dp"
+                android:singleLine="true"
                 android:textColor="@color/fontColor" />
 
             <LinearLayout
@@ -209,6 +215,7 @@
                     android:focusable="true"
                     android:gravity="center_vertical|center_horizontal"
                     android:padding="5dp"
+                    android:singleLine="true"
                     android:textColor="@color/fontColor"
                     android:textSize="13sp" />
 
@@ -224,6 +231,7 @@
                     android:focusable="true"
                     android:gravity="center_vertical|center_horizontal"
                     android:padding="5dp"
+                    android:singleLine="true"
                     android:textColor="@color/fontColor"
                     android:textSize="13sp" />
             </LinearLayout>

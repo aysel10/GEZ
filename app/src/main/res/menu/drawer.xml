@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/first">
+        <item
+            android:id="@+id/nav_home_fragment"
+            android:icon="@drawable/ic_home_24dp"
+            android:title="@string/home" />
+        <item
+            android:id="@+id/nav_profile_fragment"
+            android:icon="@drawable/ic_person_24dp"
+            android:title="@string/profile" />
+        <item
+            android:id="@+id/nav_about_fragment"
+            android:icon="@drawable/ic_info_24dp"
+            android:title="@string/about" />
+
+    </group>
+    <group android:checkableBehavior="single"
+        android:id="@+id/second">
+        <item
+            android:id="@+id/nav_contacts_fragment"
+            android:icon="@drawable/ic_contacts_24dp"
+            android:title="@string/contacts" />
+        <item
+            android:id="@+id/nav_bonus_fragment"
+            android:icon="@drawable/ic_bonus"
+            android:title="@string/bonus" />
+        <item
+            android:id="@+id/nav_support_fragment"
+            android:icon="@drawable/ic_help_24dp"
+            android:title="@string/support" />
+    </group>
+</menu>

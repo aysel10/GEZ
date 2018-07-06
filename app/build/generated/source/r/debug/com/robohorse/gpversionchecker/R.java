@@ -22,26 +22,26 @@ public final class R {
         public static final int gpvch_tv_version_code_margin_top = 0x7f070087;
     }
     public static final class drawable {
-        public static final int gpvch_app_icon = 0x7f080067;
-        public static final int ic_launcher = 0x7f08006f;
+        public static final int gpvch_app_icon = 0x7f08006b;
+        public static final int ic_launcher = 0x7f08007a;
     }
     public static final class id {
-        public static final int lnChangesInfo = 0x7f0900bd;
-        public static final int tvChanges = 0x7f090182;
-        public static final int tvVersionCode = 0x7f090183;
+        public static final int lnChangesInfo = 0x7f0900f0;
+        public static final int tvChanges = 0x7f0901e8;
+        public static final int tvVersionCode = 0x7f0901e9;
     }
     public static final class integer {
         public static final int gpvch_tv_changes_max_lines = 0x7f0a0007;
     }
     public static final class layout {
-        public static final int gpvch_layout_dialog = 0x7f0b0041;
+        public static final int gpvch_layout_dialog = 0x7f0b004c;
     }
     public static final class string {
-        public static final int app_name = 0x7f0d0025;
-        public static final int gpvch_button_negative = 0x7f0d0055;
-        public static final int gpvch_button_positive = 0x7f0d0056;
-        public static final int gpvch_google_play_url = 0x7f0d0057;
-        public static final int gpvch_header = 0x7f0d0058;
-        public static final int gpvch_new_version_info_title = 0x7f0d0059;
+        public static final int app_name = 0x7f0e0026;
+        public static final int gpvch_button_negative = 0x7f0e005b;
+        public static final int gpvch_button_positive = 0x7f0e005c;
+        public static final int gpvch_google_play_url = 0x7f0e005d;
+        public static final int gpvch_header = 0x7f0e005e;
+        public static final int gpvch_new_version_info_title = 0x7f0e005f;
     }
 }

@@ -11,7 +11,7 @@
     </style>
 
     <!--Radio button custom colors-->
-    <style name="RadioButtonTheme" parent="@style/AppTheme">
+    <style name="RadioButtonTheme" parent="@style/AppTheme.NoActionBar">
         <item name="colorControlActivated">@color/colorAccent</item>
         <item name="colorControlNormal">@color/white</item>
     </style>

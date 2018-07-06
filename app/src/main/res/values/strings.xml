@@ -55,6 +55,11 @@
         <item>4</item>
         <item>5</item>
     </string-array>
+
+    <string-array name="spinner_price">
+        <item>Price(Lowest)</item>
+        <item>Price(Highest)</item>
+    </string-array>
     <!-- /////////////// -->
 
     <!--Spinner for price filter-->
@@ -106,6 +111,9 @@
 
     <string name="rentText">16 people have booked a car in BEV on GEZ.lv in the last 24 hours</string>
     <string name="rateUS">Rates are quoted in US dollars. You will pay EUR 116.06 at the rental counter.</string>
+
+    <string name="login">Login</string>
+    <string name="password">Password</string>
 
 
     <!-- /////////////// -->
@@ -165,6 +173,23 @@
     <string name="thirdFlight">THIRD FLY ROUTE</string>
     <string name="forthFlight">FORTH FLY ROUTE</string>
     <string name="fifthFlight">FIFTH FLY ROUTE</string>
+
+
+    <string name="profile">Account Settings</string>
+    <string name="support">Support</string>
+    <string name="home">Home</string>
+    <string name="about">About</string>
+    <string name="bonus">Bonus</string>
+    <string name="contacts">Contacts</string>
+
+    <string name="saveChanges">SAVE CHANGES</string>
+    <string name="changePassword">Change Password</string>
+    <string name="currentPassword">CURRENT PASSWORD</string>
+    <string name="newPassword">NEW PASSWORD</string>
+    <string name="retypePassword">RETYPE PASSWORD</string>
+    <string name="name">NAME</string>
+    <string name="surname">SURNAME</string>
+    <string name="email">EMAIL</string>
     <!-- /////////////// -->
 
 </resources>

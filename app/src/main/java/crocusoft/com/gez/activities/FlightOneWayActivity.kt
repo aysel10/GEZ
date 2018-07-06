@@ -7,17 +7,24 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import android.widget.ImageButton
 import android.widget.LinearLayout
+import android.widget.Spinner
 import com.google.gson.Gson
 import crocusoft.com.gez.R
 import crocusoft.com.gez.adapters.FlightOneWayAdapter
 import crocusoft.com.gez.view_model.TicketDataViewModel
+import java.util.*
 
 class FlightOneWayActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     var combs: List<crocusoft.com.gez.pojo.response.flight.oneWayResponse.OriginDestinationCombinationItem> = ArrayList()
     var combId = ""
     val afch = FlightOneWayAdapter()
+    private lateinit var filterSpinner: Spinner
+    private lateinit var filterButton: ImageButton
+    private lateinit var listOfPrices:ArrayList<String>
+    private lateinit var linearLayoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,23 +32,27 @@ class FlightOneWayActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.recyclerView2)
         //   val service = RetrofitClient().getClient()!!.create<RetrofitService>(RetrofitService::class.java)
-
-        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
+        listOfPrices = ArrayList()
+        linearLayoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
+        recyclerView.layoutManager = linearLayoutManager
         val bundle = intent.extras
 
         val viewModelJson = bundle.getString("jsonTicket")
-      //  Log.e("JSON VIEW MODEL:", viewModelJson)
         val fd = Gson()
         val viewModel = fd.fromJson(viewModelJson.toString(), TicketDataViewModel::class.java)
         //val viewModel =  bundle.getParcelable<TicketDataViewModel>("tick")
         afch.addViewModel(viewModel)
         recyclerView.adapter = afch
         val pricedItinerary = afch.getTicketViewModel().pricedItineraryItemList
+        filterSpinner = findViewById(R.id.spinner)
+        filterButton = findViewById(R.id.filterButton)
+        filterIsChecked()
 
         recyclerView.addItemDecoration(VerticalSpaceItemDecoration(25))
         recyclerView.affectOnItemClick(object : RecyclerItemClickListener.OnClickListener {
             override fun onItemClick(position: Int, view: View) {
-                val intent = Intent(baseContext,FlightBookTicket::class.java)
+                val intent = Intent(baseContext,FlightBookTicketOneWay::class.java)
+
                 val refNumber = afch.getDepartTicketsList()[position].refNumber
                 val currentSegment = afch.getDepartTicketsList()[position].sequenceNumber.toString()
                 for(i in 0 until pricedItinerary.size){
@@ -62,7 +73,24 @@ class FlightOneWayActivity : AppCompatActivity() {
             }
         })
     }
+    fun filterIsChecked(){
+        filterButton.setOnClickListener(View.OnClickListener {
+            if(filterSpinner.selectedItem.toString().equals("Price(Lowest)")){
+                if(afch.getDepartTicketsList()[0].airItineraryPricingInfo.itinTotalFare.baseFare.amount.toFloat()>
+                        afch.getDepartTicketsList()[afch.getDepartTicketsList().size-1].airItineraryPricingInfo.itinTotalFare.baseFare.amount.toFloat()) {
+                    afch.getDepartTicketsList().reverse()
+                    afch.notifyDataSetChanged()
+                }
+            }else if(filterSpinner.selectedItem.toString().equals("Price(Highest)")){
+                if(afch.getDepartTicketsList()[0].airItineraryPricingInfo.itinTotalFare.baseFare.amount.toFloat()<
+                        afch.getDepartTicketsList()[afch.getDepartTicketsList().size-1].airItineraryPricingInfo.itinTotalFare.baseFare.amount.toFloat()) {
+                    afch.getDepartTicketsList().reverse()
+                    afch.notifyDataSetChanged()
+                }
+            }
+        })
 
+    }
     inner class VerticalSpaceItemDecoration(private val verticalSpaceHeight: Int) : RecyclerView.ItemDecoration() {
         override
         fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView,

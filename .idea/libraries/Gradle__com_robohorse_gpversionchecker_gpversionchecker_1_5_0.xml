@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.robohorse.gpversionchecker:gpversionchecker-1.5.0">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/gpversionchecker-1.5.0.aar/99a4d423ff51b03220d114a3f6d9bc80/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/gpversionchecker-1.5.0.aar/99a4d423ff51b03220d114a3f6d9bc80/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/gpversionchecker-1.5.0.aar/2124630fb6be69bf56f97f0f9d1a891a/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/gpversionchecker-1.5.0.aar/2124630fb6be69bf56f97f0f9d1a891a/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

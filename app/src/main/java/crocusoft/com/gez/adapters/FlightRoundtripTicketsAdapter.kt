@@ -7,9 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import crocusoft.com.gez.R
+import crocusoft.com.gez.database.AppDatabase
+import crocusoft.com.gez.pojo.response.flight.AirportImageResponse
 import crocusoft.com.gez.pojo.response.flight.roundtripResponse.OriginDestinationCombinationItem
 import crocusoft.com.gez.view_model.OriginDestinationOptionItemViewModel
 import crocusoft.com.gez.view_model.TicketDataViewModel
+import org.jetbrains.anko.doAsync
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -21,6 +24,8 @@ class FlightRoundtripTicketsAdapter() : RecyclerView.Adapter<FlightRoundtripTick
     private var ticketListArrive: ArrayList<OriginDestinationOptionItemViewModel> = ArrayList()
     private var combinationsList: ArrayList<OriginDestinationCombinationItem> = ArrayList()
     var ticketsIndexList : List<String> = ArrayList()
+    private lateinit var db:AppDatabase
+
     private var allTicketsListDepart: ArrayList<OriginDestinationOptionItemViewModel> = ArrayList()
 
 
@@ -103,7 +108,6 @@ class FlightRoundtripTicketsAdapter() : RecyclerView.Adapter<FlightRoundtripTick
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val flightSegmentItem = ticketsListDepart[position]
         val flightSegmentListSize = flightSegmentItem.flightSegmentList.size
-        Log.e("size",flightSegmentListSize.toString())
         val time = ticketsListDepart[position].elapsedTime.substring(0,2)+":"+ticketsListDepart[position].elapsedTime.substring(2,4)
         if(flightSegmentListSize>1){
             println("flight segmnent array")
@@ -111,7 +115,6 @@ class FlightRoundtripTicketsAdapter() : RecyclerView.Adapter<FlightRoundtripTick
         }
         if(flightSegmentListSize>2) {
             println("more than twooo")
-            Log.e("more than two","/via " + flightSegmentItem.flightSegmentList[0].arrivalAirport.locationCode+ "/via " + flightSegmentItem.flightSegmentList[1].departureAirport.locationCode)
             holder.flightTime.text = (time + "/via " + flightSegmentItem.flightSegmentList[0].arrivalAirport.locationCode+ "/via " + flightSegmentItem.flightSegmentList[1].departureAirport.locationCode)
         }
         if(flightSegmentListSize==1){
@@ -123,6 +126,14 @@ class FlightRoundtripTicketsAdapter() : RecyclerView.Adapter<FlightRoundtripTick
         for(i in 0 until flightSegmentListSize) {
             val currentTicket = flightSegmentItem.flightSegmentList[i]
             val r = formatDate(currentTicket.flightDuration)
+            val operatingAirLineCode = flightSegmentItem.flightSegmentList[i].operatingAirline.code.toString() // 0---------
+            val codeLine = "%$operatingAirLineCode%"
+            doAsync {
+                //val image: List<AirportImageResponse> = db!!.imagesDataDAO().fetchAllImages()
+                val image: AirportImageResponse = db!!.imagesDataDAO().getImage(codeLine)
+                val t = image.airlineName.substring(image.airlineName.lastIndexOf("_")+1).substringBefore(".")
+                holder.airportName.text = t
+            }
             holder.flightDate.text = r
             holder.arrivalAirport.text = flightSegmentItem.flightSegmentList[flightSegmentListSize-1].arrivalAirport.locationCode
             holder.arrivalTime.text= flightSegmentItem.flightSegmentList[flightSegmentListSize-1].arrivalDateTime.substring(currentTicket.arrivalDateTime.lastIndexOf("T")+1).substring(0,5)
@@ -154,6 +165,8 @@ class FlightRoundtripTicketsAdapter() : RecyclerView.Adapter<FlightRoundtripTick
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlightRoundtripTicketsAdapter.ViewHolder{
         val layoutInflater: LayoutInflater= LayoutInflater.from(parent.context)
+        db = AppDatabase.getInstance(parent.context)!!
+
         val view : View = layoutInflater.inflate(R.layout.item_flight_ticket,parent,false) as View
 
         return ViewHolder(view)

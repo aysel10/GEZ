@@ -21,7 +21,7 @@ class RetrofitClient {
     companion object {
         var client: Retrofit? = null
     }
-    private val baseUrl: String = "http://88.99.186.108/"
+    private val baseUrl: String = "http://88.99.186.108:8888/"
 
      fun getClient() : Retrofit? {
          val cookieManager = CookieManager()
@@ -52,9 +52,9 @@ class RetrofitClient {
                     .baseUrl(baseUrl)
                     .addConverterFactory(JacksonConverterFactory.create())
                     .client(okHttpClient)
-                    .build();
+                    .build()
         }
-        return client;
+        return client
     }
 
 }

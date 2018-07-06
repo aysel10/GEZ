@@ -6,8 +6,10 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
+import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.support.v4.app.Fragment
 import android.support.v4.widget.NestedScrollView
 import android.text.Editable
@@ -25,23 +27,27 @@ import crocusoft.com.gez.activities.FlightMultiCityActivity
 import crocusoft.com.gez.activities.FlightOneWayActivity
 import crocusoft.com.gez.util.Utils
 import crocusoft.com.gez.activities.FlightTicketsActivity
+import crocusoft.com.gez.database.AppDatabase
+import crocusoft.com.gez.database.DBWorkerThread
 import crocusoft.com.gez.models.AirportModel
 import crocusoft.com.gez.models.AirportSearchModel
 import crocusoft.com.gez.pojo.request.searchRoundtripFlight.*
+import crocusoft.com.gez.pojo.response.flight.AirportImageResponse
 import crocusoft.com.gez.pojo.response.flight.multiCityReponse.MultiCityResponse
 import crocusoft.com.gez.pojo.response.flight.roundtripResponse.RoundtripResponse
 import crocusoft.com.gez.services.RetrofitClient
 import crocusoft.com.gez.services.RetrofitService
+import crocusoft.com.gez.util.AppSharedPreferences
 import crocusoft.com.gez.util.Utility
 import kotlinx.android.synthetic.main.flight_multy_city.view.*
-import kotlinx.android.synthetic.main.fragment_flight.view.*
-import org.w3c.dom.Text
+import org.jetbrains.anko.doAsync
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -91,6 +97,10 @@ class FlightFragment : Fragment(){
     var thirdOriginLocation : OriginLocation = OriginLocation()
     var thirdDestinationLocation : DestinationLocation= DestinationLocation()
 
+    private lateinit var mDbWorkerThread: DBWorkerThread
+    private var mDb: AppDatabase? = null
+
+    private val mUiHandler = Handler()
 
     var oneWayOriginLocation = crocusoft.com.gez.pojo.request.searchOnewayFlight.OriginLocation()
     var oneWayDestination = crocusoft.com.gez.pojo.request.searchOnewayFlight.DestinationLocation()
@@ -134,15 +144,14 @@ class FlightFragment : Fragment(){
         fromAutoComplete = view.findViewById(R.id.fromAutoComplete)
         toAutoComplete = view.findViewById(R.id.toAutoComplete)
 
-
         val dialog:AlertDialog = initBuilder().create()
         dialog.getWindow().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         Utils.datePicker(returnDatePicker, context!!)
         Utils.datePicker(departDatePicker, context!!)
-
+        val myPreferences = AppSharedPreferences(context!!)
         val service = RetrofitClient().getClient()!!.create<RetrofitService>(RetrofitService::class.java!!)
-        // Utils.getAirportsList(service,)
+        airportImagesVerification(service)
         val airportNames: ArrayList<AirportModel> = ArrayList()
         val airportCodes: ArrayList<String> = ArrayList()
         setClickListeners(inflater,container)
@@ -153,32 +162,34 @@ class FlightFragment : Fragment(){
                         airportNames.clear()
                         airportCodes.clear()
                         for(i in 0..response!!.body()!!.size-1) {
-                            val airportModel = AirportModel(response!!.body()!![i].airportCode,response!!.body()!![i].isIsCity)
+                            val airportModel = AirportModel(response!!.body()!![i].airportCode,response!!.body()!![i].airportName,response!!.body()!![i].isIsCity)
                             airportNames.add(airportModel)
-                            airportCodes.add(airportNames.get(i).airportname)
+                            airportCodes.add(airportNames.get(i).cityName + " (" + airportNames.get(i).airportname + ")")
                         }
                         val adapter: ArrayAdapter<String> = ArrayAdapter<String>(context,android.R.layout.simple_dropdown_item_1line,airportCodes)
                         fromAutoComplete.setAdapter(adapter)
 
                         fromAutoComplete.onItemClickListener = AdapterView.OnItemClickListener{
                             parent, view, position, id ->
+                            val name = airportCodes[position].substring(airportCodes[position].indexOf("(")+1,airportCodes[position].indexOf(")"))
+                            fromAutoComplete.setText(name)
                             for(i in 0..airportNames.size-1) {
-                                if(airportNames[i].airportname.equals(airportCodes[position])){
+                                if(airportNames[i].airportname.equals(name)){
                                     isCity = airportNames[i].isCity
                                     code = airportCodes[position]
                                     if(isCity) {
-                                        originLocation = OriginLocation(airportCodes[position],"true")
-                                        oneWayOriginLocation = crocusoft.com.gez.pojo.request.searchOnewayFlight.OriginLocation(airportCodes[position],"true")
+                                        originLocation = OriginLocation(name,"true")
+                                        oneWayOriginLocation = crocusoft.com.gez.pojo.request.searchOnewayFlight.OriginLocation(name,"true")
                                     }else{
-                                        originLocation = OriginLocation(airportCodes[position])
-                                        oneWayOriginLocation = crocusoft.com.gez.pojo.request.searchOnewayFlight.OriginLocation(airportCodes[position])
+                                        originLocation = OriginLocation(name)
+                                        oneWayOriginLocation = crocusoft.com.gez.pojo.request.searchOnewayFlight.OriginLocation(name)
                                     }
                                 }
                             }
                         }
                         adapter.notifyDataSetChanged()
                     }
-                })
+                }, Utils.getHeader(myPreferences))
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
@@ -190,32 +201,36 @@ class FlightFragment : Fragment(){
                        airportNames.clear()
                        airportCodes.clear()
                        for(i in 0..response!!.body()!!.size-1) {
-                           val airportModel = AirportModel(response!!.body()!![i].airportCode,response!!.body()!![i].isIsCity)
+                           val airportModel = AirportModel(response!!.body()!![i].airportCode,response!!.body()!![i].airportName,response!!.body()!![i].isIsCity)
                            airportNames.add(airportModel)
-                           airportCodes.add(airportNames.get(i).airportname)
+                           airportCodes.add(airportNames.get(i).cityName + " (" + airportNames.get(i).airportname + ")")
                        }
-
                        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(context,android.R.layout.simple_dropdown_item_1line,airportCodes)
                        toAutoComplete.setAdapter(adapter)
 
+
                        toAutoComplete.onItemClickListener = AdapterView.OnItemClickListener{
                            parent, view, position, id ->
+                           val name = airportCodes[position].substring(airportCodes[position].indexOf("(")+1,airportCodes[position].indexOf(")"))
+                           toAutoComplete.setText(name)
+                           Log.e("sdf",name)
+
                            for(i in 0..airportNames.size-1) {
-                               if(airportNames[i].airportname.equals(airportCodes[position])){
+                               if(airportNames[i].airportname.equals(name)){
                                     isCity = airportNames[i].isCity
                                    if(isCity) {
-                                        destinationLocation = DestinationLocation(airportCodes[position],"true")
-                                        oneWayDestination = crocusoft.com.gez.pojo.request.searchOnewayFlight.DestinationLocation(airportCodes[position],"true")
+                                        destinationLocation = DestinationLocation(name,"true")
+                                        oneWayDestination = crocusoft.com.gez.pojo.request.searchOnewayFlight.DestinationLocation(name,"true")
                                    }else{
-                                        destinationLocation = DestinationLocation(airportCodes[position])
-                                        oneWayDestination = crocusoft.com.gez.pojo.request.searchOnewayFlight.DestinationLocation(airportCodes[position])
+                                        destinationLocation = DestinationLocation(name)
+                                        oneWayDestination = crocusoft.com.gez.pojo.request.searchOnewayFlight.DestinationLocation(name)
                                    }
                                }
                            }
                        }
                        adapter.notifyDataSetChanged()
                    }
-               })
+               }, Utils.getHeader(myPreferences))
            }
            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
            }
@@ -237,7 +252,6 @@ class FlightFragment : Fragment(){
                             var y =Utility.getTicketList(response!!.body())
                           //  Log.e("sdf",y.toString())
                             Log.e("session",response.headers().get("Set-Cookie").toString())
-
                             bundle.putString("flightTickets", ticketsJSON)
                             intent.putExtras(bundle)
                             dialog.hide()
@@ -258,6 +272,8 @@ class FlightFragment : Fragment(){
                             val bundle = Bundle()
                             val intent = Intent(context, FlightOneWayActivity::class.java)
                             val fd: Gson = Gson()
+                            val t =Utility.getTicketList(response!!.body())
+                            Log.e("ticket",t.toString())
                             val objectDest = fd.toJson(Utility.getTicketList(response!!.body()))
                             bundle.putString("jsonTicket", objectDest)
                             intent.putExtras(bundle)
@@ -288,7 +304,7 @@ class FlightFragment : Fragment(){
         val builder = AlertDialog.Builder(context)
         val view:View = getLayoutInflater().inflate(R.layout.progress,null);
         builder.setView(view)
-        val dialog = builder.create()
+        //val dialog = builder.create()
         return builder
     }
     private fun validateFieldsOneWay():Boolean{
@@ -377,10 +393,10 @@ class FlightFragment : Fragment(){
             Utils.toast(this.context!!,"Choose second time")
             return false
         }
-
         return true
     }
     private fun roundTripFlightSearch(service:RetrofitService, apiCallback: Utils.Companion.ApiCallback,apiCallbackFailure: Utils.Companion.ApiCallbackFailure){
+        val myPreferences = AppSharedPreferences(context!!)
         val originLocation = originLocation
         val destinationLocation = destinationLocation
         val newOriginLocation = originLocation
@@ -404,20 +420,46 @@ class FlightFragment : Fragment(){
         val soapHeader = SoapHeader(authenticationSoapHeader)
         val soapEnvelope = SoapEnvelope(soapHeader, soapBody)
         val searchRoundtripFlight = FlightRequest(soapEnvelope)
-        val call : Call<RoundtripResponse> = service.roundTripFlightSearch(searchRoundtripFlight)
+        val call : Call<RoundtripResponse> = service.roundTripFlightSearch(searchRoundtripFlight, Utils.getHeader(myPreferences))
         call.enqueue(object : Callback<RoundtripResponse> {
             override fun onFailure(call: Call<RoundtripResponse>?, t: Throwable?) {
                 apiCallbackFailure.onFailre(call,t)
-
             }
             override fun onResponse(call: Call<RoundtripResponse>?, response: retrofit2.Response<RoundtripResponse>?) {
-
                 apiCallback.onSuccess(call, response)
             }
         })
     }
 
+    fun Context.isConnectedToInternet(): Boolean {
+        val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        val activeNetwork = cm.activeNetworkInfo
+
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting
+    }
+    private fun fullDatabaseWithAirports(service: RetrofitService){
+        if (context!!.isConnectedToInternet()) {
+
+//                            var weatherData = WeatherData()
+//                            weatherData.humidity = weatherForecast?.current?.humidity ?: 0
+//                            weatherData.tempInC = weatherForecast?.current?.temp_c ?: 0.0
+//                            weatherData.tempInF = weatherForecast?.current?.temp_f ?: 0.0
+//                            weatherData.lat = weatherForecast?.location?.lat ?: 0.0
+//                            weatherData.lon = weatherForecast?.location?.lon ?: 0.0
+//                            weatherData.name = weatherForecast?.location?.name ?: ""
+//                            weatherData.region = weatherForecast?.location?.region ?: ""
+//
+//                            bindDataWithUi(weatherData)
+//
+//                            insertWeatherDataInDb(weatherData = weatherData)
+//
+//        } else {
+//            fetchWeatherDataFromDb()
+        }
+    }
     private fun oneWayFlightSearch(service: RetrofitService, apiCallback: Utils.Companion.OneWayApiCallback, apiOneWayCallbackFailure: Utils.Companion.OneWayApiCallbackFailure){
+        val myPreferences = AppSharedPreferences(context!!)
         val originLocation = oneWayOriginLocation
         val destinationLocation = oneWayDestination
         val originLocationInformation = crocusoft.com.gez.pojo.request.searchOnewayFlight.OriginDestinationInformation(originLocation,
@@ -433,7 +475,8 @@ class FlightFragment : Fragment(){
         val soapEnvelope = crocusoft.com.gez.pojo.request.searchOnewayFlight.SoapEnvelope(soapHeader,soapBody)
         val searchOneWay = crocusoft.com.gez.pojo.request.searchOnewayFlight.Request(soapEnvelope)
 
-        val call : Call<crocusoft.com.gez.pojo.response.flight.oneWayResponse.Response> = service.oneWayFlightSearch(searchOneWay)
+        val call : Call<crocusoft.com.gez.pojo.response.flight.oneWayResponse.Response> =
+                service.oneWayFlightSearch(searchOneWay, Utils.getHeader(myPreferences))
 
         call.enqueue(object :Callback<crocusoft.com.gez.pojo.response.flight.oneWayResponse.Response>{
             override fun onFailure(call: Call<crocusoft.com.gez.pojo.response.flight.oneWayResponse.Response>?, t: Throwable?) {
@@ -446,6 +489,7 @@ class FlightFragment : Fragment(){
     }
 
     private fun multiCityFlightSearch(service:RetrofitService, apiCallback: Utils.Companion.MultiCityApiCallback,apiCallbackFailure: Utils.Companion.MultiCityApiCallbackFailure){
+        val myPreferences = AppSharedPreferences(context!!)
         val passengerTypeQuantity = PassengerTypeQuantity("ADT")
         val airTravelerAvail = AirTravelerAvail(passengerTypeQuantity)
         val cabinPref = CabinPref()
@@ -458,13 +502,15 @@ class FlightFragment : Fragment(){
         val soapHeader = SoapHeader(authenticationSoapHeader)
         val soapEnvelope = SoapEnvelope(soapHeader, soapBody)
         val searchRoundtripFlight = FlightRequest(soapEnvelope)
-        val call : Call<MultiCityResponse> = service.multiCityFlightSearch(searchRoundtripFlight)
+        val call : Call<MultiCityResponse> = service.multiCityFlightSearch(searchRoundtripFlight, Utils.getHeader(myPreferences))
         call.enqueue(object : Callback<MultiCityResponse> {
             override fun onFailure(call: Call<MultiCityResponse>?, t: Throwable?) {
                 apiCallbackFailure.onFailure(call,t)
+                multiDestinationList.clear()
             }
             override fun onResponse(call: Call<MultiCityResponse>?, response: retrofit2.Response<MultiCityResponse>?) {
                 apiCallback.onSuccess(call, response)
+                multiDestinationList.clear()
             }
 
         })
@@ -524,7 +570,6 @@ class FlightFragment : Fragment(){
         removeButton.setOnClickListener(View.OnClickListener {
             removeLastMultiFlightView()
         })
-
     }
 
     private fun initMultiViews(inflater: LayoutInflater, container: ViewGroup?){
@@ -572,22 +617,19 @@ class FlightFragment : Fragment(){
                     override fun onSuccess(call: Call<MultiCityResponse>?, response: Response<MultiCityResponse>?) {
                         val bundle = Bundle()
                         val intent = Intent(context, FlightMultiCityActivity::class.java)
-                        bundle.putParcelable("tickets", Utility.getTicketList(response!!.body()))
+                        val gson=Gson()
+                        bundle.putString("tickets",gson.toJson(Utility.getTicketList(response!!.body())))
                         intent.putExtras(bundle)
-                      //  multiDestinationList.clear()
-                        dialog.hide()
-                        Log.e("adsd","sdfdsfsd")
+                        multiDestinationList.clear()
                         startActivity(intent)
-
                     }},object: Utils.Companion.MultiCityApiCallbackFailure{
                     override fun onFailure(call: Call<MultiCityResponse>?, t: Throwable?) {
                         Log.e("Message Error: ", t!!.message.toString())
                         dialog.hide()
                         Utils.toast(context!!, "Can't find available tickets")
                     }
-                })
-
-        }
+                   })
+              }
         })
         secondFlightMultiCity.flightCountLabel.setText(R.string.secondFlight)
     }
@@ -625,6 +667,7 @@ class FlightFragment : Fragment(){
     }
 
     private fun secondMultiCityContent(){
+        val myPreferences = AppSharedPreferences(context!!)
         val textWatcher : TextWatcher = (object: TextWatcher{
             override fun afterTextChanged(s: Editable?) {
               //  autoMultiTextViewsInit()
@@ -644,28 +687,30 @@ class FlightFragment : Fragment(){
                         airportNames.clear()
                         airportCodes.clear()
                         for (i in 0..response!!.body()!!.size - 1) {
-                            val airportModel = AirportModel(response!!.body()!![i].airportCode, response!!.body()!![i].isIsCity)
+                            val airportModel = AirportModel(response!!.body()!![i].airportCode,response!!.body()!![i].airportName,response!!.body()!![i].isIsCity)
                             airportNames.add(airportModel)
-                            airportCodes.add(airportNames.get(i).airportname)
+                            airportCodes.add(airportNames.get(i).cityName + " (" + airportNames.get(i).airportname + ")")
                         }
                         val adapter: ArrayAdapter<String> = ArrayAdapter<String>(context, android.R.layout.simple_dropdown_item_1line, airportCodes)
                         thirdFlightMultiCity.multiToEditText.setAdapter(adapter)
 
                         thirdFlightMultiCity.multiToEditText.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+                            val name = airportCodes[position].substring(airportCodes[position].indexOf("(")+1,airportCodes[position].indexOf(")"))
+                            thirdFlightMultiCity.multiToEditText.setText(name)
                             for (i in 0..airportNames.size - 1) {
-                                if (airportNames[i].airportname.equals(airportCodes[position])) {
+                                if (airportNames[i].airportname.equals(name)) {
                                     isCity = airportNames[i].isCity
                                     if (isCity) {
-                                        thirdDestinationLocation = DestinationLocation(airportCodes[position], "true")
+                                        thirdDestinationLocation = DestinationLocation(name, "true")
                                     } else {
-                                        thirdDestinationLocation = DestinationLocation(airportCodes[position])
+                                        thirdDestinationLocation = DestinationLocation(name)
                                     }
                                 }
                             }
                         }
                         adapter.notifyDataSetChanged()
                     }
-                })
+                }, Utils.getHeader(myPreferences))
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -681,30 +726,31 @@ class FlightFragment : Fragment(){
                         airportNames.clear()
                         airportCodes.clear()
                         for (i in 0..response!!.body()!!.size - 1) {
-                            val airportModel = AirportModel(response!!.body()!![i].airportCode, response!!.body()!![i].isIsCity)
+                            val airportModel = AirportModel(response!!.body()!![i].airportCode,response!!.body()!![i].airportName,response!!.body()!![i].isIsCity)
                             airportNames.add(airportModel)
-                            airportCodes.add(response!!.body()!![i].airportCode)
+                            airportCodes.add(airportNames.get(i).cityName + " (" + airportNames.get(i).airportname + ")")
                         }
-
                         val adapter: ArrayAdapter<String> = ArrayAdapter<String>(context, android.R.layout.simple_dropdown_item_1line, airportCodes)
                         thirdFlightMultiCity.multiFromEditText.setAdapter(adapter)
                         adapter.notifyDataSetChanged()
 
                         thirdFlightMultiCity.multiFromEditText.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+                            val name = airportCodes[position].substring(airportCodes[position].indexOf("(")+1,airportCodes[position].indexOf(")"))
+                            thirdFlightMultiCity.multiFromEditText.setText(name)
                             for (i in 0..airportNames.size - 1) {
-                                if (airportNames[i].airportname.equals(airportCodes[position])) {
+                                if (airportNames[i].airportname.equals(name)) {
                                     isCity = airportNames[i].isCity
                                     if (isCity) {
-                                        thirdOriginLocation = OriginLocation(airportCodes[position], "true")
+                                        thirdOriginLocation = OriginLocation(name, "true")
                                     } else {
-                                        thirdOriginLocation = OriginLocation(airportCodes[position])
+                                        thirdOriginLocation = OriginLocation(name)
                                     }
                                 }
                             }
                         }
                         adapter.notifyDataSetChanged()
                     }
-                })
+                }, Utils.getHeader(myPreferences))
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -720,22 +766,24 @@ class FlightFragment : Fragment(){
                         airportNames.clear()
                         airportCodes.clear()
                         for (i in 0..response!!.body()!!.size - 1) {
-                            val airportModel = AirportModel(response!!.body()!![i].airportCode, response!!.body()!![i].isIsCity)
+                            val airportModel = AirportModel(response!!.body()!![i].airportCode,response!!.body()!![i].airportName,response!!.body()!![i].isIsCity)
                             airportNames.add(airportModel)
-                            airportCodes.add(airportNames.get(i).airportname)
+                            airportCodes.add(airportNames.get(i).cityName + " (" + airportNames.get(i).airportname + ")")
                         }
                         val adapter: ArrayAdapter<String> = ArrayAdapter<String>(context, android.R.layout.simple_dropdown_item_1line, airportCodes)
                         adapter.notifyDataSetChanged()
                         secondFlightMultiCity.multiToEditText.setAdapter(adapter)
 
                         secondFlightMultiCity.multiToEditText.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+                            val name = airportCodes[position].substring(airportCodes[position].indexOf("(")+1,airportCodes[position].indexOf(")"))
+                            secondFlightMultiCity.multiToEditText.setText(name)
                             for (i in 0..airportNames.size - 1) {
-                                if (airportNames[i].airportname.equals(airportCodes[position])) {
+                                if (airportNames[i].airportname.equals(name)) {
                                     isCity = airportNames[i].isCity
                                     if (isCity) {
-                                        secondDestinationLocation = DestinationLocation(airportCodes[position], "true")
+                                        secondDestinationLocation = DestinationLocation(name, "true")
                                     } else {
-                                        secondDestinationLocation = DestinationLocation(airportCodes[position])
+                                        secondDestinationLocation = DestinationLocation(name)
 
                                     }
                                 }
@@ -743,7 +791,7 @@ class FlightFragment : Fragment(){
                         }
                         adapter.notifyDataSetChanged()
                     }
-                })
+                }, Utils.getHeader(myPreferences))
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -760,31 +808,32 @@ class FlightFragment : Fragment(){
                         airportCodes.clear()
 
                         for (i in 0..response!!.body()!!.size - 1) {
-                            val airportModel = AirportModel(response!!.body()!![i].airportCode, response!!.body()!![i].isIsCity)
+                            val airportModel = AirportModel(response!!.body()!![i].airportCode,response!!.body()!![i].airportName,response!!.body()!![i].isIsCity)
                             airportNames.add(airportModel)
-                            airportCodes.add(airportNames.get(i).airportname)
-                        }
-
+                                airportCodes.add(airportNames.get(i).cityName + " (" + airportNames.get(i).airportname + ")")
+                              }
                         val adapter: ArrayAdapter<String> = ArrayAdapter<String>(context, android.R.layout.simple_dropdown_item_1line, airportCodes)
                         adapter.notifyDataSetChanged()
 
                         secondFlightMultiCity.multiFromEditText.setAdapter(adapter)
 
                         secondFlightMultiCity.multiFromEditText.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+                            val name = airportCodes[position].substring(airportCodes[position].indexOf("(")+1,airportCodes[position].indexOf(")"))
+                            secondFlightMultiCity.multiFromEditText.setText(name)
                             for (i in 0..airportNames.size - 1) {
-                                if (airportNames[i].airportname.equals(airportCodes[position])) {
+                                if (airportNames[i].airportname.equals(name)) {
                                     isCity = airportNames[i].isCity
                                     if (isCity) {
-                                        secondOriginLocation = OriginLocation(airportCodes[position], "true")
+                                        secondOriginLocation = OriginLocation(name, "true")
                                     } else {
-                                        secondOriginLocation = OriginLocation(airportCodes[position])
+                                        secondOriginLocation = OriginLocation(name)
                                     }
                                 }
                             }
                         }
                         adapter.notifyDataSetChanged()
                     }
-                })
+                }, Utils.getHeader(myPreferences))
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -835,6 +884,38 @@ class FlightFragment : Fragment(){
                     }
                 }
     }
+
+
+    private fun airportImagesVerification(service: RetrofitService) {
+        val myPreferences = AppSharedPreferences(context!!)
+        val db: AppDatabase? = AppDatabase.getInstance(context!!)
+        // if database if already filled
+            // DO NOTHING
+
+        // IF NOT -> populate DB from REST
+        doAsync {
+            var getImagesFromDB: List<AirportImageResponse> = db!!.imagesDataDAO().fetchAllImages()
+            if(getImagesFromDB.isEmpty()) {
+                val call : Call<List<AirportImageResponse>> = service
+                        .getAirportImageAndName(Utils.getHeader(myPreferences))
+                call.enqueue(object: Callback<List<AirportImageResponse>> {
+                    override fun onFailure(call: Call<List<AirportImageResponse>>?, t: Throwable?) {
+                        Log.e("fail", t!!.message)
+                    }
+
+                    override fun onResponse(call: Call<List<AirportImageResponse>>?, response: Response<List<AirportImageResponse>>?) {
+                        Log.e("ura", response!!.message())
+                        doAsync {
+                            db!!.clearAllTables()
+                            db!!.imagesDataDAO().insertAllImages(response.body()!!)
+                        }
+                    }
+                })
+            }
+        }
+    }
+
+
 }
 
 private operator fun ViewGroup.LayoutParams.invoke(params: LinearLayout.LayoutParams) {

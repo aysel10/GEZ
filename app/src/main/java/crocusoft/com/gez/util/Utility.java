@@ -93,6 +93,9 @@ public class Utility {
 
                     Gson sd = new Gson();
                     String jsonInString = sd.toJson(originDestinationOptionItem.getFlightSegment());
+                    String ticketDesignator = sd.toJson(pricedItineraryItem.getAirItineraryPricingInfo().getPTCFareBreakdowns().getPTCFareBreakdown().getTicketDesignators().getTicketDesignator());
+                    List<crocusoft.com.gez.pojo.response.flight.multiCityReponse.TicketDesignatorItem> ticketDesignatorItemList = new ArrayList<>();
+
                     try {
                         crocusoft.com.gez.pojo.response.flight.multiCityReponse.FlightSegment flightSegment =
                                 new Gson().fromJson(jsonInString, crocusoft.com.gez.pojo.response.flight.multiCityReponse.FlightSegment.class);
@@ -105,12 +108,42 @@ public class Utility {
                             flightSegmentList.add(new Gson().fromJson(jsonObject.toString(), crocusoft.com.gez.pojo.response.flight.multiCityReponse.FlightSegment.class));
                         }
                     }
+                    try {
+                        crocusoft.com.gez.pojo.response.flight.multiCityReponse.TicketDesignatorItem ticketDesignators =
+                                new Gson().fromJson(ticketDesignator, crocusoft.com.gez.pojo.response.flight.multiCityReponse.TicketDesignatorItem.class);
+                        ticketDesignatorItemList.add(ticketDesignators);
+                    } catch (JsonSyntaxException e) {
+                        JSONArray designatorList = new JSONArray(ticketDesignator);
+
+                        for(int j=0;j<designatorList.length();j++) {
+                            JSONObject designatorObject = (JSONObject) designatorList.get(j);
+                            ticketDesignatorItemList.add(new Gson().fromJson(designatorObject.toString(), crocusoft.com.gez.pojo.response.flight.multiCityReponse.TicketDesignatorItem.class));
+                        }
+                    }
+
+                    pricedItineraryItem.getAirItineraryPricingInfo().getPTCFareBreakdowns().getPTCFareBreakdown().getTicketDesignators().setTicketDesignator(ticketDesignatorItemList);
                     originDestinationOptionItemViewModel.setMultiAirItineraryPricingInfo(pricedItineraryItem.getAirItineraryPricingInfo());
                     originDestinationOptionItemViewModel.setMultiCityFlightSegment(flightSegmentList);
                     originDestinationOptionItemViewModelList.add(originDestinationOptionItemViewModel);
 
                 }
-                pricedItineraryItemViewModel.setFreeBaggagesMultiCity(pricedItineraries.getFreeBaggages());
+                List<crocusoft.com.gez.pojo.response.flight.multiCityReponse.BaggageItem> freeBaggagesList = new ArrayList<>();
+                Gson json = new Gson();
+                String baggage = json.toJson(pricedItineraries.getFreeBaggages().getBaggage());
+                try {
+                    crocusoft.com.gez.pojo.response.flight.multiCityReponse.BaggageItem flightSegment = new Gson().fromJson(baggage, crocusoft.com.gez.pojo.response.flight.multiCityReponse.BaggageItem.class);
+                    freeBaggagesList.add(flightSegment);
+                } catch (JsonSyntaxException e) {
+                    JSONArray jsonArray = new JSONArray(baggage);
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+                        freeBaggagesList.add(new Gson().fromJson(jsonObject.toString(), crocusoft.com.gez.pojo.response.flight.multiCityReponse.BaggageItem.class));
+                    }
+                }
+                crocusoft.com.gez.pojo.response.flight.multiCityReponse.FreeBaggages freeBaggages = pricedItineraries.getFreeBaggages();
+                freeBaggages.setBaggage(freeBaggagesList);
+
+                pricedItineraryItemViewModel.setFreeBaggagesMultiCity(freeBaggages);
                 pricedItineraryItemViewModel.setFreeBaggagesListMultiCity(pricedItineraries.getFreeBaggagesList());
                 pricedItineraryItemViewModel.setOriginMultiCityCombinationOptionList(destinationCombinationItems);
                 pricedItineraryItemViewModel.setCustomOriginDestinationOptionItemList(originDestinationOptionItemViewModelList);

@@ -5,14 +5,19 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
+import com.squareup.picasso.Picasso
 import crocusoft.com.gez.R
+import crocusoft.com.gez.database.AppDatabase
 import crocusoft.com.gez.models.TicketCombination
+import crocusoft.com.gez.pojo.response.flight.AirportImageResponse
 import crocusoft.com.gez.pojo.response.flight.multiCityReponse.OriginDestinationCombinationItem
-import crocusoft.com.gez.pojo.response.flight.multiCityReponse.OriginDestinationOptionItem
 import crocusoft.com.gez.view_model.OriginDestinationOptionItemViewModel
 import crocusoft.com.gez.view_model.TicketDataViewModel
-import org.w3c.dom.Text
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -24,36 +29,36 @@ class FlightMultiCityAdapter() : RecyclerView.Adapter<FlightMultiCityAdapter.Vie
     private var ticketsListDepart: ArrayList<OriginDestinationOptionItemViewModel> = ArrayList()
     val ticketComninationList: List<TicketCombination> = ArrayList()
     private var combinationsList: ArrayList<OriginDestinationCombinationItem> = ArrayList()
-    var ticketsIndexList : List<String> = ArrayList()
-    var t:OriginDestinationOptionItemViewModel = OriginDestinationOptionItemViewModel()
+    var ticketsIndexList: List<String> = ArrayList()
+    var t: OriginDestinationOptionItemViewModel = OriginDestinationOptionItemViewModel()
+    private lateinit var db: AppDatabase
 
 
-
-    public fun addViewModel(ticketDataViewModel: TicketDataViewModel){
+    public fun addViewModel(ticketDataViewModel: TicketDataViewModel) {
         ticketModel = ticketDataViewModel
         notifyDataSetChanged()
         departTicketsListFill()
-       // arriveTicketsListFill()
+        // arriveTicketsListFill()
         combinationListFill()
         //  indexListFill()
         //getTickets()
     }
 
     private fun departTicketsListFill() {
-        for(k in 0 until ticketModel.pricedItineraryItemList.size) {
+        for (k in 0 until ticketModel.pricedItineraryItemList.size) {
             val customOriginDestinationOptionItemListSize = ticketModel.pricedItineraryItemList[k].customOriginDestinationOptionItemList.size
             for (j in 0 until customOriginDestinationOptionItemListSize) {
                 val originDestinationOptionItem: OriginDestinationOptionItemViewModel = ticketModel.pricedItineraryItemList[k].customOriginDestinationOptionItemList[j]
                 if (originDestinationOptionItem.directionId == "0") {
-                    originDestinationOptionItem.sequenceNumber =  ticketModel.pricedItineraryItemList[k].customOriginDestinationOptionItemList[j].sequenceNumber
+                    originDestinationOptionItem.sequenceNumber = ticketModel.pricedItineraryItemList[k].customOriginDestinationOptionItemList[j].sequenceNumber
                     ticketsListDepart.add(originDestinationOptionItem)
                 }
             }
         }
     }
 
-    private fun combinationListFill(){
-        for(k in 0 until ticketModel.pricedItineraryItemList.size) {
+    private fun combinationListFill() {
+        for (k in 0 until ticketModel.pricedItineraryItemList.size) {
 
             val customOriginCombinationOptionItem = ticketModel.pricedItineraryItemList[k].originMultiCityCombinationOptionList
             for (j in 0..(customOriginCombinationOptionItem.size - 1)) {
@@ -61,14 +66,14 @@ class FlightMultiCityAdapter() : RecyclerView.Adapter<FlightMultiCityAdapter.Vie
 //                val originCombinationOptionItem: OriginDestinationCombinationItem = ticketModel.pricedItineraryItemList[k].originMultiCityCombinationOptionList[j]
 //                combinationsList.add(originCombinationOptionItem)
                 ticketsIndexList = ticketModel.pricedItineraryItemList[k].originMultiCityCombinationOptionList[j].indexList.split(";")
-                ticketCombination.indexList =  ticketsIndexList as ArrayList
+                ticketCombination.indexList = ticketsIndexList as ArrayList
                 val customOriginDestinationOptionItemListSize = ticketModel.pricedItineraryItemList[k].customOriginDestinationOptionItemList.size
                 val allTicketsList: ArrayList<OriginDestinationOptionItemViewModel> = ArrayList()
-                for(l in 0..ticketCombination.indexList.size-1) {
+                for (l in 0..ticketCombination.indexList.size - 1) {
                     for (i in 0..customOriginDestinationOptionItemListSize - 1) {
                         val originDestinationOptionItem: OriginDestinationOptionItemViewModel = ticketModel.pricedItineraryItemList[k].customOriginDestinationOptionItemList[i]
                         ticketCombination.segment = originDestinationOptionItem.sequenceNumber
-                        if(originDestinationOptionItem.refNumber==ticketsIndexList[l]&& originDestinationOptionItem.directionId.toInt() == l){
+                        if (originDestinationOptionItem.refNumber == ticketsIndexList[l] && originDestinationOptionItem.directionId.toInt() == l) {
                             ticketCombination.originDestinations.add(originDestinationOptionItem)
                             ticketCombination.combId = customOriginCombinationOptionItem[j].combinationID
                         }
@@ -82,7 +87,8 @@ class FlightMultiCityAdapter() : RecyclerView.Adapter<FlightMultiCityAdapter.Vie
     fun getCombinationsList(): ArrayList<OriginDestinationCombinationItem> {
         return combinationsList
     }
-    fun getTickets():ArrayList<TicketCombination>{
+
+    fun getTickets(): ArrayList<TicketCombination> {
         return ticketComninationList as ArrayList<TicketCombination>
     }
 
@@ -106,80 +112,183 @@ class FlightMultiCityAdapter() : RecyclerView.Adapter<FlightMultiCityAdapter.Vie
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var arrivalAirport =""
-        var departAirport =""
-        var arrivalTime =""
-        var departTime =""
+        var arrivalAirport = ""
+        var departAirport = ""
+        var arrivalTime = ""
+        var departTime = ""
+        var flightDuration = ""
+        var firstFlightDuration = ""
+        var firstDepartAirport = ""
+        var firstArrivalAirport = ""
+        var firstItem: OriginDestinationOptionItemViewModel = OriginDestinationOptionItemViewModel()
+        var secondItem: OriginDestinationOptionItemViewModel = OriginDestinationOptionItemViewModel()
 
-
-        var flightDuration =""
         val flightSegmentItem = ticketComninationList[position]
-        for(j in 0..flightSegmentItem.originDestinations.size-1) {
-                val item = flightSegmentItem.originDestinations[j]
-                val flightSegmentListSize = item.multiCityFlightSegment.size
-                val time = item.elapsedTime.substring(0, 2) + ":" + item.elapsedTime.substring(2, 4)
-                holder.flightTime.text = time
-             //   holder.price.text =  holder.view.context.resources.getString(R.string.pricePlaceHolder, flightSegmentItem.airItineraryPricingInfo.itinTotalFare.baseFare.amount)
-                for (i in 0 until flightSegmentListSize) {
-                  val currentTicket = item.multiCityFlightSegment[i]
-                  flightDuration += formatDate(currentTicket.flightDuration) + "\n"
-                  departAirport += currentTicket.departureAirport.locationCode+ "\n" + currentTicket.departureDateTime.substring(currentTicket.departureDateTime.lastIndexOf("T") + 1).substring(0, 5) + "\n"
-                    arrivalAirport +=  currentTicket.arrivalAirport.locationCode + "\n" + currentTicket.arrivalDateTime.substring(currentTicket.arrivalDateTime.lastIndexOf("T") + 1).substring(0, 5) + "\n"
-                    // departTime += currentTicket.departureDateTime.substring(currentTicket.departureDateTime.lastIndexOf("T") + 1).substring(0, 5) + "\n"
-                //  arrivalTime += currentTicket.arrivalDateTime.substring(currentTicket.arrivalDateTime.lastIndexOf("T") + 1).substring(0, 5) + "\n"
-                  holder.arrivalAirport.text = arrivalAirport
-                  holder.arrivalTime.text = arrivalTime
-                  holder.departAirport.text = departAirport
-                  holder.departTime.text = departTime
-                  holder.flightDate.text = flightDuration
+        val size = flightSegmentItem.originDestinations.size - 1
+        Log.e("tic", flightSegmentItem.originDestinations[0].toString())
+        if (size < 2) {
+            holder.thirdLinear.visibility = View.GONE
+            holder.forthLinear.visibility = View.GONE
+        } else if (size < 3) {
+            holder.forthLinear.visibility = View.GONE
+        }
+        for (j in 0..size) {
+            firstItem = flightSegmentItem.originDestinations[j]
+            //  val flightSegmentListSize = firstItem.multiCityFlightSegment.size
+            val time = firstItem.elapsedTime.substring(0, 2) + ":" + firstItem.elapsedTime.substring(2, 4)
+            //   secondItem = flightSegmentItem.originDestinations[1]
+//        val secondFlightSegmentListSize = secondItem.multiCityFlightSegment.size
+//        val secondTime = secondItem.elapsedTime.substring(0, 2) + ":" + secondItem.elapsedTime.substring(2, 4)
+            val ticket = firstItem.multiCityFlightSegment[0]
+            flightDuration = formatDate(ticket.flightDuration)
+            val operatingAirLineCode = ticket.operatingAirline.code.toString()
 
-              }
+            departAirport = ticket.departureAirport.locationCode
+            arrivalAirport = ticket.arrivalAirport.locationCode
+            arrivalTime = ticket.arrivalDateTime.substring(ticket.arrivalDateTime.lastIndexOf("T") + 1).substring(0, 5)
+            departTime = ticket.departureDateTime.substring(ticket.departureDateTime.lastIndexOf("T") + 1).substring(0, 5)
+            if (j == 0) {
+                val codeLine = "%$operatingAirLineCode%"
+                doAsync {
+                    val image: AirportImageResponse? = db!!.imagesDataDAO().getImage(codeLine)
+                    val t = image!!.airlineName.substring(image!!.airlineName.lastIndexOf("_") + 1).substringBefore(".")
+                    holder.firstAirportName.text = t
+                    uiThread {
+                        Picasso.get().load("http://88.99.186.108:8888/Content/images/airline_logo/${image!!.airlineName}").into(holder.firstAirportImage)
+                    }
+                }
+                holder.firstArrivalAirport.text = arrivalAirport
+                holder.firstDepartAirport.text = departAirport
+                holder.firstArrivalTime.text = arrivalTime
+                holder.firstDepartTime.text = departTime
+                holder.firstFlightTime.text = time
+                holder.price.text = holder.view.context.resources.getString(R.string.pricePlaceHolder, firstItem.multiAirItineraryPricingInfo.itinTotalFare.totalFare.amount)
+
+            }
+            if (j == 1) {
+                val codeLine = "%$operatingAirLineCode%"
+                doAsync {
+                    val image: AirportImageResponse? = db!!.imagesDataDAO().getImage(codeLine)
+                    val t = image!!.airlineName.substring(image!!.airlineName.lastIndexOf("_") + 1).substringBefore(".")
+                    holder.airportName.text = t
+                    uiThread {
+                        Picasso.get().load("http://88.99.186.108:8888/Content/images/airline_logo/${image!!.airlineName}").into(holder.airportImage)
+                    }
+                }
+                holder.arrivalAirport.text = arrivalAirport
+                holder.arrivalTime.text = arrivalTime
+                holder.departAirport.text = departAirport
+                holder.departTime.text = departTime
+                holder.flightTime.text = time
+            }
+
+            if (j == 2) {
+                val codeLine = "%$operatingAirLineCode%"
+                doAsync {
+                    val image: AirportImageResponse? = db!!.imagesDataDAO().getImage(codeLine)
+                    val t = image!!.airlineName.substring(image!!.airlineName.lastIndexOf("_") + 1).substringBefore(".")
+                    holder.thirdAirportName.text = t
+                    uiThread {
+                        Picasso.get().load("http://88.99.186.108:8888/Content/images/airline_logo/${image!!.airlineName}").into(holder.thirdAirportImage)
+                    }
+                }
+                holder.thirdArrivalAirport.text = arrivalAirport
+                holder.thirdArrivalTime.text = arrivalTime
+                holder.thirdDepartAirport.text = departAirport
+                holder.thirdDepartTime.text = departTime
+                holder.thirdFlightTime.text = time
+            }
+            if (j == 3) {
+                val codeLine = "%$operatingAirLineCode%"
+                doAsync {
+                    val image: AirportImageResponse? = db!!.imagesDataDAO().getImage(codeLine)
+                    val t = image!!.airlineName.substring(image!!.airlineName.lastIndexOf("_") + 1).substringBefore(".")
+                    holder.forthAirportName.text = t
+                    uiThread {
+                        Picasso.get().load("http://88.99.186.108:8888/Content/images/airline_logo/${image!!.airlineName}").into(holder.forthAirportImage)
+                    }
+                }
+                holder.forthArrivalAirport.text = arrivalAirport
+                holder.forthArrivalTime.text = arrivalTime
+                holder.forthDepartAirport.text = departAirport
+                holder.forthDepartTime.text = departTime
+                holder.forthFlightTime.text = time
+            }
+        }
+        }
+        fun getTicketViewModel(): TicketDataViewModel {
+            return ticketModel
         }
 
+        fun getDepartTicketsList(): ArrayList<OriginDestinationOptionItemViewModel> {
+            return ticketsListDepart
+        }
+
+        fun getIndexList(): List<String> {
+            return ticketsIndexList;
+        }
+
+        override fun getItemId(position: Int): Long {
+            return super.getItemId(position)
+        }
+
+        override fun getItemViewType(position: Int): Int {
+            return super.getItemViewType(position)
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlightMultiCityAdapter.ViewHolder {
+            val layoutInflater: LayoutInflater = LayoutInflater.from(parent.context)
+            val view: View = layoutInflater.inflate(R.layout.item_flight_multicity, parent, false) as View
+            // view.firstLinear.visibility = View.GONE
+            db = AppDatabase.getInstance(parent.context)!!
+
+            return ViewHolder(view)
+        }
+
+
+        override fun getItemCount(): Int {
+            return ticketComninationList.size
+        }
+
+
+        class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+            //find views
+            var airportName: TextView = view.findViewById(R.id.airportName)
+            var flightTime: TextView = view.findViewById(R.id.flightTime)
+            var flightDate: TextView = view.findViewById(R.id.flightDate)
+            var departTime: TextView = view.findViewById(R.id.departTime)
+            var arrivalTime: TextView = view.findViewById(R.id.arrivalTime)
+            var arrivalAirport: TextView = view.findViewById(R.id.arrivalAirport)
+            var departAirport: TextView = view.findViewById(R.id.departAirport)
+            var price: TextView = view.findViewById(R.id.priceTextView)
+            var airportImage: ImageView = view.findViewById(R.id.airportImage)
+            var thirdLinear: LinearLayout = view.findViewById(R.id.thirdLinear)
+            var forthLinear: LinearLayout = view.findViewById(R.id.forthLinear)
+            val firstAirportName: TextView = view.findViewById(R.id.firstAirportName)
+            val firstFlightTime: TextView = view.findViewById(R.id.firstFlightTime)
+            var firstFlightDate: TextView = view.findViewById(R.id.firstFlightDate)
+            var firstDepartTime: TextView = view.findViewById(R.id.firstDepartTime)
+            var firstArrivalTime: TextView = view.findViewById(R.id.firstArrivalTime)
+            var firstArrivalAirport: TextView = view.findViewById(R.id.firstArrivalAirport)
+            var firstDepartAirport: TextView = view.findViewById(R.id.firstDepartAirport)
+            var firstAirportImage: ImageView = view.findViewById(R.id.firstAirportImage)
+            val thirdAirportName: TextView = view.findViewById(R.id.thirdAirportName)
+            val thirdFlightTime: TextView = view.findViewById(R.id.thirdFlightTime)
+            var thirdFlightDate: TextView = view.findViewById(R.id.thirdFlightDate)
+            var thirdDepartTime: TextView = view.findViewById(R.id.thirdDepartTime)
+            var thirdArrivalTime: TextView = view.findViewById(R.id.thirdArrivalTime)
+            var thirdArrivalAirport: TextView = view.findViewById(R.id.thirdArrivalAirport)
+            var thirdDepartAirport: TextView = view.findViewById(R.id.thirdDepartAirport)
+            var thirdAirportImage: ImageView = view.findViewById(R.id.thirdAirportImage)
+            val forthAirportName: TextView = view.findViewById(R.id.forthAirportName)
+            val forthFlightTime: TextView = view.findViewById(R.id.forthFlightTime)
+            var forthFlightDate: TextView = view.findViewById(R.id.forthFlightDate)
+            var forthDepartTime: TextView = view.findViewById(R.id.forthDepartTime)
+            var forthArrivalTime: TextView = view.findViewById(R.id.forthArrivalTime)
+            var forthArrivalAirport: TextView = view.findViewById(R.id.forthArrivalAirport)
+            var forthDepartAirport: TextView = view.findViewById(R.id.forthDepartAirport)
+            var forthAirportImage: ImageView = view.findViewById(R.id.forthAirportImage)
+        }
     }
-    fun getTicketViewModel(): TicketDataViewModel {
-        return ticketModel
-    }
 
-    fun getDepartTicketsList(): ArrayList<OriginDestinationOptionItemViewModel> {
-        return ticketsListDepart
-    }
-
-    fun getIndexList(): List<String>{
-        return ticketsIndexList;
-    }
-    override fun getItemId(position: Int): Long {
-        return super.getItemId(position)
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return super.getItemViewType(position)
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlightMultiCityAdapter.ViewHolder{
-        val layoutInflater: LayoutInflater = LayoutInflater.from(parent.context)
-        val view : View = layoutInflater.inflate(R.layout.item_flight_ticket,parent,false) as View
-
-        return ViewHolder(view)
-    }
-
-
-    override fun getItemCount(): Int {
-        return ticketComninationList.size
-    }
-
-
-
-    class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        //find views
-        var airportName : TextView = view.findViewById(R.id.airportName)
-        var flightTime : TextView = view. findViewById(R.id.flightTime)
-        var flightDate : TextView = view.findViewById(R.id.flightDate)
-        var departTime : TextView = view.findViewById(R.id.departTime)
-        var arrivalTime : TextView = view.findViewById(R.id.arrivalTime)
-        var arrivalAirport : TextView = view.findViewById(R.id.arrivalAirport)
-        var departAirport : TextView = view.findViewById(R.id.departAirport)
-        var price : TextView = view.findViewById(R.id.priceTextView)
-    }
-}
 

@@ -24,6 +24,21 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
+                android:id="@+id/azImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/menu_bckgr"
+                android:contentDescription="@string/train_button_menu_desc"
+                android:paddingBottom="15dp"
+                android:paddingEnd="18dp"
+                android:paddingStart="18dp"
+                android:paddingTop="15dp"
+                android:tint="@android:color/white"
+                app:srcCompat="@drawable/menu_icon_az" />
+
+            <ImageButton
                 android:id="@+id/planeImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -82,21 +97,6 @@
                 android:paddingTop="15dp"
                 android:tint="@android:color/white"
                 app:srcCompat="@drawable/menu_icon_lowcost" />
-
-            <ImageButton
-                android:id="@+id/trainImageButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:layout_weight="1"
-                android:background="@drawable/menu_bckgr"
-                android:contentDescription="@string/train_button_menu_desc"
-                android:paddingBottom="15dp"
-                android:paddingEnd="18dp"
-                android:paddingStart="18dp"
-                android:paddingTop="15dp"
-                android:tint="@android:color/white"
-                app:srcCompat="@drawable/menu_icon_train" />
         </LinearLayout>
 
         <LinearLayout
@@ -170,20 +170,19 @@
                 app:srcCompat="@drawable/menu_icon_cruize" />
 
             <ImageButton
-                android:id="@+id/holder"
+                android:id="@+id/trainImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
                 android:layout_weight="1"
                 android:background="@drawable/menu_bckgr"
-                android:contentDescription="@string/cruize_button_menu_desc"
+                android:contentDescription="@string/train_button_menu_desc"
                 android:paddingBottom="15dp"
                 android:paddingEnd="18dp"
                 android:paddingStart="18dp"
                 android:paddingTop="15dp"
                 android:tint="@android:color/white"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/menu_icon_cruize" />
+                app:srcCompat="@drawable/menu_icon_train" />
 
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>

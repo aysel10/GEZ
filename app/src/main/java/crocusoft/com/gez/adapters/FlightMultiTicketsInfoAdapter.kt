@@ -5,9 +5,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import com.squareup.picasso.Picasso
 import crocusoft.com.gez.R
+import crocusoft.com.gez.database.AppDatabase
+import crocusoft.com.gez.pojo.response.flight.AirportImageResponse
 import crocusoft.com.gez.view_model.OriginDestinationOptionItemViewModel
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -15,6 +21,7 @@ import java.util.*
 class FlightMultiTicketsInfoAdapter(): RecyclerView.Adapter<FlightMultiTicketsInfoAdapter.ViewHolder>() {
 
     var ticketsList: ArrayList<OriginDestinationOptionItemViewModel> = ArrayList()
+    private lateinit var db: AppDatabase
 
     public fun addList(ticketList: ArrayList<OriginDestinationOptionItemViewModel>){
         ticketsList = ticketList
@@ -32,21 +39,34 @@ class FlightMultiTicketsInfoAdapter(): RecyclerView.Adapter<FlightMultiTicketsIn
         val flightSegmentListSize = flightSegmentItem.multiCityFlightSegment.size
         val time = ticketsList[position].elapsedTime.substring(0,2)+":"+ticketsList[position].elapsedTime.substring(2,4)
         if(flightSegmentListSize>1){
-            holder.flightTime.text = (time + "/via " + flightSegmentItem.flightSegmentList[0].arrivalAirport.locationCode)
+            holder.flightTime.text = (time + "/via " + flightSegmentItem.multiCityFlightSegment[0].arrivalAirport.locationCode)
         }
         if(flightSegmentListSize>2) {
-            holder.flightTime.text = (time + "/via " + flightSegmentItem.flightSegmentList[0].arrivalAirport.locationCode+ ", " + flightSegmentItem.flightSegmentList[1].arrivalAirport.locationCode)
+            holder.flightTime.text = (time + "/via " + flightSegmentItem.multiCityFlightSegment[0].arrivalAirport.locationCode+ ", " + flightSegmentItem.flightSegmentList[1].arrivalAirport.locationCode)
         }
         if(flightSegmentListSize==1){
             holder.flightTime.text = time
         }
-        holder.price.text =  holder.view.context.resources.getString(R.string.pricePlaceHolder, flightSegmentItem.roundtripAirItineraryPricingInfo.itinTotalFare.baseFare.amount)
-        holder.departAirport.text = flightSegmentItem.flightSegmentList[0].departureAirport.locationCode
+        holder.price.text =  holder.view.context.resources.getString(R.string.pricePlaceHolder, flightSegmentItem.multiAirItineraryPricingInfo.itinTotalFare.totalFare.amount)
+        holder.departAirport.text = flightSegmentItem.multiCityFlightSegment[0].departureAirport.locationCode
 
         for(i in 0 until flightSegmentListSize) {
 
             val currentTicket = flightSegmentItem.multiCityFlightSegment[i]
             var r = formatDate(currentTicket.flightDuration)
+
+            //val operatingAirLineCode = flightSegmentItem.multiCityFlightSegment[0].operatingAirline.code.toString() // 0---------
+//            val codeLine = "%$operatingAirLineCode%"
+//            doAsync {
+//                //val image: List<AirportImageResponse> = db!!.imagesDataDAO().fetchAllImages()
+//                var image: AirportImageResponse? = db!!.imagesDataDAO().getImage(codeLine)
+//                val t = image!!.airlineName.substring(image!!.airlineName.lastIndexOf("_")+1).substringBefore(".")
+//
+//                holder.airportName.text = t
+//                uiThread {
+//                    Picasso.get().load("http://88.99.186.108:8888/Content/images/airline_logo/${image!!.airlineName}").into(holder.airportImage)
+//                }
+//            }
             holder.flightDate.text = r
             holder.arrivalAirport.text = currentTicket.arrivalAirport.locationCode
             holder.arrivalTime.text= currentTicket.arrivalDateTime.substring(currentTicket.arrivalDateTime.lastIndexOf("T")+1).substring(0,5)
@@ -67,6 +87,7 @@ class FlightMultiTicketsInfoAdapter(): RecyclerView.Adapter<FlightMultiTicketsIn
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlightMultiTicketsInfoAdapter.ViewHolder{
         val layoutInflater: LayoutInflater = LayoutInflater.from(parent.context)
         val view : View = layoutInflater.inflate(R.layout.item_flight_ticket,parent,false) as View
+        db = AppDatabase.getInstance(parent.context)!!
 
         return ViewHolder(view)
     }
@@ -89,5 +110,6 @@ class FlightMultiTicketsInfoAdapter(): RecyclerView.Adapter<FlightMultiTicketsIn
         var arrivalAirport : TextView = view.findViewById(R.id.arrivalAirport)
         var departAirport : TextView = view.findViewById(R.id.departAirport)
         var price : TextView = view.findViewById(R.id.priceTextView)
+        var airportImage: ImageView = view.findViewById(R.id.airportImage)
     }
 }

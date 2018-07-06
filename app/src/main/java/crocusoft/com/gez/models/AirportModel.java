@@ -2,11 +2,29 @@ package crocusoft.com.gez.models;
 
 public class AirportModel {
     private String airportname;
+    private String cityName;
     private Boolean isCity;
 
-    public AirportModel(String airportname, Boolean isCity) {
+    public AirportModel(String airportname, String cityName, Boolean isCity) {
         this.airportname = airportname;
+        this.cityName = cityName;
         this.isCity = isCity;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
+    public Boolean getCity() {
+        return isCity;
+    }
+
+    public void setCity(Boolean city) {
+        isCity = city;
     }
 
     public String getAirportname() {
