@@ -6,13 +6,16 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import com.google.gson.Gson
+import com.google.gson.JsonArray
 import crocusoft.com.gez.R
 import crocusoft.com.gez.adapters.FlightMultiTicketsInfoAdapter
 import crocusoft.com.gez.adapters.FlightOneWayAdapter
+import crocusoft.com.gez.pojo.response.flight.multiCityReponse.FreeBaggages
 import crocusoft.com.gez.view_model.OriginDestinationOptionItemViewModel
 import crocusoft.com.gez.view_model.TicketDataViewModel
 
@@ -27,16 +30,27 @@ class FlightMultiCityInfo : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flight_tickets_info)
         recyclerView = findViewById(R.id.recyclerView)
+        val list = ArrayList<OriginDestinationOptionItemViewModel>()
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
         val bundle = intent.extras
-        val tickets = bundle.getParcelableArrayList<OriginDestinationOptionItemViewModel>("tickets")
-        combId = bundle.getString("combId")
-        recId = bundle.getString("recId")
         val gs = Gson()
 
-        val ticket = bundle.getString("ticket")
-        val model = gs.fromJson(ticket.toString(), OriginDestinationOptionItemViewModel::class.java)
-        afch.addList(tickets)
+        combId = bundle.getString("combId")
+        recId = bundle.getString("recId")
+        val baggageJSONString = bundle.getString("baggageJSON")
+        val baggageModel: FreeBaggages = gs.fromJson(baggageJSONString.toString(),
+                FreeBaggages::class.java)
+        Log.e("sdf",baggageModel.toString())
+        val ticketsList: JsonArray =
+                gs.fromJson(bundle.getString("ticket"), JsonArray::class.java)
+        for(j in 0 until ticketsList.size()) {
+            val jsonObject = ticketsList.get(j)
+            list.add(Gson().fromJson(jsonObject.toString(), OriginDestinationOptionItemViewModel::class.java))
+        }
+       // val model = gs.fromJson(ticket.toString(), OriginDestinationOptionItemViewModel::class.java)
+
+        afch.addList(list)
+        afch.addBaggage(baggageModel)
         recyclerView.adapter = afch
 
         bookButton = findViewById(R.id.continueBooking)

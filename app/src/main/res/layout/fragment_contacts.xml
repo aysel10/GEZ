@@ -47,10 +47,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView74"
+                    android:id="@+id/phoneContact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:clickable="true"
                     android:drawablePadding="5dp"
                     android:drawableStart="@drawable/ic_phone"
                     android:paddingBottom="4dp"
@@ -59,10 +60,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView75"
+                    android:id="@+id/phone2Contact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:clickable="true"
                     android:drawablePadding="5dp"
                     android:drawableStart="@drawable/ic_phone"
                     android:paddingBottom="4dp"
@@ -71,10 +73,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView76"
+                    android:id="@+id/emailContact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:clickable="true"
                     android:drawablePadding="5dp"
                     android:drawableStart="@drawable/ic_email"
                     android:paddingBottom="4dp"
@@ -85,8 +88,8 @@
                 <ImageView
                     android:id="@+id/imageView16"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:src="@android:color/holo_green_dark" />
+                    android:layout_height="180dp"
+                    android:src="@drawable/gez" />
             </LinearLayout>
 
 

@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 import crocusoft.com.gez.R
-import crocusoft.com.gez.util.Utils.Companion.datePicker
+import crocusoft.com.gez.util.RetrofotManager.Companion.datePicker
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

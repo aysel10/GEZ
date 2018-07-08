@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AppCompatDelegate
 import android.os.Build
-import android.provider.ContactsContract
 import android.support.design.widget.NavigationView
 import android.support.v4.app.FragmentManager
 import android.support.v4.view.GravityCompat
@@ -16,9 +15,10 @@ import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.view.View
 import crocusoft.com.gez.R
-import crocusoft.com.gez.util.Utils
+import crocusoft.com.gez.util.RetrofotManager
 import crocusoft.com.gez.fragments.*
 import crocusoft.com.gez.menu_fragments.*
+import crocusoft.com.gez.util.AppSharedPreferences
 
 
 class MainActivity : AppCompatActivity(), MenuFragment.OnFragmentInteractionListener,
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity(), MenuFragment.OnFragmentInteractionList
         setContentView(R.layout.activity_main)
 
         val fragmentManager = supportFragmentManager
-        Utils.changeFragment(fragmentManager, R.id.content, ContentFragment.newInstance())
+        RetrofotManager.changeFragment(fragmentManager, R.id.content, ContentFragment.newInstance())
         toolbar =findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         val actionbar: ActionBar? = supportActionBar
@@ -118,6 +118,7 @@ class MainActivity : AppCompatActivity(), MenuFragment.OnFragmentInteractionList
         // val fragment: Fragment = null;
         // lateinit var  fragmentClass:Any
         val fragmentManager: FragmentManager =  supportFragmentManager;
+        val myPreferences = AppSharedPreferences(applicationContext)
 
         when(menuItem.itemId) {
             R.id.nav_about_fragment-> {
@@ -138,6 +139,11 @@ class MainActivity : AppCompatActivity(), MenuFragment.OnFragmentInteractionList
             }
             R.id.nav_bonus_fragment-> {
                 fragmentManager.beginTransaction().replace(R.id.content, BonusFragment.newInstance()).addToBackStack(null).commit()
+            }
+            R.id.nav_logout->{
+                val intent = Intent(baseContext,LoginActivity::class.java)
+                myPreferences.removeToken()
+                startActivity(intent)
             }
         }
 

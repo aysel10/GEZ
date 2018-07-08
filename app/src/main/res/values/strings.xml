@@ -119,7 +119,7 @@
     <!-- /////////////// -->
 
     <!--Place Holders-->
-    <string name="fromPlaceHolder">Baku, QYD</string>
+    <string name="fromPlaceHolder">Baku, GYD</string>
     <string name="toPlaceHolder">Milan, XRP</string>
     <string name="departPlaceHolder">11.02.17</string>
     <string name="returnPlaceHolder">17.02.17</string>
@@ -141,9 +141,9 @@
     <string name="baggageFees">Baggage fees when purchase at the airport</string>
     <string name="baggageCarry">Carry On: No fee</string>
     <string name="baggageInfo">Baggage Information: AZAL</string>
-    <string name="firstBag">1st checked bag: </string>
-    <string name="marketingAirline">Marketing Airline: </string>
-    <string name="flightNumber">Flight number: </string>
+    <string name="firstBag">1st checked bag:%1$s </string>
+    <string name="marketingAirline">Marketing Airline:%1$s </string>
+    <string name="flightNumber">Flight number:%1$s </string>
 
 
     <string name="pricePlaceHolder">%1$s$</string>
@@ -179,15 +179,23 @@
     <string name="support">Support</string>
     <string name="home">Home</string>
     <string name="about">About</string>
+    <string name="logout">Log out</string>
     <string name="bonus">Bonus</string>
+    <string name="send">SEND</string>
+
     <string name="contacts">Contacts</string>
 
     <string name="saveChanges">SAVE CHANGES</string>
+    <string name="continueBooking">CONTINUE BOOKING</string>
     <string name="changePassword">Change Password</string>
     <string name="currentPassword">CURRENT PASSWORD</string>
     <string name="newPassword">NEW PASSWORD</string>
     <string name="retypePassword">RETYPE PASSWORD</string>
     <string name="name">NAME</string>
+    <string name="nameAndSurname">NAME AND SURNAME</string>
+    <string name="phoneNumber">PHONE NUMBER</string>
+    <string name="yourText">YOUR TEXT</string>
+
     <string name="surname">SURNAME</string>
     <string name="email">EMAIL</string>
     <!-- /////////////// -->

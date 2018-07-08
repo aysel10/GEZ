@@ -4,15 +4,19 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 public class BaggageItem implements Parcelable{
 
+	@SerializedName("@Quantity")
 	@JsonProperty("@Quantity")
 	private String quantity;
 
+	@SerializedName("@Unit")
 	@JsonProperty("@Unit")
 	private String unit;
 
+	@SerializedName("@Index")
 	@JsonProperty("@Index")
 	private String index;
 

@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="Support"
+            android:text="@string/support"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -38,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="4dp"
-                android:text="NAME AND SURNAME"
+                android:text="@string/nameAndSurname"
                 android:textStyle="bold" />
 
             <EditText
@@ -57,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="4dp"
-                android:text="EMAIL"
+                android:text="@string/email"
                 android:textStyle="bold" />
 
             <EditText
@@ -67,7 +67,7 @@
                 android:layout_marginBottom="4dp"
                 android:background="@drawable/draw_edit_text_background"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="textEmailAddress"
                 android:padding="8dp"
                 android:textSize="15sp" />
 
@@ -76,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="4dp"
-                android:text="PHONE NUMBER"
+                android:text="@string/phoneNumber"
                 android:textStyle="bold" />
 
             <EditText
@@ -86,7 +86,7 @@
                 android:layout_marginBottom="4dp"
                 android:background="@drawable/draw_edit_text_background"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="phone"
                 android:padding="8dp"
                 android:textSize="15sp" />
 
@@ -95,7 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="4dp"
-                android:text="YOUR TEXT"
+                android:text="@string/yourText"
                 android:textStyle="bold" />
 
             <EditText
@@ -108,17 +108,16 @@
                 android:gravity="top"
                 android:inputType="textPersonName"
                 android:padding="8dp"
-                android:text="Some Text Here"
                 android:textSize="15sp" />
 
             <Button
                 android:id="@+id/button6"
-                android:layout_width="250dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@drawable/search_button_background"
                 android:padding="15dp"
-                android:text="SEND"
+                android:text="@string/send"
                 android:textAlignment="center"
                 android:textColor="@color/white" />
         </LinearLayout>

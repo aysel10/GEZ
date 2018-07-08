@@ -56,7 +56,7 @@
                 android:value=".activities.MainActivity" />
         </activity>
         <activity
-            android:name="crocusoft.com.gez.activities.FlightReturnTicketsActivity"
+            android:name="crocusoft.com.gez.activities.FlightRDReturnActivity"
             android:launchMode="singleTask"
             android:parentActivityName="crocusoft.com.gez.activities.FlightTicketsActivity"
             android:screenOrientation="portrait"
@@ -68,12 +68,12 @@
         <activity
             android:name="crocusoft.com.gez.activities.FlightBookTicketOneWay"
             android:launchMode="singleTask"
-            android:parentActivityName="crocusoft.com.gez.activities.FlightReturnTicketsActivity"
+            android:parentActivityName="crocusoft.com.gez.activities.FlightRDReturnActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.FlightReturnTicketsActivity" />
+                android:value=".activities.FlightRDReturnActivity" />
         </activity>
         <activity
             android:name="crocusoft.com.gez.activities.FlightOneWayActivity"
@@ -106,7 +106,7 @@
                 android:value=".activities.FlightMultiCityActivity" />
         </activity>
         <activity
-            android:name="crocusoft.com.gez.activities.FlightContinueBooking"
+            android:name="crocusoft.com.gez.activities.FlightRoundTripInfo"
             android:launchMode="singleTask"
             android:parentActivityName="crocusoft.com.gez.activities.FlightBookTicketOneWay"
             android:screenOrientation="portrait"

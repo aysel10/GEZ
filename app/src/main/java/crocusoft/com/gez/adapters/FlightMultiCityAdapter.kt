@@ -122,10 +122,9 @@ class FlightMultiCityAdapter() : RecyclerView.Adapter<FlightMultiCityAdapter.Vie
         var firstArrivalAirport = ""
         var firstItem: OriginDestinationOptionItemViewModel = OriginDestinationOptionItemViewModel()
         var secondItem: OriginDestinationOptionItemViewModel = OriginDestinationOptionItemViewModel()
-
+        holder.baggageLayout.visibility = View.GONE
         val flightSegmentItem = ticketComninationList[position]
         val size = flightSegmentItem.originDestinations.size - 1
-        Log.e("tic", flightSegmentItem.originDestinations[0].toString())
         if (size < 2) {
             holder.thirdLinear.visibility = View.GONE
             holder.forthLinear.visibility = View.GONE
@@ -255,7 +254,6 @@ class FlightMultiCityAdapter() : RecyclerView.Adapter<FlightMultiCityAdapter.Vie
             //find views
             var airportName: TextView = view.findViewById(R.id.airportName)
             var flightTime: TextView = view.findViewById(R.id.flightTime)
-            var flightDate: TextView = view.findViewById(R.id.flightDate)
             var departTime: TextView = view.findViewById(R.id.departTime)
             var arrivalTime: TextView = view.findViewById(R.id.arrivalTime)
             var arrivalAirport: TextView = view.findViewById(R.id.arrivalAirport)
@@ -288,6 +286,7 @@ class FlightMultiCityAdapter() : RecyclerView.Adapter<FlightMultiCityAdapter.Vie
             var forthArrivalAirport: TextView = view.findViewById(R.id.forthArrivalAirport)
             var forthDepartAirport: TextView = view.findViewById(R.id.forthDepartAirport)
             var forthAirportImage: ImageView = view.findViewById(R.id.forthAirportImage)
+            var baggageLayout:LinearLayout = view.findViewById(R.id.baggageLayout)
         }
     }
 

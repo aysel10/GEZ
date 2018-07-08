@@ -92,6 +92,7 @@ public class OriginDestinationOptionItemViewModel implements Parcelable{
     }
 
 
+
     public String getElapsedTime() {
         return elapsedTime;
     }
@@ -152,15 +153,20 @@ public class OriginDestinationOptionItemViewModel implements Parcelable{
     public String toString() {
         return "OriginDestinationOptionItemViewModel{" +
                 "elapsedTime='" + elapsedTime + '\'' +
-                ", flightSegmentList=" + flightSegmentList +
-                ", flightOne=" + flighTSegmentList +
-                ", flightMulti=" + multiCityFlightSegment +
+                ", sequenceNumber='" + sequenceNumber + '\'' +
                 ", directionId='" + directionId + '\'' +
                 ", optionPricingInfo=" + optionPricingInfo +
                 ", providerType='" + providerType + '\'' +
                 ", refNumber='" + refNumber + '\'' +
+                ", airItineraryPricingInfo=" + airItineraryPricingInfo +
+                ", roundtripAirItineraryPricingInfo=" + roundtripAirItineraryPricingInfo +
+                ", multiAirItineraryPricingInfo=" + multiAirItineraryPricingInfo +
+                ", flightSegmentList=" + flightSegmentList +
+                ", flighTSegmentList=" + flighTSegmentList +
+                ", multiCityFlightSegment=" + multiCityFlightSegment +
                 '}';
     }
+
     @Override
     public int describeContents() {
         return 0;

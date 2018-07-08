@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 
 import crocusoft.com.gez.R
-import crocusoft.com.gez.util.Utils
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -48,7 +47,7 @@ class ContentFragment : Fragment() {
 //        }
      //   fragmentManager!!.beginTransaction().replace(R.id.dynamicFragment, FlightFragment.newInstance()).addToBackStack(null).commit()
 
-      //  Utils.changeFragment(fragmentManager!!, R.id.dynamicFragment, FlightFragment.newInstance())
+      //  RetrofotManager.changeFragment(fragmentManager!!, R.id.dynamicFragment, FlightFragment.newInstance())
         return inflater.inflate(R.layout.fragment_content, container, false)
     }
 

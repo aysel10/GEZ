@@ -14,33 +14,33 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface RetrofitService {
-    @POST("/api/FlightOperationsForMobile/SearchBookCreate")
+    @POST("/SearchBookCreate")
     //@Headers("Accept:application/json")
     fun roundTripFlightSearch(@Body flightRequest: FlightRequest,
                               @HeaderMap headers: Map<String, String>): Call<RoundtripResponse>
 
-    @POST("/api/FlightOperationsForMobile/SearchBookCreate")
+    @POST("/SearchBookCreate")
     //@Headers("Accept:application/json")
     fun oneWayFlightSearch(@Body oneWayRequest: Request,
                            @HeaderMap headers: Map<String, String>): Call<Response>
 
-    @POST("/api/FlightOperationsForMobile/SearchBookCreate")
+    @POST("/SearchBookCreate")
     //@Headers("Accept:application/json")
     fun bookFlightRequest(@Body bookFlightRequest: BookFlightRequest,
                           @HeaderMap headers: Map<String, String>): Call<ResponseBody>
 
-    @POST("/api/FlightOperationsForMobile/SearchBookCreate")
+    @POST("/SearchBookCreate")
     //@Headers("Accept:application/json")
     fun multiCityFlightSearch(@Body multiCityFlightSearch: FlightRequest,
                               @HeaderMap headers: Map<String, String>): Call<MultiCityResponse>
 
     //http://88.99.186.108:8888/api/FlightOperationsForMobile/GetAirportnames?search=a
-    @GET("/api/FlightOperationsForMobile/GetAirportnames")
+    @GET("/GetAirportnames")
     //@Headers("Accept:application/json")
     fun getAirportsList(@Query("search") keyword: String,
                         @HeaderMap headers: Map<String, String>): Call<List<AirportSearchModel>>
 
-    @GET("/api/FlightOperationsForMobile/GetAirlineImageNames")
+    @GET("/GetAirlineImageNames")
     //@Headers("Accept:application/json", "Authorization: Basic {token}")
     fun getAirportImageAndName(@HeaderMap headers: Map<String, String>): Call<List<AirportImageResponse>>
 

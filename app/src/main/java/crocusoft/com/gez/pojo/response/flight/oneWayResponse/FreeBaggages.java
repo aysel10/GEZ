@@ -6,9 +6,11 @@ import android.os.Parcelable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 public class FreeBaggages implements Parcelable{
 
+	@SerializedName("Baggage")
 	@JsonProperty("Baggage")
 	private List<BaggageItem> baggage;
 

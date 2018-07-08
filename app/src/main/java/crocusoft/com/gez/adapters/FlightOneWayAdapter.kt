@@ -87,15 +87,23 @@ class FlightOneWayAdapter(): RecyclerView.Adapter<FlightOneWayAdapter.ViewHolder
         if(flightSegmentListSize==1){
             holder.flightTime.text = time
         }
+        val t = ticketModel.pricedItineraryItemList[0].freeBaggagesOneWay.baggage
+
         holder.departAirport.text = flightSegmentItem.flighTSegmentList[0].departureAirport.locationCode
-        holder.price.text = holder.view.context.resources.getString(R.string.pricePlaceHolder, flightSegmentItem.airItineraryPricingInfo.itinTotalFare.baseFare.amount)
+        holder.price.text = holder.view.context.resources.getString(R.string.pricePlaceHolder, flightSegmentItem.airItineraryPricingInfo.itinTotalFare.totalFare.amount)
       //  holder.baggageIndex.text= flightSegmentItem.flighTSegmentList[0].baggages.baggage.index[1].toString()
         for(i in 0 until flightSegmentListSize) {
             val currentTicket = flightSegmentItem.flighTSegmentList[i]
             val r = formatDate(currentTicket.flightDuration)
-            holder.flightDate.text = r
+            val index = currentTicket.baggages.baggage.index
+            for(j in 0..t.size-1){
+                if(index.equals(t[j].index)){
+                    holder.baggageIndex.text = holder.view.context.resources.getString(R.string.firstBag, t[j].quantity+(t[j].unit))
+                }
+            }
 
-
+            holder.flightNumber.text = holder.view.context.resources.getString(R.string.flightNumber, currentTicket.flightNumber)
+            holder.marketingAirline.text = holder.view.context.resources.getString(R.string.marketingAirline, currentTicket.marketingAirline.code)
             val operatingAirLineCode = flightSegmentItem.flighTSegmentList[i].operatingAirline.code.toString() // 0---------
             val codeLine = "%$operatingAirLineCode%"
             doAsync {
@@ -164,13 +172,14 @@ class FlightOneWayAdapter(): RecyclerView.Adapter<FlightOneWayAdapter.ViewHolder
         var airportName : TextView = view.findViewById(R.id.airportName)
         var airportImage : ImageView = view.findViewById(R.id.airportImage)
         var flightTime : TextView = view. findViewById(R.id.flightTime)
-        var flightDate : TextView = view.findViewById(R.id.flightDate)
         var departTime : TextView = view.findViewById(R.id.departTime)
         var arrivalTime : TextView = view.findViewById(R.id.arrivalTime)
         var arrivalAirport : TextView = view.findViewById(R.id.arrivalAirport)
         var departAirport : TextView = view.findViewById(R.id.departAirport)
         var price : TextView = view.findViewById(R.id.priceTextView)
         var baggageIndex: TextView = view.findViewById(R.id.firstBag)
+        var flightNumber : TextView = view.findViewById(R.id.flightNumber)
+        var marketingAirline : TextView = view.findViewById(R.id.marketingAirline)
     }
 
 

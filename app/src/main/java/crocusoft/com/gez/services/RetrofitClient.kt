@@ -21,7 +21,7 @@ class RetrofitClient {
     companion object {
         var client: Retrofit? = null
     }
-    private val baseUrl: String = "http://88.99.186.108:8888/"
+    private val baseUrl: String = "http://88.99.186.108:8888/api/FlightOperationsForMobile"
 
      fun getClient() : Retrofit? {
          val cookieManager = CookieManager()

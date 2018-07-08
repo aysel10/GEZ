@@ -1,6 +1,8 @@
 package crocusoft.com.gez.util;
 
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
@@ -141,7 +143,7 @@ public class Utility {
                     }
                 }
                 crocusoft.com.gez.pojo.response.flight.multiCityReponse.FreeBaggages freeBaggages = pricedItineraries.getFreeBaggages();
-                freeBaggages.setBaggage(freeBaggagesList);
+                freeBaggages.setBaggageItems(freeBaggagesList);
 
                 pricedItineraryItemViewModel.setFreeBaggagesMultiCity(freeBaggages);
                 pricedItineraryItemViewModel.setFreeBaggagesListMultiCity(pricedItineraries.getFreeBaggagesList());
@@ -180,8 +182,6 @@ public class Utility {
                 PricedItineraryItemViewModel pricedItineraryItemViewModel = new PricedItineraryItemViewModel();
                 pricedItineraryItemViewModel.setSequenceNumber(pricedItineraryItem.getSequenceNumber());
                 pricedItineraryItemViewModel.setCurrency(pricedItineraryItem.getCurrency());
-
-
 
                 List<OriginDestinationOptionItem> originDestinationOptionItemList = pricedItineraryItem
                         .getAirItinerary()
@@ -236,7 +236,6 @@ public class Utility {
                             JSONObject jsonObject = (JSONObject) jsonArray.get(i);
                             flightSegmentList.add(new Gson().fromJson(jsonObject.toString(), FlightSegment.class));
                             }
-
                     }
 
                     try {
@@ -287,9 +286,6 @@ public class Utility {
         }
         return ticketDataViewModel;
     }
-
-
-
 
     public static TicketDataViewModel getTicketList(Response response) {
         TicketDataViewModel ticketDataViewModel = new TicketDataViewModel();
@@ -375,13 +371,23 @@ public class Utility {
                     model.setAirItineraryPricingInfo(pricedItineraryItem.getAirItineraryPricingInfo());
 
                     model.setFlighTSegmentList(flightSegmentList);
+                //    model.setBaggageIndex(model.getFlighTSegmentList().get(0).getBaggages().getBaggage().getIndex());
 
+                   // Log.e("index",model.getBaggageIndex());
+//                        for (int j = 0; j < pricedItineraries.getFreeBaggages().getBaggage().size(); j++) {
+//                            String index = pricedItineraries.getFreeBaggages().getBaggage().get(j).getIndex();
+//                            Log.e("seg",model.getFlighTSegmentList().get(0).getBaggages().getBaggage().getIndex().toString());
+//                            if (index.equals(model.getFlighTSegmentList().get(0).getBaggages().getBaggage().getIndex())) {
+//                                model.setBaggageKG(index);
+//                            }
                     originDestinationOptionItemViewModelList.add(model);
+
 
                 }
 
                 pricedItineraryItemViewModel.setFreeBaggagesOneWay(pricedItineraries.getFreeBaggages());
                 pricedItineraryItemViewModel.setFreeBaggagesListOneWay(pricedItineraries.getFreeBaggagesList());
+
                 pricedItineraryItemViewModel.setCustomOriginDestinationOptionItemList(originDestinationOptionItemViewModelList);
                 pricedItineraryItemViewModel.setOriginOneWayCombinationOptionItemList(destinationCombinationItems);
                 pricedItineraryItemViewModelList.add(pricedItineraryItemViewModel);

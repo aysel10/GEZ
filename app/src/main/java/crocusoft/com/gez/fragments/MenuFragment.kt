@@ -8,13 +8,10 @@ import android.support.v4.app.FragmentManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.ImageButton
 import crocusoft.com.gez.R
-import crocusoft.com.gez.util.Utils
+import crocusoft.com.gez.util.RetrofotManager
 import crocusoft.com.gez.activities.MainActivity
-import crocusoft.com.gez.menu_fragments.AboutFragment
-import kotlinx.android.synthetic.main.fragment_menu.*
 
 
 class MenuFragment : Fragment() {
@@ -87,7 +84,7 @@ class MenuFragment : Fragment() {
             }
             fragmentManager.beginTransaction().replace(R.id.dynamicFragment, HotelFragment.newInstance()).addToBackStack(null).commit()
 
-            //Utils.changeFragment(fragmentManager!!, R.id.dynamicFragment, HotelFragment.newInstance())
+            //RetrofotManager.changeFragment(fragmentManager!!, R.id.dynamicFragment, HotelFragment.newInstance())
         })
         transferImageButton.setOnClickListener({
             MainActivity.currentFragment = TransferFragment.newInstance()
@@ -95,7 +92,7 @@ class MenuFragment : Fragment() {
             for(fr:Fragment in fragmentManager.fragments){
                 fragmentManager.beginTransaction().remove(fr).commit()
             }
-            Utils.changeFragment(fragmentManager, R.id.dynamicFragment, TransferFragment.newInstance())
+            RetrofotManager.changeFragment(fragmentManager, R.id.dynamicFragment, TransferFragment.newInstance())
         })
         planeImageButton.setOnClickListener({
             MainActivity.currentFragment = FlightFragment.newInstance()
@@ -103,7 +100,7 @@ class MenuFragment : Fragment() {
             for(fr:Fragment in fragmentManager.fragments){
                 fragmentManager.beginTransaction().remove(fr).commit()
             }
-            Utils.changeFragment(fragmentManager, R.id.dynamicFragment, FlightFragment.newInstance())
+            RetrofotManager.changeFragment(fragmentManager, R.id.dynamicFragment, FlightFragment.newInstance())
         })
 
         // add more for other buttons.....
@@ -122,7 +119,7 @@ class MenuFragment : Fragment() {
         for(fr:Fragment in fragmentManager.fragments){
             fragmentManager.beginTransaction().remove(fr).commit()
         }
-        Utils.changeFragment(fragmentManager, R.id.dynamicFragment, FlightFragment.newInstance())
+        RetrofotManager.changeFragment(fragmentManager, R.id.dynamicFragment, FlightFragment.newInstance())
         setButtonsListeners(view)
 
         updateCurrentMenuPosition()

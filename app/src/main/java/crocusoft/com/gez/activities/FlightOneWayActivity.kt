@@ -42,6 +42,9 @@ class FlightOneWayActivity : AppCompatActivity() {
         val viewModel = fd.fromJson(viewModelJson.toString(), TicketDataViewModel::class.java)
         //val viewModel =  bundle.getParcelable<TicketDataViewModel>("tick")
         afch.addViewModel(viewModel)
+        afch.getDepartTicketsList().sortBy { it.airItineraryPricingInfo.itinTotalFare.totalFare.amount.toFloat() }
+        afch.notifyDataSetChanged()
+
         recyclerView.adapter = afch
         val pricedItinerary = afch.getTicketViewModel().pricedItineraryItemList
         filterSpinner = findViewById(R.id.spinner)
@@ -76,17 +79,11 @@ class FlightOneWayActivity : AppCompatActivity() {
     fun filterIsChecked(){
         filterButton.setOnClickListener(View.OnClickListener {
             if(filterSpinner.selectedItem.toString().equals("Price(Lowest)")){
-                if(afch.getDepartTicketsList()[0].airItineraryPricingInfo.itinTotalFare.baseFare.amount.toFloat()>
-                        afch.getDepartTicketsList()[afch.getDepartTicketsList().size-1].airItineraryPricingInfo.itinTotalFare.baseFare.amount.toFloat()) {
-                    afch.getDepartTicketsList().reverse()
-                    afch.notifyDataSetChanged()
-                }
+                afch.getDepartTicketsList().sortBy { it.airItineraryPricingInfo.itinTotalFare.totalFare.amount.toFloat() }
+                afch.notifyDataSetChanged()
             }else if(filterSpinner.selectedItem.toString().equals("Price(Highest)")){
-                if(afch.getDepartTicketsList()[0].airItineraryPricingInfo.itinTotalFare.baseFare.amount.toFloat()<
-                        afch.getDepartTicketsList()[afch.getDepartTicketsList().size-1].airItineraryPricingInfo.itinTotalFare.baseFare.amount.toFloat()) {
-                    afch.getDepartTicketsList().reverse()
-                    afch.notifyDataSetChanged()
-                }
+                afch.getDepartTicketsList().sortByDescending { it.airItineraryPricingInfo.itinTotalFare.totalFare.amount.toFloat() }
+                afch.notifyDataSetChanged()
             }
         })
 

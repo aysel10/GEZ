@@ -5,7 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import com.squareup.picasso.Picasso
 import crocusoft.com.gez.R
 import crocusoft.com.gez.database.AppDatabase
 import crocusoft.com.gez.pojo.response.flight.AirportImageResponse
@@ -13,6 +15,7 @@ import crocusoft.com.gez.pojo.response.flight.roundtripResponse.OriginDestinatio
 import crocusoft.com.gez.view_model.OriginDestinationOptionItemViewModel
 import crocusoft.com.gez.view_model.TicketDataViewModel
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -120,12 +123,21 @@ class FlightRoundtripTicketsAdapter() : RecyclerView.Adapter<FlightRoundtripTick
         if(flightSegmentListSize==1){
             holder.flightTime.text = time
         }
-        holder.price.text =  holder.view.context.resources.getString(R.string.pricePlaceHolder, flightSegmentItem.roundtripAirItineraryPricingInfo.itinTotalFare.baseFare.amount)
+        holder.price.text =  holder.view.context.resources.getString(R.string.pricePlaceHolder, flightSegmentItem.roundtripAirItineraryPricingInfo.itinTotalFare.totalFare.amount)
         holder.departAirport.text = flightSegmentItem.flightSegmentList[0].departureAirport.locationCode
+        val t = ticketModel.pricedItineraryItemList[0].freeBaggages.baggage
 
         for(i in 0 until flightSegmentListSize) {
             val currentTicket = flightSegmentItem.flightSegmentList[i]
             val r = formatDate(currentTicket.flightDuration)
+            val index = currentTicket.baggages.baggage.index
+            for(j in 0..t.size-1){
+                if(index.equals(t[j].index)){
+                    holder.baggageIndex.text = holder.view.context.resources.getString(R.string.firstBag, t[j].quantity+(t[j].unit))
+                }
+            }
+            holder.flightNumber.text = holder.view.context.resources.getString(R.string.flightNumber, currentTicket.flightNumber)
+            holder.marketingAirline.text = holder.view.context.resources.getString(R.string.marketingAirline, currentTicket.marketingAirline.code)
             val operatingAirLineCode = flightSegmentItem.flightSegmentList[i].operatingAirline.code.toString() // 0---------
             val codeLine = "%$operatingAirLineCode%"
             doAsync {
@@ -133,8 +145,10 @@ class FlightRoundtripTicketsAdapter() : RecyclerView.Adapter<FlightRoundtripTick
                 val image: AirportImageResponse = db!!.imagesDataDAO().getImage(codeLine)
                 val t = image.airlineName.substring(image.airlineName.lastIndexOf("_")+1).substringBefore(".")
                 holder.airportName.text = t
+                uiThread {
+                    Picasso.get().load("http://88.99.186.108:8888/Content/images/airline_logo/${image!!.airlineName}").into(holder.airportImage)
+                }
             }
-            holder.flightDate.text = r
             holder.arrivalAirport.text = flightSegmentItem.flightSegmentList[flightSegmentListSize-1].arrivalAirport.locationCode
             holder.arrivalTime.text= flightSegmentItem.flightSegmentList[flightSegmentListSize-1].arrivalDateTime.substring(currentTicket.arrivalDateTime.lastIndexOf("T")+1).substring(0,5)
             holder.departTime.text = currentTicket.departureDateTime.substring(currentTicket.departureDateTime.lastIndexOf("T")+1).subSequence(0,5)
@@ -193,13 +207,16 @@ class FlightRoundtripTicketsAdapter() : RecyclerView.Adapter<FlightRoundtripTick
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         //find views
         var airportName : TextView = view.findViewById(R.id.airportName)
+        var airportImage: ImageView = view.findViewById(R.id.airportImage)
         var flightTime : TextView = view. findViewById(R.id.flightTime)
-        var flightDate : TextView = view.findViewById(R.id.flightDate)
         var departTime : TextView = view.findViewById(R.id.departTime)
         var arrivalTime : TextView = view.findViewById(R.id.arrivalTime)
         var arrivalAirport : TextView = view.findViewById(R.id.arrivalAirport)
         var departAirport : TextView = view.findViewById(R.id.departAirport)
         var price : TextView = view.findViewById(R.id.priceTextView)
+        var baggageIndex: TextView = view.findViewById(R.id.firstBag)
+        var flightNumber : TextView = view.findViewById(R.id.flightNumber)
+        var marketingAirline : TextView = view.findViewById(R.id.marketingAirline)
     }
 }
 

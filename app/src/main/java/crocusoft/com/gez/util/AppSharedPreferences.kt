@@ -9,7 +9,11 @@ class AppSharedPreferences(context: Context) {
     fun getString(key: String): String {
         return sharedpreferences.getString(key, "")
     }
-
+    fun removeToken(){
+        val editor: SharedPreferences.Editor = sharedpreferences.edit()
+        editor.remove("token")
+        editor.apply()
+    }
     fun getInt(key: String): Int {
         return sharedpreferences.getInt(key, -1)
     }
@@ -21,18 +25,18 @@ class AppSharedPreferences(context: Context) {
     fun putString(key: String, value: String) {
         val editor: SharedPreferences.Editor = sharedpreferences.edit()
             editor.putString(key, value)
-            editor.commit()
+            editor.apply()
     }
 
     fun putInt(key: String, value: Int) {
         val editor: SharedPreferences.Editor = sharedpreferences.edit()
         editor.putInt(key, value)
-        editor.commit()
+        editor.apply()
     }
 
     fun putBoolean(key: String, value: Boolean) {
         val editor: SharedPreferences.Editor = sharedpreferences.edit()
         editor.putBoolean(key, value)
-        editor.commit()
+        editor.apply()
     }
 }

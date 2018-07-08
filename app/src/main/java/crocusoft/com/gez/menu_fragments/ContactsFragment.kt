@@ -9,6 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 
 import crocusoft.com.gez.R
+import kotlinx.android.synthetic.main.fragment_contacts.*
+import android.content.Intent
+import android.widget.TextView
+import org.w3c.dom.Text
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,6 +34,10 @@ class ContactsFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
+    private lateinit var phoneContact: TextView
+    private lateinit var phoneContact2: TextView
+    private lateinit var mailContact :TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +50,29 @@ class ContactsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_contacts, container, false)
+        val view:View =inflater.inflate(R.layout.fragment_contacts, container, false)
+        phoneContact = view.findViewById(R.id.phoneContact)
+        mailContact = view.findViewById(R.id.emailContact)
+        phoneContact2 = view.findViewById(R.id.phone2Contact)
+        mailContact.setOnClickListener(View.OnClickListener {
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "plain/text"
+            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("some@email.address"))
+            intent.putExtra(Intent.EXTRA_SUBJECT, "subject")
+            intent.putExtra(Intent.EXTRA_TEXT, "mail body")
+            startActivity(Intent.createChooser(intent, ""))
+        })
+        phoneContact2.setOnClickListener(View.OnClickListener {
+            val phoneIntent = Intent(Intent.ACTION_DIAL, Uri.fromParts(
+                    "tel", phoneContact2.text.toString(), null))
+            startActivity(phoneIntent)
+        })
+        phoneContact.setOnClickListener(View.OnClickListener {
+            val phoneIntent = Intent(Intent.ACTION_DIAL, Uri.fromParts(
+                    "tel", phoneContact.text.toString(), null))
+            startActivity(phoneIntent)
+        })
+        return view
     }
 
     // TODO: Rename method, update argument and hook method into UI event
