@@ -1,9 +1,12 @@
 package crocusoft.com.gez.pojo.request.searchOnewayFlight;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class OriginLocation{
+public class OriginLocation implements Parcelable{
 
 	@JsonProperty("@LocationCode")
 	private String locationCode;
@@ -45,4 +48,32 @@ public class OriginLocation{
 			",@MultiAirportCityInd = '" + multiAirportCityInd + '\'' + 
 			"}";
 		}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(this.locationCode);
+		dest.writeString(this.multiAirportCityInd);
+	}
+
+	protected OriginLocation(Parcel in) {
+		this.locationCode = in.readString();
+		this.multiAirportCityInd = in.readString();
+	}
+
+	public static final Creator<OriginLocation> CREATOR = new Creator<OriginLocation>() {
+		@Override
+		public OriginLocation createFromParcel(Parcel source) {
+			return new OriginLocation(source);
+		}
+
+		@Override
+		public OriginLocation[] newArray(int size) {
+			return new OriginLocation[size];
+		}
+	};
 }

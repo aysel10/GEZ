@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
@@ -14,10 +13,8 @@ import com.google.gson.Gson
 import com.google.gson.JsonArray
 import crocusoft.com.gez.R
 import crocusoft.com.gez.adapters.FlightMultiTicketsInfoAdapter
-import crocusoft.com.gez.adapters.FlightOneWayAdapter
 import crocusoft.com.gez.pojo.response.flight.multiCityReponse.FreeBaggages
-import crocusoft.com.gez.view_model.OriginDestinationOptionItemViewModel
-import crocusoft.com.gez.view_model.TicketDataViewModel
+import crocusoft.com.gez.flight_view_model.OriginDestinationOptionItemViewModel
 
 class FlightMultiCityInfo : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
@@ -40,7 +37,6 @@ class FlightMultiCityInfo : AppCompatActivity() {
         val baggageJSONString = bundle.getString("baggageJSON")
         val baggageModel: FreeBaggages = gs.fromJson(baggageJSONString.toString(),
                 FreeBaggages::class.java)
-        Log.e("sdf",baggageModel.toString())
         val ticketsList: JsonArray =
                 gs.fromJson(bundle.getString("ticket"), JsonArray::class.java)
         for(j in 0 until ticketsList.size()) {
@@ -55,7 +51,7 @@ class FlightMultiCityInfo : AppCompatActivity() {
 
         bookButton = findViewById(R.id.continueBooking)
         bookButton.setOnClickListener(View.OnClickListener {
-            val intent = Intent(baseContext,FlightBookTicketOneWay::class.java)
+            val intent = Intent(baseContext,FlightBookTicketActivity::class.java)
             val bundlee = Bundle()
             bundlee.putString("combId",combId)
             bundlee.putString("recId",recId)

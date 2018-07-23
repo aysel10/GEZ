@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import crocusoft.com.gez.R
-import crocusoft.com.gez.util.RetrofotManager
+import crocusoft.com.gez.services.RetrofitManager
 import crocusoft.com.gez.activities.MainActivity
 
 
@@ -84,7 +84,7 @@ class MenuFragment : Fragment() {
             }
             fragmentManager.beginTransaction().replace(R.id.dynamicFragment, HotelFragment.newInstance()).addToBackStack(null).commit()
 
-            //RetrofotManager.changeFragment(fragmentManager!!, R.id.dynamicFragment, HotelFragment.newInstance())
+            //RetrofitManager.changeFragment(fragmentManager!!, R.id.dynamicFragment, HotelFragment.newInstance())
         })
         transferImageButton.setOnClickListener({
             MainActivity.currentFragment = TransferFragment.newInstance()
@@ -92,7 +92,7 @@ class MenuFragment : Fragment() {
             for(fr:Fragment in fragmentManager.fragments){
                 fragmentManager.beginTransaction().remove(fr).commit()
             }
-            RetrofotManager.changeFragment(fragmentManager, R.id.dynamicFragment, TransferFragment.newInstance())
+            RetrofitManager.changeFragment(fragmentManager, R.id.dynamicFragment, TransferFragment.newInstance())
         })
         planeImageButton.setOnClickListener({
             MainActivity.currentFragment = FlightFragment.newInstance()
@@ -100,7 +100,7 @@ class MenuFragment : Fragment() {
             for(fr:Fragment in fragmentManager.fragments){
                 fragmentManager.beginTransaction().remove(fr).commit()
             }
-            RetrofotManager.changeFragment(fragmentManager, R.id.dynamicFragment, FlightFragment.newInstance())
+            RetrofitManager.changeFragment(fragmentManager, R.id.dynamicFragment, FlightFragment.newInstance())
         })
 
         // add more for other buttons.....
@@ -119,7 +119,7 @@ class MenuFragment : Fragment() {
         for(fr:Fragment in fragmentManager.fragments){
             fragmentManager.beginTransaction().remove(fr).commit()
         }
-        RetrofotManager.changeFragment(fragmentManager, R.id.dynamicFragment, FlightFragment.newInstance())
+        RetrofitManager.changeFragment(fragmentManager, R.id.dynamicFragment, FlightFragment.newInstance())
         setButtonsListeners(view)
 
         updateCurrentMenuPosition()

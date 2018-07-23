@@ -18,7 +18,6 @@
             android:id="@+id/reserverDateTextView"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:background="@drawable/grey_background"
             android:gravity="center"
             android:text="Barcelona thu oct 12 - 18 oct,"
             android:textAlignment="center"
@@ -53,8 +52,7 @@
                 android:id="@+id/imageView4"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_margin="8dp"
-                android:src="@drawable/dodge" />
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/hotelNameTextView2"

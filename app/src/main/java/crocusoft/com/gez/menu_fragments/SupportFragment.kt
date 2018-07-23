@@ -7,8 +7,13 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 
 import crocusoft.com.gez.R
+import crocusoft.com.gez.util.Utils
+import org.jetbrains.anko.find
+import java.util.regex.Pattern
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,6 +34,11 @@ class SupportFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
+     lateinit var emailField: EditText
+    private lateinit var nameAndSurnameField: EditText
+    private lateinit var  yourTextField : EditText
+    private lateinit var phoneTextField: EditText
+    private lateinit var sendButton : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +51,21 @@ class SupportFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_support, container, false)
+        val view:View =  inflater.inflate(R.layout.fragment_support, container, false)
+        phoneTextField = view.findViewById(R.id.phoneField)
+        nameAndSurnameField = view.findViewById(R.id.nameSurnameField)
+        emailField = view.findViewById(R.id.mailField)
+        yourTextField = view.findViewById(R.id.yourTextField)
+        sendButton = view.findViewById(R.id.sendButton)
+
+            sendButton.setOnClickListener(View.OnClickListener {
+                if(validateFields()) {
+
+                }
+
+            })
+
+        return view
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -57,12 +81,43 @@ class SupportFragment : Fragment() {
             throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
         }
     }
-
+    fun validateFields():Boolean{
+        if(yourTextField.text.isEmpty()){
+            Utils.toast(context!!,"Enter your text")
+            return false
+        }
+        if(emailField.text.isEmpty()){
+            Utils.toast(context!!,"Enter your mail")
+            return false
+        }
+        if(emailField.text.isNotEmpty()&&isEmailValid(emailField.text.toString())){
+            Utils.toast(context!!,"Enter correct your mail")
+            return false
+        }
+        if(nameAndSurnameField.text.isEmpty()){
+            Utils.toast(context!!,"Enter name and surname")
+            return false
+        }
+        if(phoneTextField.text.isEmpty()){
+            Utils.toast(context!!,"Enter your phone")
+            return false
+        }
+        return true
+    }
     override fun onDetach() {
         super.onDetach()
         listener = null
     }
-
+    fun isEmailValid(email: String): Boolean {
+        return Pattern.compile(
+                "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]|[\\w-]{2,}))@"
+                        + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
+                        + "([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        + "[0-9]{1,2}|25[0-5]|2[0-4][0-9]))|"
+                        + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$"
+        ).matcher(email).matches()
+    }
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated

@@ -14,7 +14,7 @@ import crocusoft.com.gez.R
 import crocusoft.com.gez.database.AppDatabase
 import crocusoft.com.gez.pojo.response.flight.AirportImageResponse
 import crocusoft.com.gez.pojo.response.flight.multiCityReponse.FreeBaggages
-import crocusoft.com.gez.view_model.OriginDestinationOptionItemViewModel
+import crocusoft.com.gez.flight_view_model.OriginDestinationOptionItemViewModel
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import java.text.SimpleDateFormat
@@ -75,15 +75,14 @@ class FlightMultiTicketsInfoAdapter(): RecyclerView.Adapter<FlightMultiTicketsIn
                 //val image: List<AirportImageResponse> = db!!.imagesDataDAO().fetchAllImages()
                 val image: AirportImageResponse = db!!.imagesDataDAO().getImage(codeLine)
                 val airlineName = image.airlineName.substring(image.airlineName.lastIndexOf("_")+1).substringBefore(".")
-                holder.airportName.text = airlineName
                 uiThread {
+                    holder.airportName.text = airlineName
                     Picasso.get().load("http://88.99.186.108:8888/Content/images/airline_logo/${image!!.airlineName}").into(holder.airportImage)
                 }
             }
 
             holder.marketingAirline.text = holder.view.context.resources.getString(R.string.marketingAirline, currentTicket.marketingAirline.code)
             holder.flightNumber.text = holder.view.context.resources.getString(R.string.flightNumber, currentTicket.flightNumber)
-            holder.flightDate.text = flightDuration
             holder.arrivalAirport.text = currentTicket.arrivalAirport.locationCode
             holder.arrivalTime.text= currentTicket.arrivalDateTime.substring(currentTicket.arrivalDateTime.lastIndexOf("T")+1).substring(0,5)
             holder.departAirport.text = currentTicket.departureAirport.locationCode
@@ -120,7 +119,6 @@ class FlightMultiTicketsInfoAdapter(): RecyclerView.Adapter<FlightMultiTicketsIn
         //find views
         var airportName : TextView = view.findViewById(R.id.airportName)
         var flightTime : TextView = view. findViewById(R.id.flightTime)
-        var flightDate : TextView = view.findViewById(R.id.flightDate)
         var departTime : TextView = view.findViewById(R.id.departTime)
         var arrivalTime : TextView = view.findViewById(R.id.arrivalTime)
         var arrivalAirport : TextView = view.findViewById(R.id.arrivalAirport)

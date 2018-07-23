@@ -1,7 +1,6 @@
 package crocusoft.com.gez.adapters
 
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +13,8 @@ import crocusoft.com.gez.database.AppDatabase
 import crocusoft.com.gez.models.TicketCombination
 import crocusoft.com.gez.pojo.response.flight.AirportImageResponse
 import crocusoft.com.gez.pojo.response.flight.multiCityReponse.OriginDestinationCombinationItem
-import crocusoft.com.gez.view_model.OriginDestinationOptionItemViewModel
-import crocusoft.com.gez.view_model.TicketDataViewModel
+import crocusoft.com.gez.flight_view_model.OriginDestinationOptionItemViewModel
+import crocusoft.com.gez.flight_view_model.TicketDataViewModel
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import java.text.SimpleDateFormat
@@ -151,8 +150,8 @@ class FlightMultiCityAdapter() : RecyclerView.Adapter<FlightMultiCityAdapter.Vie
                 doAsync {
                     val image: AirportImageResponse? = db!!.imagesDataDAO().getImage(codeLine)
                     val t = image!!.airlineName.substring(image!!.airlineName.lastIndexOf("_") + 1).substringBefore(".")
-                    holder.firstAirportName.text = t
                     uiThread {
+                        holder.firstAirportName.text = t
                         Picasso.get().load("http://88.99.186.108:8888/Content/images/airline_logo/${image!!.airlineName}").into(holder.firstAirportImage)
                     }
                 }

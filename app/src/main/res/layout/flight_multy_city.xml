@@ -23,6 +23,7 @@
         android:hint="@string/flightDepartAirport"
         android:padding="8dp"
         android:singleLine="true"
+        android:inputType="text|textCapCharacters"
         android:textSize="14sp" />
 
     <AutoCompleteTextView
@@ -39,6 +40,7 @@
         android:hint="@string/flightArrivalAirport"
         android:padding="8dp"
         android:singleLine="true"
+        android:inputType="text|textCapCharacters"
         android:textSize="14sp" />
 
     <LinearLayout
@@ -73,11 +75,13 @@
     <TextView
         android:id="@+id/flightCountLabel"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
         android:layout_weight="1"
-        android:background="@drawable/background_property"
+        android:background="@drawable/back_light_green"
         android:gravity="center"
-        android:text="FIRST FLY ROUTE"
+        android:text="@string/firstFlight"
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
         android:textSize="18sp"

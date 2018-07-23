@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-124:12
-INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-124:12
-INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-124:12
-INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-124:12
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-126:12
+INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-126:12
+INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-126:12
+INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-126:12
 MERGED from [com.android.support:design:27.1.1] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/design-27.1.1.aar/11fccd9ba5e89e868b7fea1e266c109d/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:appcompat-v7:27.1.1] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/6d62c2b47b3fce2cb6a6692f681d603d/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support.constraint:constraint-layout:1.1.2] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.2.aar/c79a5e551933d9beaaead74fb3c4b085/AndroidManifest.xml:2:1-11:12
@@ -13,6 +13,7 @@ MERGED from [com.android.support:cardview-v7:27.1.1] /Users/ayselkas/.gradle/cac
 MERGED from [com.robohorse.gpversionchecker:gpversionchecker:1.5.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/gpversionchecker-1.5.0.aar/2124630fb6be69bf56f97f0f9d1a891a/AndroidManifest.xml:2:1-21:12
 MERGED from [android.arch.persistence.room:runtime:1.1.1] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/34c2473b3bc26676d8ecb4bae1c3207c/AndroidManifest.xml:17:1-22:12
 MERGED from [com.squareup.picasso:picasso:2.71828] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/picasso-2.71828.aar/2726da9cd27eda90cab31f322853dbb5/AndroidManifest.xml:2:1-14:12
+MERGED from [com.facebook.shimmer:shimmer:0.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/shimmer-0.1.0.aar/87de9887340de61fe5891a98e1de0038/AndroidManifest.xml:2:1-11:12
 MERGED from [com.android.support:support-fragment:27.1.1] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/c422a1f19865a7faef29328fd55f5117/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:animated-vector-drawable:27.1.1] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.1.aar/3ab25c48c2fb2a257855a6ab7cadf292/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-vector-drawable:27.1.1] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.1.aar/6b30ab45586f8d7ff48839153308782b/AndroidManifest.xml:17:1-22:12
@@ -28,20 +29,20 @@ MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /Users/ayselkas/.gradle
 MERGED from [android.arch.core:runtime:1.1.1] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/071bc86732333aae47452a32729c9b46/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:runtime:1.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/40dd7e69f2ec80a1cd670d9ddd7938a1/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/a1afb11b23d36e98e218ba55d66fc2ef/AndroidManifest.xml:17:1-22:12
-INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-124:12
-INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-124:12
-INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-124:12
+INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-126:12
+INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-126:12
+INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-126:12
 	package
 		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:3:5-32
 		INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-124:12
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-126:12
 		INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-124:12
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:1-126:12
 		INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:2:11-69
@@ -56,7 +57,7 @@ ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifes
 	android:name
 		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:6:22-76
 application
-ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:8:5-122:19
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:8:5-124:19
 MERGED from [com.android.support.constraint:constraint-layout:1.1.2] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.2.aar/c79a5e551933d9beaaead74fb3c4b085/AndroidManifest.xml:9:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.1.2] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.2.aar/c79a5e551933d9beaaead74fb3c4b085/AndroidManifest.xml:9:5-20
 MERGED from [com.robohorse.gpversionchecker:gpversionchecker:1.5.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/gpversionchecker-1.5.0.aar/2124630fb6be69bf56f97f0f9d1a891a/AndroidManifest.xml:13:5-19:19
@@ -76,149 +77,163 @@ MERGED from [com.squareup.picasso:picasso:2.71828] /Users/ayselkas/.gradle/cache
 	android:theme
 		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:14:9-52
 activity#crocusoft.com.gez.activities.MainActivity
-ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:15:9-20:20
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:15:9-19:59
 	android:screenOrientation
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:17:13-49
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:18:13-49
+	android:launchMode
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:17:13-44
 	android:theme
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:18:13-56
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:19:13-56
 	android:name
 		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:16:13-52
 activity#crocusoft.com.gez.activities.LoginActivity
-ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:21:9-31:20
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:20:9-30:20
 	android:screenOrientation
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:24:13-49
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:23:13-49
 	android:label
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:23:13-45
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:22:13-45
 	android:theme
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:25:13-56
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:24:13-56
 	android:name
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:22:13-53
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:21:13-53
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:26:13-30:29
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:25:13-29:29
 action#android.intent.action.MAIN
-ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:27:17-69
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:26:17-69
 	android:name
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:27:25-66
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:26:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:29:17-77
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:28:17-77
 	android:name
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:29:27-74
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:28:27-74
 activity#crocusoft.com.gez.activities.RegisterActivity
-ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:32:9-40:20
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:31:9-39:20
 	android:screenOrientation
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:35:13-49
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:34:13-49
 	android:label
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:34:13-60
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:33:13-60
 	android:theme
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:36:13-44
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:35:13-44
 	android:name
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:33:13-56
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:32:13-56
 meta-data#android.support.PARENT_ACTIVITY
-ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:37:13-39:61
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:36:13-38:61
 	android:value
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:39:17-58
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:38:17-58
 	android:name
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:38:17-63
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:37:17-63
 activity#crocusoft.com.gez.activities.FlightTicketsActivity
-ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:41:9-50:20
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:40:9-49:20
 	android:screenOrientation
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:45:13-49
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:44:13-49
 	android:parentActivityName
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:44:13-66
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:43:13-66
 	android:launchMode
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:43:13-44
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:42:13-44
 	android:theme
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:46:13-44
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:45:13-44
 	android:name
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:42:13-61
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:41:13-61
 activity#crocusoft.com.gez.activities.FlightRDReturnActivity
-ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:51:9-60:20
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:50:9-59:20
 	android:screenOrientation
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:55:13-49
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:54:13-49
 	android:parentActivityName
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:54:13-75
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:53:13-75
 	android:launchMode
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:53:13-44
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:52:13-44
 	android:theme
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:56:13-44
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:55:13-44
 	android:name
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:52:13-62
-activity#crocusoft.com.gez.activities.FlightBookTicketOneWay
-ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:61:9-70:20
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:51:13-62
+activity#crocusoft.com.gez.activities.FlightBookTicketActivity
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:60:9-69:20
 	android:screenOrientation
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:65:13-49
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:64:13-49
 	android:parentActivityName
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:64:13-76
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:63:13-76
 	android:launchMode
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:63:13-44
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:62:13-44
 	android:theme
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:66:13-44
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:65:13-44
 	android:name
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:62:13-62
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:61:13-64
 activity#crocusoft.com.gez.activities.FlightOneWayActivity
-ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:71:9-80:20
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:70:9-79:20
 	android:screenOrientation
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:75:13-49
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:74:13-49
 	android:parentActivityName
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:74:13-66
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:73:13-66
 	android:launchMode
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:73:13-44
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:72:13-44
 	android:theme
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:76:13-44
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:75:13-44
 	android:name
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:72:13-60
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:71:13-60
 activity#crocusoft.com.gez.activities.FlightMultiCityActivity
-ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:81:9-90:20
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:80:9-89:20
 	android:screenOrientation
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:85:13-49
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:84:13-49
 	android:parentActivityName
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:84:13-66
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:83:13-66
 	android:launchMode
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:83:13-44
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:82:13-44
 	android:theme
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:86:13-44
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:85:13-44
 	android:name
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:82:13-63
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:81:13-63
 activity#crocusoft.com.gez.activities.FlightMultiCityInfo
-ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:91:9-100:20
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:90:9-99:20
 	android:screenOrientation
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:95:13-49
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:94:13-49
 	android:parentActivityName
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:94:13-77
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:93:13-77
 	android:launchMode
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:93:13-44
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:92:13-44
 	android:theme
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:96:13-44
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:95:13-44
 	android:name
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:92:13-59
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:91:13-59
 activity#crocusoft.com.gez.activities.FlightRoundTripInfo
-ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:101:9-110:20
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:100:9-109:20
 	android:screenOrientation
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:105:13-49
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:104:13-49
 	android:parentActivityName
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:104:13-76
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:103:13-78
 	android:launchMode
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:103:13-44
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:102:13-44
 	android:theme
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:106:13-44
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:105:13-44
 	android:name
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:102:13-59
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:101:13-59
 activity#crocusoft.com.gez.activities.GezAzSelectedActivity
-ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:111:9-120:20
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:110:9-119:20
 	android:screenOrientation
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:115:13-49
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:114:13-49
 	android:parentActivityName
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:114:13-66
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:113:13-66
 	android:launchMode
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:113:13-44
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:112:13-44
 	android:theme
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:116:13-44
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:115:13-44
 	android:name
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:112:13-61
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:111:13-61
 activity#crocusoft.com.gez.activities.FlightBookTicketRoundtrip
-ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:121:9-83
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:120:9-74
 	android:name
-		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:121:19-71
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:120:19-71
+activity#crocusoft.com.gez.activities.FlightFilterActivity
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:121:9-69
+	android:name
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:121:19-66
+activity#crocusoft.com.gez.activities.FlightOneWaySorted
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:122:9-67
+	android:name
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:122:19-64
+activity#crocusoft.com.gez.activities.FlightRoundTripSorted
+ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:123:9-79
+	android:name
+		ADDED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml:123:19-67
 uses-sdk
 INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/ayselkas/AndroidStudioProjects/GEZ/app/src/main/AndroidManifest.xml
@@ -241,6 +256,8 @@ MERGED from [android.arch.persistence.room:runtime:1.1.1] /Users/ayselkas/.gradl
 MERGED from [android.arch.persistence.room:runtime:1.1.1] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/34c2473b3bc26676d8ecb4bae1c3207c/AndroidManifest.xml:20:5-44
 MERGED from [com.squareup.picasso:picasso:2.71828] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/picasso-2.71828.aar/2726da9cd27eda90cab31f322853dbb5/AndroidManifest.xml:5:5-44
 MERGED from [com.squareup.picasso:picasso:2.71828] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/picasso-2.71828.aar/2726da9cd27eda90cab31f322853dbb5/AndroidManifest.xml:5:5-44
+MERGED from [com.facebook.shimmer:shimmer:0.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/shimmer-0.1.0.aar/87de9887340de61fe5891a98e1de0038/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.shimmer:shimmer:0.1.0] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/shimmer-0.1.0.aar/87de9887340de61fe5891a98e1de0038/AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:support-fragment:27.1.1] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/c422a1f19865a7faef29328fd55f5117/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-fragment:27.1.1] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/c422a1f19865a7faef29328fd55f5117/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:animated-vector-drawable:27.1.1] /Users/ayselkas/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.1.aar/3ab25c48c2fb2a257855a6ab7cadf292/AndroidManifest.xml:20:5-44

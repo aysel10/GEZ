@@ -47,7 +47,7 @@ class ContentFragment : Fragment() {
 //        }
      //   fragmentManager!!.beginTransaction().replace(R.id.dynamicFragment, FlightFragment.newInstance()).addToBackStack(null).commit()
 
-      //  RetrofotManager.changeFragment(fragmentManager!!, R.id.dynamicFragment, FlightFragment.newInstance())
+      //  RetrofitManager.changeFragment(fragmentManager!!, R.id.dynamicFragment, FlightFragment.newInstance())
         return inflater.inflate(R.layout.fragment_content, container, false)
     }
 

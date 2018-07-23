@@ -21,6 +21,15 @@ public class AirportSearchModel{
 	@SerializedName("TypeCode")
 	private Object typeCode;
 
+	@JsonProperty("CountryName")
+	@SerializedName("CountryName")
+	private Object сountryName;
+
+	@JsonProperty("ID")
+	@SerializedName("ID")
+	private String id;
+
+
 	@JsonProperty("AirportName")
 	@SerializedName("AirportName")
 	private String airportName;

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.Spinner
@@ -16,7 +17,7 @@ import crocusoft.com.gez.R
 import crocusoft.com.gez.adapters.ReturnTicketsAdapter
 import crocusoft.com.gez.pojo.response.flight.roundtripResponse.FreeBaggages
 import crocusoft.com.gez.pojo.response.flight.roundtripResponse.OriginDestinationCombinationItem
-import crocusoft.com.gez.view_model.OriginDestinationOptionItemViewModel
+import crocusoft.com.gez.flight_view_model.OriginDestinationOptionItemViewModel
 import java.util.*
 
 class FlightRDReturnActivity : AppCompatActivity() {
@@ -24,6 +25,8 @@ class FlightRDReturnActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var filterSpinner: Spinner
     private lateinit var filterButton: ImageButton
+    val returnTicketsAdapter: ReturnTicketsAdapter = ReturnTicketsAdapter()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flight_return_tickets)
@@ -41,7 +44,7 @@ class FlightRDReturnActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
         recyclerView.addItemDecoration(VerticalSpaceItemDecoration(25))
         filterSpinner = findViewById(R.id.spinner)
-        filterButton = findViewById(R.id.filterButton)
+       // filterButton = findViewById(R.id.filterButton)
         val baggageJSONString = bundle.getString("baggageJSON")
         val baggageModel: FreeBaggages = gs.fromJson(baggageJSONString.toString(),
                 FreeBaggages::class.java)
@@ -53,21 +56,12 @@ class FlightRDReturnActivity : AppCompatActivity() {
             val jsonObject = returnTicketsListJSON.get(j)
             returnTicketsList.add(Gson().fromJson(jsonObject.toString(), OriginDestinationOptionItemViewModel::class.java))
         }
-        val returnTicketsAdapter: ReturnTicketsAdapter = ReturnTicketsAdapter()
         returnTicketsAdapter.addList(returnTicketsList)
         returnTicketsAdapter.addBaggage(baggageModel)
         returnTicketsAdapter.getTickets().sortBy { it.roundtripAirItineraryPricingInfo.itinTotalFare.totalFare.amount.toFloat() }
         returnTicketsAdapter.notifyDataSetChanged()
 
-        filterButton.setOnClickListener(View.OnClickListener {
-            if(filterSpinner.selectedItem.toString().equals("Price(Lowest)")){
-                returnTicketsAdapter.getTickets().sortBy { it.roundtripAirItineraryPricingInfo.itinTotalFare.totalFare.amount.toFloat() }
-                returnTicketsAdapter.notifyDataSetChanged()
-            }else if(filterSpinner.selectedItem.toString().equals("Price(Highest)")){
-                returnTicketsAdapter.getTickets().sortByDescending { it.roundtripAirItineraryPricingInfo.itinTotalFare.totalFare.amount.toFloat() }
-                returnTicketsAdapter.notifyDataSetChanged()
-            }
-        })
+       filterIsChecked()
         recyclerView.adapter = returnTicketsAdapter
 
         recyclerView.affectOnItemClick(object : RecyclerItemClickListener.OnClickListener {
@@ -100,7 +94,23 @@ class FlightRDReturnActivity : AppCompatActivity() {
         }
     }
 
+    fun filterIsChecked() {
+        filterSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
 
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if(filterSpinner.selectedItem.toString().equals("Price(Lowest)")){
+                    returnTicketsAdapter.getTickets().sortBy { it.roundtripAirItineraryPricingInfo.itinTotalFare.totalFare.amount.toFloat() }
+                    returnTicketsAdapter.notifyDataSetChanged()
+                }else if(filterSpinner.selectedItem.toString().equals("Price(Highest)")){
+                    returnTicketsAdapter.getTickets().sortByDescending { it.roundtripAirItineraryPricingInfo.itinTotalFare.totalFare.amount.toFloat() }
+                    returnTicketsAdapter.notifyDataSetChanged()
+                }
+            }
+        }
+    }
     fun RecyclerView.affectOnItemClick(listener: RecyclerItemClickListener.OnClickListener) {
         this.addOnChildAttachStateChangeListener(RecyclerItemClickListener(this, listener, null))
     }

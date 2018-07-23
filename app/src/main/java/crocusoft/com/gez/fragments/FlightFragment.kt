@@ -1,5 +1,6 @@
 package crocusoft.com.gez.fragments
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
@@ -16,16 +17,14 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.util.TypedValue
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import com.google.gson.Gson
 import crocusoft.com.gez.R
 import crocusoft.com.gez.activities.FlightMultiCityActivity
 import crocusoft.com.gez.activities.FlightOneWayActivity
-import crocusoft.com.gez.util.RetrofotManager
+import crocusoft.com.gez.services.RetrofitManager
 import crocusoft.com.gez.activities.FlightTicketsActivity
 import crocusoft.com.gez.database.AppDatabase
 import crocusoft.com.gez.database.DBWorkerThread
@@ -38,9 +37,10 @@ import crocusoft.com.gez.pojo.response.flight.roundtripResponse.RoundtripRespons
 import crocusoft.com.gez.services.RetrofitClient
 import crocusoft.com.gez.services.RetrofitService
 import crocusoft.com.gez.util.AppSharedPreferences
-import crocusoft.com.gez.util.Utility
+import crocusoft.com.gez.flight_view_model.TicketModelManager
 import kotlinx.android.synthetic.main.flight_multy_city.view.*
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -72,8 +72,6 @@ class FlightFragment : Fragment(){
     private lateinit var searchMultiButton:Button
     private lateinit var returnTextView : TextView
     private lateinit var returnDatePicker : TextView
-    private lateinit var fromEditText: EditText
-    private lateinit var toEditText: EditText
     private lateinit var adultCountPicker :Spinner
     private lateinit var childCountPicker: Spinner
     private lateinit var departDatePicker : TextView
@@ -114,6 +112,7 @@ class FlightFragment : Fragment(){
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -122,7 +121,6 @@ class FlightFragment : Fragment(){
         initMainView(inflater,container,view)
         return  view
     }
-
     private fun initMainView(inflater: LayoutInflater, container: ViewGroup?,view : View){
         firstLabel = TextView(context)
         multyCityLinearLayout = LinearLayout(context)
@@ -145,9 +143,8 @@ class FlightFragment : Fragment(){
 
         val dialog:AlertDialog = initBuilder().create()
         dialog.getWindow().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-        RetrofotManager.datePicker(returnDatePicker, context!!)
-        RetrofotManager.datePicker(departDatePicker, context!!)
+        RetrofitManager.datePicker(departDatePicker, context!!)
+        RetrofitManager.datePicker(returnDatePicker, context!!)
         val myPreferences = AppSharedPreferences(context!!)
         val service = RetrofitClient().getClient()!!.create<RetrofitService>(RetrofitService::class.java!!)
         airportImagesVerification(service)
@@ -157,7 +154,11 @@ class FlightFragment : Fragment(){
         var adapter: ArrayAdapter<String> = ArrayAdapter(context,android.R.layout.simple_dropdown_item_1line)
         fromAutoComplete.addTextChangedListener(object: TextWatcher{
             override fun afterTextChanged(s: Editable?) {
-                RetrofotManager.getAirportsList(service,fromAutoComplete.text.toString(),object: RetrofotManager.Companion.AirportListApiCallback{
+                if(fromAutoComplete.text.isNotEmpty()){
+                    originLocation = OriginLocation(fromAutoComplete.text.toString(),"true")
+                    oneWayOriginLocation = crocusoft.com.gez.pojo.request.searchOnewayFlight.OriginLocation(fromAutoComplete.text.toString(),"true")
+                }
+                RetrofitManager.getAirportsList(service,fromAutoComplete.text.toString(),object: RetrofitManager.Companion.AirportListApiCallback{
                     override fun onSuccess(call: Call<List<AirportSearchModel>>?, response: Response<List<AirportSearchModel>>?) {
                         airportNames.clear()
                         airportCodes.clear()
@@ -168,12 +169,14 @@ class FlightFragment : Fragment(){
                         }
                         if(context!=null) {
                             adapter  = ArrayAdapter<String>(context, android.R.layout.simple_dropdown_item_1line, airportCodes)
+                            adapter.notifyDataSetChanged()
                             fromAutoComplete.setAdapter(adapter)
                         }
-                        fromAutoComplete.onItemClickListener = AdapterView.OnItemClickListener{
+                        fromAutoComplete.onItemClickListener = AdapterView.OnItemClickListener {
                             parent, view, position, id ->
                             val name = airportCodes[position].substring(airportCodes[position].indexOf("(")+1,airportCodes[position].indexOf(")"))
                             fromAutoComplete.setText(name)
+                            fromAutoComplete.setSelection(fromAutoComplete.text.length)
                             for(i in 0..airportNames.size-1) {
                                 if(airportNames[i].airportname.equals(name)){
                                     isCity = airportNames[i].isCity
@@ -190,14 +193,18 @@ class FlightFragment : Fragment(){
                         }
                         adapter.notifyDataSetChanged()
                     }
-                }, RetrofotManager.getHeader(myPreferences))
+                }, RetrofitManager.getHeader(myPreferences))
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
        toAutoComplete.addTextChangedListener(object: TextWatcher{
            override fun afterTextChanged(s: Editable?) {
-               RetrofotManager.getAirportsList(service,toAutoComplete.text.toString(),object: RetrofotManager.Companion.AirportListApiCallback{
+               if(toAutoComplete.text.isNotEmpty()){
+                   destinationLocation = DestinationLocation(toAutoComplete.text.toString(),"true")
+                   oneWayDestination = crocusoft.com.gez.pojo.request.searchOnewayFlight.DestinationLocation(toAutoComplete.text.toString(),"true")
+               }
+               RetrofitManager.getAirportsList(service,toAutoComplete.text.toString(),object: RetrofitManager.Companion.AirportListApiCallback{
                    override fun onSuccess(call: Call<List<AirportSearchModel>>?, response: Response<List<AirportSearchModel>>?) {
                        airportNames.clear()
                        airportCodes.clear()
@@ -208,20 +215,21 @@ class FlightFragment : Fragment(){
                        }
                        if(context!=null) {
                            adapter = ArrayAdapter<String>(context, android.R.layout.simple_dropdown_item_1line, airportCodes)
+                           adapter.notifyDataSetChanged()
+                           toAutoComplete.setAdapter(adapter)
+
                        }
-                       toAutoComplete.setAdapter(adapter)
                        toAutoComplete.onItemClickListener = AdapterView.OnItemClickListener{
                            parent, view, position, id ->
                            val name = airportCodes[position].substring(airportCodes[position].indexOf("(")+1,airportCodes[position].indexOf(")"))
                            toAutoComplete.setText(name)
-                           Log.e("sdf",name)
-
+                           toAutoComplete.setSelection(toAutoComplete.text.length)
                            for(i in 0..airportNames.size-1) {
                                if(airportNames[i].airportname.equals(name)){
                                     isCity = airportNames[i].isCity
                                    if(isCity) {
-                                        destinationLocation = DestinationLocation(name,"true")
-                                        oneWayDestination = crocusoft.com.gez.pojo.request.searchOnewayFlight.DestinationLocation(name,"true")
+                                       destinationLocation = DestinationLocation(name,"true")
+                                       oneWayDestination = crocusoft.com.gez.pojo.request.searchOnewayFlight.DestinationLocation(name,"true")
                                    }else{
                                         destinationLocation = DestinationLocation(name)
                                         oneWayDestination = crocusoft.com.gez.pojo.request.searchOnewayFlight.DestinationLocation(name)
@@ -231,7 +239,7 @@ class FlightFragment : Fragment(){
                        }
                        adapter.notifyDataSetChanged()
                    }
-               }, RetrofotManager.getHeader(myPreferences))
+               }, RetrofitManager.getHeader(myPreferences))
            }
            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
            }
@@ -242,63 +250,95 @@ class FlightFragment : Fragment(){
         mainSearchButton.setOnClickListener(View.OnClickListener {
             if(radioRoundTrip.isChecked) {
                 if(validateFieldsRoundTrip()) {
+                    closeKeyboard()
                     dialog.show()
                     dialog.setCancelable(false)
-                    roundTripFlightSearch(service, object : RetrofotManager.Companion.ApiCallback {
+                    roundTripFlightSearch(service, object : RetrofitManager.Companion.ApiCallback {
                         override fun onSuccess(call: Call<RoundtripResponse>?, response: Response<RoundtripResponse>?) {
                             val bundle = Bundle()
                             val intent = Intent(context, FlightTicketsActivity::class.java)
-                            val fd: Gson = Gson()
-                            val ticketsJSON = fd.toJson(Utility.getTicketList(response!!.body()))
-                            var y =Utility.getTicketList(response!!.body())
-                          //  Log.e("sdf",y.toString())
-                            Log.e("session",response.headers().get("Set-Cookie").toString())
-                            bundle.putString("flightTickets", ticketsJSON)
-                            intent.putExtras(bundle)
-                            dialog.hide()
-                            startActivity(intent)
-                        }} , object: RetrofotManager.Companion.ApiCallbackFailure {
+                            doAsync {
+                              val fd: Gson = Gson()
+                                val ticketsJSON = fd.toJson(TicketModelManager.getTicketList(response!!.body()))
+                                var y = TicketModelManager.getTicketList(response!!.body())
+                                bundle.putString("flightTickets", ticketsJSON)
+                                myPreferences.putString("roundtripModel",ticketsJSON)
+                                uiThread {
+                                    dialog.dismiss()
+                                    intent.putExtras(bundle)
+                                    startActivity(intent)
+                                }
+                            }
+                        }} , object: RetrofitManager.Companion.ApiCallbackFailure {
                         override fun onFailre(call: Call<RoundtripResponse>?, t: Throwable?) {
                             dialog.hide()
                             Log.e("ef",t!!.message.toString())
-                            RetrofotManager.toast(context!!, "Can't find available tickets")
+                            RetrofitManager.toast(context!!, "Can't find available tickets")
                         }
                     })
 
                 }
             }else if(radioOneWay.isChecked){
                 if(validateFieldsOneWay()){
-                    oneWayFlightSearch(service, object : RetrofotManager.Companion.OneWayApiCallback {
-                        override fun onSuccess(call: Call<crocusoft.com.gez.pojo.response.flight.oneWayResponse.Response>?, response: Response<crocusoft.com.gez.pojo.response.flight.oneWayResponse.Response>?) {
+                    closeKeyboard()
+//                    dialog.show()
+//                    dialog.setCancelable(false)
+//                    oneWayFlightSearch(service, object : RetrofitManager.Companion.OneWayApiCallback {
+//                        override fun onSuccess(call: Call<crocusoft.com.gez.pojo.response.flight.oneWayResponse.Response>?, response: Response<crocusoft.com.gez.pojo.response.flight.oneWayResponse.Response>?) {
                             val bundle = Bundle()
                             val intent = Intent(context, FlightOneWayActivity::class.java)
-                            val fd: Gson = Gson()
-                            val t =Utility.getTicketList(response!!.body())
-                            val objectDest = fd.toJson(Utility.getTicketList(response!!.body()))
-                            bundle.putString("jsonTicket", objectDest)
-                            intent.putExtras(bundle)
-                            dialog.hide()
-                            startActivity(intent)
-                        }}, object: RetrofotManager.Companion.OneWayApiCallbackFailure{
-                        override fun onFailure(call: Call<crocusoft.com.gez.pojo.response.flight.oneWayResponse.Response>?, t: Throwable?) {
-                            dialog.hide()
-                            Log.e("ef",t!!.message.toString())
-                            RetrofotManager.toast(context!!, "Can't find available tickets")
-                        }
-                    })
-                    dialog.show()
-                    dialog.setCancelable(false)
+//                            doAsync {
+                                bundleForOneWay(bundle)
+////                                val fd: Gson = Gson()
+////                                val objectDest = fd.toJson(TicketModelManager.getTicketList(response!!.body()))
+////                                myPreferences.putString("tickets",objectDest)
+//                                uiThread {
+//                                   // dialog.dismiss()
+                                    intent.putExtras(bundle)
+                                    startActivity(intent)
+//                                }
+//                            }
+                         //   bundle.putString("jsonTicket", objectDest)
+
+//                        }}, object: RetrofitManager.Companion.OneWayApiCallbackFailure{
+//                        override fun onFailure(call: Call<crocusoft.com.gez.pojo.response.flight.oneWayResponse.Response>?, t: Throwable?) {
+//                            Log.e("ef",t!!.message.toString())
+//                            dialog.dismiss()
+//                            RetrofitManager.toast(context!!, "Can't find available tickets")
+//                        }
+//                    })
                 }
             }else if(radioMultyCity.isChecked){
                 secondMultiCityContent()
             }
         })
     }
+    private fun bundleForOneWay(bundle: Bundle){
+        bundle.putParcelable("destination",oneWayDestination)
+        bundle.putParcelable("locatoon",oneWayOriginLocation)
+        bundle.putString("departTime",dateForm(departDatePicker.text.toString()))
+    }
     private fun dateForm(dateString: String):String{
         val datePatternForParse = SimpleDateFormat("dd.MM.yyyy",Locale.US)
         val date: Date = datePatternForParse.parse(dateString)
         val newPattern = SimpleDateFormat("yyyy-MM-dd",Locale.US)
         return newPattern.format(date)
+    }
+
+
+    fun hideKeyboardFrom(context: Context, view: View) {
+        val imm = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+    fun hideSoftKeyboard(activity: Activity) {
+        val inputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager!!.hideSoftInputFromWindow(activity.currentFocus!!.windowToken, 0)
+    }
+
+    private fun closeKeyboard() {
+        val inputManager = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputManager.hideSoftInputFromWindow(activity!!.currentFocus!!.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+
     }
     private fun initBuilder():AlertDialog.Builder {
         val builder = AlertDialog.Builder(context)
@@ -309,19 +349,19 @@ class FlightFragment : Fragment(){
     }
     private fun validateFieldsOneWay():Boolean{
         if(fromAutoComplete.text.isEmpty()){
-            RetrofotManager.toast(this!!.context!!,"Choose your location")
+            RetrofitManager.toast(this!!.context!!,"Choose your location")
             return false
         }
         if(toAutoComplete.text.trim().isEmpty()){
-            RetrofotManager.toast(this.context!!,"Choose destination location")
+            RetrofitManager.toast(this.context!!,"Choose destination location")
             return false
         }
         if(departDatePicker.text.trim().isEmpty()){
-            RetrofotManager.toast(this.context!!,"Choose depart time")
+            RetrofitManager.toast(this.context!!,"Choose depart time")
             return false
         }
         if(adultCountPicker.count==0){
-            RetrofotManager.toast(this.context!!,"Choose adult count")
+            RetrofitManager.toast(this.context!!,"Choose adult count")
             return false
         }
         return true
@@ -331,30 +371,30 @@ class FlightFragment : Fragment(){
         val departDate: Date = dateFormat.parse(depart)
         val arriveDate: Date = dateFormat.parse(arrive)
         if(departDate.after(arriveDate)) {
-            RetrofotManager.toast(context!!,"Return date must be after depart")
+            RetrofitManager.toast(context!!,"Return date must be after depart")
             return true
         }
         return false
     }
     private fun validateFieldsRoundTrip():Boolean{
         if(fromAutoComplete.text.isEmpty()){
-            RetrofotManager.toast(this.context!!,"Choose your location")
+            RetrofitManager.toast(this.context!!,"Choose your location")
             return false
         }
         if(toAutoComplete.text.isEmpty()){
-            RetrofotManager.toast(this.context!!,"Choose destination location")
+            RetrofitManager.toast(this.context!!,"Choose destination location")
             return false
         }
         if(departDatePicker.text.isEmpty()){
-            RetrofotManager.toast(this.context!!,"Choose depart time")
+            RetrofitManager.toast(this.context!!,"Choose depart time")
             return false
         }
         if(returnDatePicker.text.isEmpty()){
-            RetrofotManager.toast(this.context!!,"Choose return time")
+            RetrofitManager.toast(this.context!!,"Choose return time")
             return false
         }
         if(adultCountPicker.count==0){
-            RetrofotManager.toast(this.context!!,"Choose adult count")
+            RetrofitManager.toast(this.context!!,"Choose adult count")
             return false
         }
         if(isCorrectDates(departDatePicker.text.toString(),returnDatePicker.text.toString())){
@@ -365,36 +405,36 @@ class FlightFragment : Fragment(){
     }
     private fun validateFieldsMultiCity():Boolean{
         if(fromAutoComplete.text.isEmpty()){
-            RetrofotManager.toast(this.context!!,"Choose your location")
+            RetrofitManager.toast(this.context!!,"Choose your location")
             return false
         }
         if(toAutoComplete.text.isEmpty()){
-            RetrofotManager.toast(this.context!!,"Choose destination location")
+            RetrofitManager.toast(this.context!!,"Choose destination location")
             return false
         }
         if(departDatePicker.text.isEmpty()){
-            RetrofotManager.toast(this.context!!,"Choose depart time")
+            RetrofitManager.toast(this.context!!,"Choose depart time")
             return false
         }
         if(adultCountPicker.count==0){
-            RetrofotManager.toast(this.context!!,"Choose adult count")
+            RetrofitManager.toast(this.context!!,"Choose adult count")
             return false
         }
         if(secondFlightMultiCity.multiFromEditText.text.isEmpty()){
-            RetrofotManager.toast(this.context!!,"Choose second location")
+            RetrofitManager.toast(this.context!!,"Choose second location")
             return false
         }
         if(secondFlightMultiCity.multiToEditText.text.isEmpty()){
-            RetrofotManager.toast(this.context!!,"Choose second destination")
+            RetrofitManager.toast(this.context!!,"Choose second destination")
             return false
         }
         if(secondFlightMultiCity.multiDepartTime.text.isEmpty()){
-            RetrofotManager.toast(this.context!!,"Choose second time")
+            RetrofitManager.toast(this.context!!,"Choose second time")
             return false
         }
         return true
     }
-    private fun roundTripFlightSearch(service:RetrofitService, apiCallback: RetrofotManager.Companion.ApiCallback, apiCallbackFailure: RetrofotManager.Companion.ApiCallbackFailure){
+    private fun roundTripFlightSearch(service:RetrofitService, apiCallback: RetrofitManager.Companion.ApiCallback, apiCallbackFailure: RetrofitManager.Companion.ApiCallbackFailure){
         val myPreferences = AppSharedPreferences(context!!)
         val originLocation = originLocation
         val destinationLocation = destinationLocation
@@ -419,7 +459,7 @@ class FlightFragment : Fragment(){
         val soapHeader = SoapHeader(authenticationSoapHeader)
         val soapEnvelope = SoapEnvelope(soapHeader, soapBody)
         val searchRoundtripFlight = FlightRequest(soapEnvelope)
-        val call : Call<RoundtripResponse> = service.roundTripFlightSearch(searchRoundtripFlight, RetrofotManager.getHeader(myPreferences))
+        val call : Call<RoundtripResponse> = service.roundTripFlightSearch(searchRoundtripFlight, RetrofitManager.getHeader(myPreferences))
         call.enqueue(object : Callback<RoundtripResponse> {
             override fun onFailure(call: Call<RoundtripResponse>?, t: Throwable?) {
                 apiCallbackFailure.onFailre(call,t)
@@ -437,27 +477,8 @@ class FlightFragment : Fragment(){
 
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting
     }
-    private fun fullDatabaseWithAirports(service: RetrofitService){
-        if (context!!.isConnectedToInternet()) {
 
-//                            var weatherData = WeatherData()
-//                            weatherData.humidity = weatherForecast?.current?.humidity ?: 0
-//                            weatherData.tempInC = weatherForecast?.current?.temp_c ?: 0.0
-//                            weatherData.tempInF = weatherForecast?.current?.temp_f ?: 0.0
-//                            weatherData.lat = weatherForecast?.location?.lat ?: 0.0
-//                            weatherData.lon = weatherForecast?.location?.lon ?: 0.0
-//                            weatherData.name = weatherForecast?.location?.name ?: ""
-//                            weatherData.region = weatherForecast?.location?.region ?: ""
-//
-//                            bindDataWithUi(weatherData)
-//
-//                            insertWeatherDataInDb(weatherData = weatherData)
-//
-//        } else {
-//            fetchWeatherDataFromDb()
-        }
-    }
-    private fun oneWayFlightSearch(service: RetrofitService, apiCallback: RetrofotManager.Companion.OneWayApiCallback, apiOneWayCallbackFailure: RetrofotManager.Companion.OneWayApiCallbackFailure){
+    private fun oneWayFlightSearch(service: RetrofitService, apiCallback: RetrofitManager.Companion.OneWayApiCallback, apiOneWayCallbackFailure: RetrofitManager.Companion.OneWayApiCallbackFailure){
         val myPreferences = AppSharedPreferences(context!!)
         val originLocation = oneWayOriginLocation
         val destinationLocation = oneWayDestination
@@ -475,7 +496,7 @@ class FlightFragment : Fragment(){
         val searchOneWay = crocusoft.com.gez.pojo.request.searchOnewayFlight.Request(soapEnvelope)
 
         val call : Call<crocusoft.com.gez.pojo.response.flight.oneWayResponse.Response> =
-                service.oneWayFlightSearch(searchOneWay, RetrofotManager.getHeader(myPreferences))
+                service.oneWayFlightSearch(searchOneWay, RetrofitManager.getHeader(myPreferences))
 
         call.enqueue(object :Callback<crocusoft.com.gez.pojo.response.flight.oneWayResponse.Response>{
             override fun onFailure(call: Call<crocusoft.com.gez.pojo.response.flight.oneWayResponse.Response>?, t: Throwable?) {
@@ -487,7 +508,7 @@ class FlightFragment : Fragment(){
         })
     }
 
-    private fun multiCityFlightSearch(service:RetrofitService, apiCallback: RetrofotManager.Companion.MultiCityApiCallback, apiCallbackFailure: RetrofotManager.Companion.MultiCityApiCallbackFailure){
+    private fun multiCityFlightSearch(service:RetrofitService, apiCallback: RetrofitManager.Companion.MultiCityApiCallback, apiCallbackFailure: RetrofitManager.Companion.MultiCityApiCallbackFailure){
         val myPreferences = AppSharedPreferences(context!!)
         val passengerTypeQuantity = PassengerTypeQuantity("ADT")
         val airTravelerAvail = AirTravelerAvail(passengerTypeQuantity)
@@ -501,7 +522,7 @@ class FlightFragment : Fragment(){
         val soapHeader = SoapHeader(authenticationSoapHeader)
         val soapEnvelope = SoapEnvelope(soapHeader, soapBody)
         val searchRoundtripFlight = FlightRequest(soapEnvelope)
-        val call : Call<MultiCityResponse> = service.multiCityFlightSearch(searchRoundtripFlight, RetrofotManager.getHeader(myPreferences))
+        val call : Call<MultiCityResponse> = service.multiCityFlightSearch(searchRoundtripFlight, RetrofitManager.getHeader(myPreferences))
         call.enqueue(object : Callback<MultiCityResponse> {
             override fun onFailure(call: Call<MultiCityResponse>?, t: Throwable?) {
                 apiCallbackFailure.onFailure(call,t)
@@ -548,7 +569,7 @@ class FlightFragment : Fragment(){
     private fun addFirstLabel(){
         firstLabel.setText(R.string.firstFlight)
         firstLabel.setTextColor(resources.getColor(R.color.colorAccent))
-        firstLabel.setBackgroundDrawable(resources.getDrawable(R.drawable.grey_round))
+        firstLabel.setBackgroundDrawable(resources.getDrawable(R.drawable.back_dark_gray))
         firstLabel.setTextSize(TypedValue.COMPLEX_UNIT_PX,resources.getDimension(R.dimen.fontSize))
         firstLabel.gravity = Gravity.CENTER
         //firstLabel.layoutParams.height = 100
@@ -581,11 +602,11 @@ class FlightFragment : Fragment(){
         forthFlightMultiCity = inflater.inflate(R.layout.flight_multy_city,container,false)
         fifthFlightMultiCity = inflater.inflate(R.layout.flight_multy_city,container, false)
         addRemoveView = inflater.inflate(R.layout.add_remove_buttons,container,false)
-        RetrofotManager.datePicker(departDatePicker, context!!)
-        RetrofotManager.datePicker(secondFlightMultiCity.multiDepartTime, context!!)
-        RetrofotManager.datePicker(thirdFlightMultiCity.multiDepartTime, context!!)
-        RetrofotManager.datePicker(forthFlightMultiCity.multiDepartTime, context!!)
-        RetrofotManager.datePicker(fifthFlightMultiCity.multiDepartTime, context!!)
+        RetrofitManager.datePicker(departDatePicker, context!!)
+        RetrofitManager.datePicker(secondFlightMultiCity.multiDepartTime, context!!)
+        RetrofitManager.datePicker(thirdFlightMultiCity.multiDepartTime, context!!)
+        RetrofitManager.datePicker(forthFlightMultiCity.multiDepartTime, context!!)
+        RetrofitManager.datePicker(fifthFlightMultiCity.multiDepartTime, context!!)
         secondMultiCityContent()
         addButton = addRemoveView.findViewById(R.id.addButton)
         removeButton = addRemoveView.findViewById(R.id.removeButton)
@@ -610,24 +631,29 @@ class FlightFragment : Fragment(){
                 multiDestinationList.add(originDestinationInformation_)
             }
             if (validateFieldsMultiCity()){
+                closeKeyboard()
                 dialog.show()
                 dialog.setCancelable(false)
-                multiCityFlightSearch(service, object : RetrofotManager.Companion.MultiCityApiCallback {
+                multiCityFlightSearch(service, object : RetrofitManager.Companion.MultiCityApiCallback {
                     override fun onSuccess(call: Call<MultiCityResponse>?, response: Response<MultiCityResponse>?) {
                         val bundle = Bundle()
                         val intent = Intent(context, FlightMultiCityActivity::class.java)
-                        val gson=Gson()
-                        val t = Utility.getTicketList(response!!.body())
-                        Log.e("asd",t.toString())
-                        bundle.putString("tickets",gson.toJson(Utility.getTicketList(response!!.body())))
-                        intent.putExtras(bundle)
-                        multiDestinationList.clear()
-                        startActivity(intent)
-                    }},object: RetrofotManager.Companion.MultiCityApiCallbackFailure{
+                        doAsync {
+                            val gson=Gson()
+                            multiDestinationList.clear()
+                            bundle.putString("tickets",gson.toJson(TicketModelManager.getTicketList(response!!.body())))
+                            uiThread {
+                                intent.putExtras(bundle)
+                                dialog.dismiss()
+                                startActivity(intent)
+                            }
+                        }
+
+                    }},object: RetrofitManager.Companion.MultiCityApiCallbackFailure{
                     override fun onFailure(call: Call<MultiCityResponse>?, t: Throwable?) {
                         Log.e("Message Error: ", t!!.message.toString())
                         dialog.hide()
-                        RetrofotManager.toast(context!!, "Can't find available tickets")
+                        RetrofitManager.toast(context!!, "Can't find available tickets")
                     }
                    })
               }
@@ -684,7 +710,10 @@ class FlightFragment : Fragment(){
         val airportCodes: ArrayList<String> = ArrayList()
         thirdFlightMultiCity.multiToEditText.addTextChangedListener(object: TextWatcher{
             override fun afterTextChanged(s: Editable?) {
-                RetrofotManager.getAirportsList(service, thirdFlightMultiCity.multiToEditText.text.toString(), object : RetrofotManager.Companion.AirportListApiCallback {
+                if(thirdFlightMultiCity.multiToEditText.text.isNotEmpty()){
+                    thirdDestinationLocation = DestinationLocation(thirdFlightMultiCity.multiToEditText.text.toString(), "true")
+                }
+                RetrofitManager.getAirportsList(service, thirdFlightMultiCity.multiToEditText.text.toString(), object : RetrofitManager.Companion.AirportListApiCallback {
                     override fun onSuccess(call: Call<List<AirportSearchModel>>?, response: Response<List<AirportSearchModel>>?) {
                         airportNames.clear()
                         airportCodes.clear()
@@ -714,7 +743,7 @@ class FlightFragment : Fragment(){
                         }
                         adapter.notifyDataSetChanged()
                     }
-                }, RetrofotManager.getHeader(myPreferences))
+                }, RetrofitManager.getHeader(myPreferences))
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -725,7 +754,10 @@ class FlightFragment : Fragment(){
         })
         thirdFlightMultiCity.multiFromEditText.addTextChangedListener(object: TextWatcher{
             override fun afterTextChanged(s: Editable?) {
-                RetrofotManager.getAirportsList(service, thirdFlightMultiCity.multiFromEditText.text.toString(), object : RetrofotManager.Companion.AirportListApiCallback {
+                if(thirdFlightMultiCity.multiFromEditText.text.isNotEmpty()){
+                    thirdOriginLocation = OriginLocation(thirdFlightMultiCity.multiFromEditText.text.toString(), "true")
+                }
+                RetrofitManager.getAirportsList(service, thirdFlightMultiCity.multiFromEditText.text.toString(), object : RetrofitManager.Companion.AirportListApiCallback {
                     override fun onSuccess(call: Call<List<AirportSearchModel>>?, response: Response<List<AirportSearchModel>>?) {
                         airportNames.clear()
                         airportCodes.clear()
@@ -756,7 +788,7 @@ class FlightFragment : Fragment(){
                         }
                         adapter.notifyDataSetChanged()
                     }
-                }, RetrofotManager.getHeader(myPreferences))
+                }, RetrofitManager.getHeader(myPreferences))
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -767,7 +799,10 @@ class FlightFragment : Fragment(){
         })
         secondFlightMultiCity.multiToEditText.addTextChangedListener(object: TextWatcher{
             override fun afterTextChanged(s: Editable?) {
-                RetrofotManager.getAirportsList(service, secondFlightMultiCity.multiToEditText.text.toString(), object : RetrofotManager.Companion.AirportListApiCallback {
+                if(secondFlightMultiCity.multiToEditText.text.isNotEmpty()){
+                    secondDestinationLocation = DestinationLocation(secondFlightMultiCity.multiToEditText.text.toString(),"true")
+                }
+                RetrofitManager.getAirportsList(service, secondFlightMultiCity.multiToEditText.text.toString(), object : RetrofitManager.Companion.AirportListApiCallback {
                     override fun onSuccess(call: Call<List<AirportSearchModel>>?, response: Response<List<AirportSearchModel>>?) {
                         airportNames.clear()
                         airportCodes.clear()
@@ -799,7 +834,7 @@ class FlightFragment : Fragment(){
                         }
                         adapter.notifyDataSetChanged()
                     }
-                }, RetrofotManager.getHeader(myPreferences))
+                }, RetrofitManager.getHeader(myPreferences))
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -810,7 +845,10 @@ class FlightFragment : Fragment(){
         })
         secondFlightMultiCity.multiFromEditText.addTextChangedListener(object:TextWatcher{
             override fun afterTextChanged(s: Editable?) {
-                RetrofotManager.getAirportsList(service, secondFlightMultiCity.multiFromEditText.text.toString(), object : RetrofotManager.Companion.AirportListApiCallback {
+                if(secondFlightMultiCity.multiFromEditText.text.isNotEmpty()){
+                    secondOriginLocation = OriginLocation(secondFlightMultiCity.multiFromEditText.text.toString(), "true")
+                }
+                RetrofitManager.getAirportsList(service, secondFlightMultiCity.multiFromEditText.text.toString(), object : RetrofitManager.Companion.AirportListApiCallback {
                     override fun onSuccess(call: Call<List<AirportSearchModel>>?, response: Response<List<AirportSearchModel>>?) {
                         airportNames.clear()
                         airportCodes.clear()
@@ -843,7 +881,7 @@ class FlightFragment : Fragment(){
                         }
                         adapter.notifyDataSetChanged()
                     }
-                }, RetrofotManager.getHeader(myPreferences))
+                }, RetrofitManager.getHeader(myPreferences))
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -907,7 +945,7 @@ class FlightFragment : Fragment(){
             var getImagesFromDB: List<AirportImageResponse> = db!!.imagesDataDAO().fetchAllImages()
             if(getImagesFromDB.isEmpty()) {
                 val call : Call<List<AirportImageResponse>> = service
-                        .getAirportImageAndName(RetrofotManager.getHeader(myPreferences))
+                        .getAirportImageAndName(RetrofitManager.getHeader(myPreferences))
                 call.enqueue(object: Callback<List<AirportImageResponse>> {
                     override fun onFailure(call: Call<List<AirportImageResponse>>?, t: Throwable?) {
                         Log.e("fail", t!!.message)
@@ -931,6 +969,7 @@ class FlightFragment : Fragment(){
 private operator fun ViewGroup.LayoutParams.invoke(params: LinearLayout.LayoutParams) {
 
 }
+
 
 
 

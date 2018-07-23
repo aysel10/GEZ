@@ -3,15 +3,15 @@
     <item
         android:state_window_focused="false"
         android:state_enabled="true"
-        android:drawable="@drawable/edit_text_nf" />
+        android:drawable="@drawable/edit_text_second" />
     <item
         android:state_enabled="true"
         android:state_focused="true"
-        android:drawable="@drawable/edit_text_f" />
+        android:drawable="@drawable/edit_text_first" />
 
     <item
         android:state_enabled="true"
-        android:drawable="@drawable/edit_text_nf" />
+        android:drawable="@drawable/edit_text_second" />
 
 
 

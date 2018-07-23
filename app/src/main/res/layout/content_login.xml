@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_property"
+    android:background="@drawable/back_light_green"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activities.LoginActivity"
     tools:showIn="@layout/activity_login">
@@ -48,9 +48,11 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:text="Aysel"
+                android:singleLine="true"
                 android:imeOptions="actionNext"
                 android:hint="@string/login" />
         </android.support.design.widget.TextInputLayout>
+
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -76,7 +78,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/search_sort_background"
-        android:text="LOGIN"
+        android:text="@string/signIn"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,7 +93,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:text="SIGN UP"
+        android:text="@string/signUp"
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
@@ -106,7 +108,7 @@
         android:layout_marginBottom="20dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:text="Forgot password?"
+        android:text="@string/forgotPassword"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

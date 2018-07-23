@@ -15,7 +15,7 @@ import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.view.View
 import crocusoft.com.gez.R
-import crocusoft.com.gez.util.RetrofotManager
+import crocusoft.com.gez.services.RetrofitManager
 import crocusoft.com.gez.fragments.*
 import crocusoft.com.gez.menu_fragments.*
 import crocusoft.com.gez.util.AppSharedPreferences
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity(), MenuFragment.OnFragmentInteractionList
         setContentView(R.layout.activity_main)
 
         val fragmentManager = supportFragmentManager
-        RetrofotManager.changeFragment(fragmentManager, R.id.content, ContentFragment.newInstance())
+        RetrofitManager.changeFragment(fragmentManager, R.id.content, ContentFragment.newInstance())
         toolbar =findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         val actionbar: ActionBar? = supportActionBar

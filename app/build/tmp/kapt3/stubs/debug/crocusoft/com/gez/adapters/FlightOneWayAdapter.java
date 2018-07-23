@@ -2,15 +2,16 @@ package crocusoft.com.gez.adapters;
 
 import java.lang.System;
 
-@kotlin.Metadata(mv = {1, 1, 10}, bv = {1, 0, 2}, k = 1, d1 = {"\u0000V\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010 \n\u0002\u0010\u000e\n\u0002\b\u0006\n\u0002\u0010\u0002\n\u0002\b\n\n\u0002\u0010\b\n\u0000\n\u0002\u0010\t\n\u0002\b\u0007\n\u0002\u0018\u0002\n\u0002\b\u0003\u0018\u00002\b\u0012\u0004\u0012\u00020\u00020\u0001:\u0001-B\u0005\u00a2\u0006\u0002\u0010\u0003J\u000e\u0010\u0015\u001a\u00020\u00162\u0006\u0010\u0017\u001a\u00020\fJ\b\u0010\u0018\u001a\u00020\u0016H\u0002J\b\u0010\u0019\u001a\u00020\u0016H\u0002J\u0010\u0010\u001a\u001a\u00020\u000f2\u0006\u0010\u001b\u001a\u00020\u000fH\u0002J\f\u0010\u001c\u001a\b\u0012\u0004\u0012\u00020\n0\u0005J\f\u0010\u001d\u001a\b\u0012\u0004\u0012\u00020\u00060\u0005J\f\u0010\u001e\u001a\b\u0012\u0004\u0012\u00020\n0\u0005J\f\u0010\u001f\u001a\b\u0012\u0004\u0012\u00020\u000f0\u000eJ\b\u0010 \u001a\u00020!H\u0016J\u0010\u0010\"\u001a\u00020#2\u0006\u0010$\u001a\u00020!H\u0016J\u0010\u0010%\u001a\u00020!2\u0006\u0010$\u001a\u00020!H\u0016J\u0006\u0010&\u001a\u00020\fJ\u0018\u0010\'\u001a\u00020\u00162\u0006\u0010(\u001a\u00020\u00022\u0006\u0010$\u001a\u00020!H\u0016J\u0018\u0010)\u001a\u00020\u00022\u0006\u0010*\u001a\u00020+2\u0006\u0010,\u001a\u00020!H\u0016R\u0014\u0010\u0004\u001a\b\u0012\u0004\u0012\u00020\u00060\u0005X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u000e\u0010\u0007\u001a\u00020\bX\u0082.\u00a2\u0006\u0002\n\u0000R\u0014\u0010\t\u001a\b\u0012\u0004\u0012\u00020\n0\u0005X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u000e\u0010\u000b\u001a\u00020\fX\u0082\u000e\u00a2\u0006\u0002\n\u0000R \u0010\r\u001a\b\u0012\u0004\u0012\u00020\u000f0\u000eX\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0010\u0010\u0011\"\u0004\b\u0012\u0010\u0013R\u0014\u0010\u0014\u001a\b\u0012\u0004\u0012\u00020\n0\u0005X\u0082\u000e\u00a2\u0006\u0002\n\u0000\u00a8\u0006."}, d2 = {"Lcrocusoft/com/gez/adapters/FlightOneWayAdapter;", "Landroid/support/v7/widget/RecyclerView$Adapter;", "Lcrocusoft/com/gez/adapters/FlightOneWayAdapter$ViewHolder;", "()V", "combinationsList", "Ljava/util/ArrayList;", "Lcrocusoft/com/gez/pojo/response/flight/oneWayResponse/OriginDestinationCombinationItem;", "db", "Lcrocusoft/com/gez/database/AppDatabase;", "ticketListArrive", "Lcrocusoft/com/gez/view_model/OriginDestinationOptionItemViewModel;", "ticketModel", "Lcrocusoft/com/gez/view_model/TicketDataViewModel;", "ticketsIndexList", "", "", "getTicketsIndexList", "()Ljava/util/List;", "setTicketsIndexList", "(Ljava/util/List;)V", "ticketsListDepart", "addViewModel", "", "ticketDataViewModel", "combinationListFill", "departTicketsListFill", "formatDate", "dateString", "getArriveTicketsList", "getCombinationsList", "getDepartTicketsList", "getIndexList", "getItemCount", "", "getItemId", "", "position", "getItemViewType", "getTicketViewModel", "onBindViewHolder", "holder", "onCreateViewHolder", "parent", "Landroid/view/ViewGroup;", "viewType", "ViewHolder", "app_debug"})
+@kotlin.Metadata(mv = {1, 1, 10}, bv = {1, 0, 2}, k = 1, d1 = {"\u0000\\\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\u0010\u000e\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010 \n\u0002\b\u0006\n\u0002\u0010\u0002\n\u0002\b\u000b\n\u0002\u0010\b\n\u0000\n\u0002\u0010\t\n\u0002\b\u0007\n\u0002\u0018\u0002\n\u0002\b\u0003\u0018\u00002\b\u0012\u0004\u0012\u00020\u00020\u0001:\u00010B\u0005\u00a2\u0006\u0002\u0010\u0003J\u000e\u0010\u0017\u001a\u00020\u00182\u0006\u0010\u0019\u001a\u00020\u000fJ\b\u0010\u001a\u001a\u00020\u0018H\u0002J\b\u0010\u001b\u001a\u00020\u0018H\u0002J\u0010\u0010\u001c\u001a\u00020\u00062\u0006\u0010\u001d\u001a\u00020\u0006H\u0002J\u0016\u0010\u001e\u001a\u0012\u0012\u0004\u0012\u00020\u00060\u0005j\b\u0012\u0004\u0012\u00020\u0006`\u0007J\u0016\u0010\u001f\u001a\u0012\u0012\u0004\u0012\u00020\r0\u0005j\b\u0012\u0004\u0012\u00020\r`\u0007J\u0016\u0010 \u001a\u0012\u0012\u0004\u0012\u00020\t0\u0005j\b\u0012\u0004\u0012\u00020\t`\u0007J\u0016\u0010!\u001a\u0012\u0012\u0004\u0012\u00020\r0\u0005j\b\u0012\u0004\u0012\u00020\r`\u0007J\f\u0010\"\u001a\b\u0012\u0004\u0012\u00020\u00060\u0011J\b\u0010#\u001a\u00020$H\u0016J\u0010\u0010%\u001a\u00020&2\u0006\u0010\'\u001a\u00020$H\u0016J\u0010\u0010(\u001a\u00020$2\u0006\u0010\'\u001a\u00020$H\u0016J\u0006\u0010)\u001a\u00020\u000fJ\u0018\u0010*\u001a\u00020\u00182\u0006\u0010+\u001a\u00020\u00022\u0006\u0010\'\u001a\u00020$H\u0016J\u0018\u0010,\u001a\u00020\u00022\u0006\u0010-\u001a\u00020.2\u0006\u0010/\u001a\u00020$H\u0016R\u001e\u0010\u0004\u001a\u0012\u0012\u0004\u0012\u00020\u00060\u0005j\b\u0012\u0004\u0012\u00020\u0006`\u0007X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u001e\u0010\b\u001a\u0012\u0012\u0004\u0012\u00020\t0\u0005j\b\u0012\u0004\u0012\u00020\t`\u0007X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u000e\u0010\n\u001a\u00020\u000bX\u0082.\u00a2\u0006\u0002\n\u0000R\u001e\u0010\f\u001a\u0012\u0012\u0004\u0012\u00020\r0\u0005j\b\u0012\u0004\u0012\u00020\r`\u0007X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u000e\u0010\u000e\u001a\u00020\u000fX\u0082\u000e\u00a2\u0006\u0002\n\u0000R \u0010\u0010\u001a\b\u0012\u0004\u0012\u00020\u00060\u0011X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0012\u0010\u0013\"\u0004\b\u0014\u0010\u0015R\u001e\u0010\u0016\u001a\u0012\u0012\u0004\u0012\u00020\r0\u0005j\b\u0012\u0004\u0012\u00020\r`\u0007X\u0082\u000e\u00a2\u0006\u0002\n\u0000\u00a8\u00061"}, d2 = {"Lcrocusoft/com/gez/adapters/FlightOneWayAdapter;", "Landroid/support/v7/widget/RecyclerView$Adapter;", "Lcrocusoft/com/gez/adapters/FlightOneWayAdapter$ViewHolder;", "()V", "airlineNames", "Ljava/util/ArrayList;", "", "Lkotlin/collections/ArrayList;", "combinationsList", "Lcrocusoft/com/gez/pojo/response/flight/oneWayResponse/OriginDestinationCombinationItem;", "db", "Lcrocusoft/com/gez/database/AppDatabase;", "ticketListArrive", "Lcrocusoft/com/gez/flight_view_model/OriginDestinationOptionItemViewModel;", "ticketModel", "Lcrocusoft/com/gez/flight_view_model/TicketDataViewModel;", "ticketsIndexList", "", "getTicketsIndexList", "()Ljava/util/List;", "setTicketsIndexList", "(Ljava/util/List;)V", "ticketsListDepart", "addViewModel", "", "ticketDataViewModel", "combinationListFill", "departTicketsListFill", "formatDate", "dateString", "getAirlineList", "getArriveTicketsList", "getCombinationsList", "getDepartTicketsList", "getIndexList", "getItemCount", "", "getItemId", "", "position", "getItemViewType", "getTicketViewModel", "onBindViewHolder", "holder", "onCreateViewHolder", "parent", "Landroid/view/ViewGroup;", "viewType", "ViewHolder", "app_debug"})
 public final class FlightOneWayAdapter extends android.support.v7.widget.RecyclerView.Adapter<crocusoft.com.gez.adapters.FlightOneWayAdapter.ViewHolder> {
-    private crocusoft.com.gez.view_model.TicketDataViewModel ticketModel;
+    private crocusoft.com.gez.flight_view_model.TicketDataViewModel ticketModel;
     private crocusoft.com.gez.database.AppDatabase db;
-    private java.util.ArrayList<crocusoft.com.gez.view_model.OriginDestinationOptionItemViewModel> ticketsListDepart;
-    private java.util.ArrayList<crocusoft.com.gez.view_model.OriginDestinationOptionItemViewModel> ticketListArrive;
+    private java.util.ArrayList<crocusoft.com.gez.flight_view_model.OriginDestinationOptionItemViewModel> ticketsListDepart;
+    private java.util.ArrayList<crocusoft.com.gez.flight_view_model.OriginDestinationOptionItemViewModel> ticketListArrive;
     private java.util.ArrayList<crocusoft.com.gez.pojo.response.flight.oneWayResponse.OriginDestinationCombinationItem> combinationsList;
     @org.jetbrains.annotations.NotNull()
     private java.util.List<java.lang.String> ticketsIndexList;
+    private java.util.ArrayList<java.lang.String> airlineNames;
     
     @org.jetbrains.annotations.NotNull()
     public final java.util.List<java.lang.String> getTicketsIndexList() {
@@ -22,7 +23,7 @@ public final class FlightOneWayAdapter extends android.support.v7.widget.Recycle
     }
     
     public final void addViewModel(@org.jetbrains.annotations.NotNull()
-    crocusoft.com.gez.view_model.TicketDataViewModel ticketDataViewModel) {
+    crocusoft.com.gez.flight_view_model.TicketDataViewModel ticketDataViewModel) {
     }
     
     private final void departTicketsListFill() {
@@ -46,17 +47,22 @@ public final class FlightOneWayAdapter extends android.support.v7.widget.Recycle
     }
     
     @org.jetbrains.annotations.NotNull()
-    public final crocusoft.com.gez.view_model.TicketDataViewModel getTicketViewModel() {
+    public final crocusoft.com.gez.flight_view_model.TicketDataViewModel getTicketViewModel() {
         return null;
     }
     
     @org.jetbrains.annotations.NotNull()
-    public final java.util.ArrayList<crocusoft.com.gez.view_model.OriginDestinationOptionItemViewModel> getArriveTicketsList() {
+    public final java.util.ArrayList<java.lang.String> getAirlineList() {
         return null;
     }
     
     @org.jetbrains.annotations.NotNull()
-    public final java.util.ArrayList<crocusoft.com.gez.view_model.OriginDestinationOptionItemViewModel> getDepartTicketsList() {
+    public final java.util.ArrayList<crocusoft.com.gez.flight_view_model.OriginDestinationOptionItemViewModel> getArriveTicketsList() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.util.ArrayList<crocusoft.com.gez.flight_view_model.OriginDestinationOptionItemViewModel> getDepartTicketsList() {
         return null;
     }
     

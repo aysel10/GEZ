@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import android.widget.ImageButton
 import android.widget.LinearLayout
@@ -15,8 +14,8 @@ import com.google.gson.Gson
 import crocusoft.com.gez.R
 import crocusoft.com.gez.adapters.FlightMultiCityAdapter
 import crocusoft.com.gez.util.AppSharedPreferences
-import crocusoft.com.gez.view_model.OriginDestinationOptionItemViewModel
-import crocusoft.com.gez.view_model.TicketDataViewModel
+import crocusoft.com.gez.flight_view_model.OriginDestinationOptionItemViewModel
+import crocusoft.com.gez.flight_view_model.TicketDataViewModel
 
 class FlightMultiCityActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView

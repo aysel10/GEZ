@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.FlightBookFragment">
+    tools:context=".activities.FlightBookTicketActivity">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -22,7 +22,7 @@
 
             <ImageView
                 android:id="@+id/imageView13"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="500dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/back_book" />
@@ -47,9 +47,10 @@
                         android:id="@+id/name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text"
+                        android:hint="@string/firstName"
                         android:imeOptions="actionNext"
-                        android:hint="First Name" />
+                        android:inputType="text" />
+                </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
@@ -59,10 +60,11 @@
                             android:id="@+id/middleName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Middle Name"
-                            android:inputType="text"
+                            android:hint="@string/middleName"
                             android:imeOptions="actionNext"
+                            android:inputType="text"
                             android:paddingTop="16dp" />
+                    </android.support.design.widget.TextInputLayout>
 
                         <android.support.design.widget.TextInputLayout
                             android:layout_width="match_parent"
@@ -72,24 +74,25 @@
                                 android:id="@+id/lastName"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="Last Name"
+                                android:hint="@string/lastName"
+                                android:imeOptions="actionDone"
                                 android:inputType="text"
-                                android:imeOptions="actionNext"
                                 android:paddingTop="16dp" />
+                        </android.support.design.widget.TextInputLayout>
 
-                            <android.support.design.widget.TextInputLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
 
-                                <TextView
-                                    android:id="@+id/dateOfBirth"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="40dp"
-                                    android:layout_weight="1"
-                                    android:gravity="bottom"
-                                    android:paddingBottom="5dp"
-                                    android:paddingStart="5dp"
-                                    android:text="TextView" />
+                <TextView
+                    android:id="@+id/dateOfBirth"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="bottom"
+                    android:hint="@string/dateOfBirth"
+                    android:paddingTop="20dp"
+                    android:textSize="18sp"
+                    android:focusable="false"
+                    android:clickable="false"
+                    android:theme="@style/Base.Widget.AppCompat.EditText" />
 
                                 <android.support.design.widget.TextInputLayout
                                     android:layout_width="match_parent"
@@ -99,10 +102,11 @@
                                         android:id="@+id/passport"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:hint="Passport  №"
-                                        android:inputType="number"
+                                        android:hint="@string/passport"
                                         android:imeOptions="actionNext"
+                                        android:inputType="number"
                                         android:paddingTop="16dp" />
+                                </android.support.design.widget.TextInputLayout>
 
                                     <android.support.design.widget.TextInputLayout
                                         android:layout_width="match_parent"
@@ -112,10 +116,11 @@
                                             android:id="@+id/phoneNumber"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:hint="Phone Number"
-                                            android:inputType="number"
+                                            android:hint="@string/phoneNumber"
                                             android:imeOptions="actionNext"
+                                            android:inputType="number"
                                             android:paddingTop="16dp" />
+                                    </android.support.design.widget.TextInputLayout>
                                         <android.support.design.widget.TextInputLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent">
@@ -124,27 +129,12 @@
                                                 android:id="@+id/email"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:hint="Mail Address"
+                                                android:hint="@string/email"
+                                                android:imeOptions="actionDone"
                                                 android:inputType="textEmailAddress"
-                                                android:imeOptions="actionNext"
                                                 android:paddingTop="16dp" />
                                         </android.support.design.widget.TextInputLayout>
-                                        <android.support.design.widget.TextInputLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent">
 
-                                        </android.support.design.widget.TextInputLayout>
-                                        <android.support.design.widget.TextInputLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent">
-
-                                        </android.support.design.widget.TextInputLayout>
-                                    </android.support.design.widget.TextInputLayout>
-                                </android.support.design.widget.TextInputLayout>
-                            </android.support.design.widget.TextInputLayout>
-                        </android.support.design.widget.TextInputLayout>
-                    </android.support.design.widget.TextInputLayout>
-                </android.support.design.widget.TextInputLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -96,7 +96,6 @@
                 android:inputType="text|textCapCharacters"
                 android:padding="8dp"
                 android:singleLine="true"
-                android:textAllCaps="false"
                 android:textColor="@color/fontColor" />
 
             <!--<EditText-->
@@ -159,11 +158,10 @@
                 android:drawablePadding="8dp"
                 android:drawableStart="@drawable/search_textf_icon_loc_wrap"
                 android:hint="@string/toPlaceHolder"
-                android:imeOptions="actionNext"
+                android:imeOptions="actionDone"
                 android:inputType="text|textCapCharacters"
                 android:padding="8dp"
                 android:singleLine="true"
-                android:textAllCaps="false"
                 android:textColor="@color/fontColor" />
 
             <LinearLayout

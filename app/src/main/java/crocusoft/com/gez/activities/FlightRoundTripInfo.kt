@@ -13,9 +13,8 @@ import android.widget.LinearLayout
 import com.google.gson.Gson
 import crocusoft.com.gez.R
 import crocusoft.com.gez.adapters.FlightRoundTripInfoAdapter
-import crocusoft.com.gez.adapters.ReturnTicketsAdapter
 import crocusoft.com.gez.pojo.response.flight.roundtripResponse.FreeBaggages
-import crocusoft.com.gez.view_model.OriginDestinationOptionItemViewModel
+import crocusoft.com.gez.flight_view_model.OriginDestinationOptionItemViewModel
 
 class FlightRoundTripInfo : AppCompatActivity() {
     var tickets: ArrayList<OriginDestinationOptionItemViewModel> = ArrayList()
@@ -28,7 +27,7 @@ class FlightRoundTripInfo : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_flight_continue_booking)
+        setContentView(R.layout.activity_flight_roundtrip_info)
         recyclerView = findViewById(R.id.recyclerView)
         continueBookingButton = findViewById(R.id.continueBookingButton)
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
@@ -50,7 +49,7 @@ class FlightRoundTripInfo : AppCompatActivity() {
         val bundleSend = Bundle()
 
         continueBookingButton.setOnClickListener(View.OnClickListener {
-            val intent = Intent(baseContext,FlightBookTicketOneWay::class.java)
+            val intent = Intent(baseContext,FlightBookTicketActivity::class.java)
             bundleSend.putString("firstTicket",firstTicket)
             bundleSend.putString("secondTicket",secondTicket)
             bundleSend.putString("combId",combId)

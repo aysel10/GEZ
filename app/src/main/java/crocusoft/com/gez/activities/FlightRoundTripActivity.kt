@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.Spinner
@@ -14,20 +15,23 @@ import com.google.gson.Gson
 import crocusoft.com.gez.R
 import crocusoft.com.gez.adapters.FlightRoundtripTicketsAdapter
 import crocusoft.com.gez.pojo.response.flight.roundtripResponse.OriginDestinationCombinationItem
-import crocusoft.com.gez.view_model.OriginDestinationOptionItemViewModel
-import crocusoft.com.gez.view_model.TicketDataViewModel
-import kotlinx.android.synthetic.main.activity_flight_one_way.*
+import crocusoft.com.gez.flight_view_model.OriginDestinationOptionItemViewModel
+import crocusoft.com.gez.flight_view_model.TicketDataViewModel
+import crocusoft.com.gez.util.AppSharedPreferences
 import java.util.*
 
 class FlightTicketsActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var filterSpinner: Spinner
     private lateinit var filterButton: ImageButton
+    val afch = FlightRoundtripTicketsAdapter()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flight_tickets)
 
 
+        val myPreferences = AppSharedPreferences(this)
 
         recyclerView = findViewById(R.id.recyclerView)
      //   val service = RetrofitClient().getClient()!!.create<RetrofitService>(RetrofitService::class.java)
@@ -38,6 +42,7 @@ class FlightTicketsActivity : AppCompatActivity() {
         //val viewModel =  bundle.getParcelable<TicketDataViewModel>("tickets")
         val viewModelJSON = bundle.getString("flightTickets")
         val fd: Gson = Gson()
+
         val ticketsJSON = fd.fromJson(viewModelJSON.toString(), TicketDataViewModel::class.java)
         val viewModel = ticketsJSON
         filterSpinner = findViewById(R.id.spinner)
@@ -45,23 +50,25 @@ class FlightTicketsActivity : AppCompatActivity() {
 
       //  val response = bundle.getParcelable<RoundtripResponse>("res")
 //        val t = Gson()
-        val afch = FlightRoundtripTicketsAdapter()
         afch.getDepartTicketsList().sortBy { it.roundtripAirItineraryPricingInfo.itinTotalFare.totalFare.amount.toFloat() }
         afch.notifyDataSetChanged()
-       // var y = Utility.getTicketList(response)
+       // var y = TicketModelManager.getTicketList(response)
         viewModel.pricedItineraryItemList[0].freeBaggages
         afch.addViewModel(viewModel)
         recyclerView.adapter = afch
         filterButton.setOnClickListener(View.OnClickListener {
-            if(filterSpinner.selectedItem.toString().equals("Price(Lowest)")){
-                afch.getDepartTicketsList().sortBy { it.roundtripAirItineraryPricingInfo.itinTotalFare.totalFare.amount.toFloat() }
-                afch.notifyDataSetChanged()
-            }else if(filterSpinner.selectedItem.toString().equals("Price(Highest)")){
-                afch.getDepartTicketsList().sortByDescending { it.roundtripAirItineraryPricingInfo.itinTotalFare.totalFare.amount.toFloat() }
-                afch.notifyDataSetChanged()
-            }
+            val intent = Intent(baseContext,FlightFilterActivity::class.java)
+            val bundleSend = Bundle()
+            myPreferences.putString("roundModel",fd.toJson(afch.getDepartTicketsList()))
+           // bundleSend.putParcelableArrayList("roundmodel",afch.getDepartTicketsList())
+            intent.putExtras(bundleSend)
+            intent.putExtra("key","roundtrip")
+            startActivity(intent)
         })
+        filterIsChecked()
         val baggageJSON = fd.toJson(viewModel.pricedItineraryItemList[0].freeBaggages)
+        myPreferences.putString("roundBaggage",baggageJSON)
+
         recyclerView.addItemDecoration(VerticalSpaceItemDecoration(25))
         recyclerView.affectOnItemClick(object : RecyclerItemClickListener.OnClickListener {
             override fun onItemClick(position: Int, view: View) {
@@ -101,7 +108,6 @@ class FlightTicketsActivity : AppCompatActivity() {
                 bundle.putString("ref1",refNumber)
                 bundle.putParcelableArrayList("combs",combs as ArrayList)
                 bundle.putString("baggageJSON", baggageJSON)
-
                 //  bundle.putParcelableArrayList("as",arriveTickets)
                 val gs: Gson = Gson()
                 val combsJSON = gs.toJson(combs)
@@ -114,6 +120,23 @@ class FlightTicketsActivity : AppCompatActivity() {
             }
         })
 
+    }
+    fun filterIsChecked() {
+        filterSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if(filterSpinner.selectedItem.toString().equals("Price(Lowest)")){
+                    afch.getDepartTicketsList().sortBy { it.roundtripAirItineraryPricingInfo.itinTotalFare.totalFare.amount.toFloat() }
+                    afch.notifyDataSetChanged()
+                }else if(filterSpinner.selectedItem.toString().equals("Price(Highest)")){
+                    afch.getDepartTicketsList().sortByDescending { it.roundtripAirItineraryPricingInfo.itinTotalFare.totalFare.amount.toFloat() }
+                    afch.notifyDataSetChanged()
+                }
+            }
+        }
     }
 
     inner class VerticalSpaceItemDecoration(private val verticalSpaceHeight: Int) : RecyclerView.ItemDecoration() {

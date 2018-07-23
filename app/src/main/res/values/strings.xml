@@ -20,7 +20,8 @@
     <string name="preview_image_desc">Preview image</string>
     <string name="clocks_image_desc">Clocks kimage</string>
     <!-- /////////////// -->
-
+    <string name="oneStop">1 Stop</string>
+    <string name="onePlusStop">2+ Stop</string>
     <!--Radio buttons and Check Boxes-->
     <string name="roundTrip">Round Trip</string>
     <string name="oneWay">One Way</string>
@@ -179,7 +180,7 @@
     <string name="support">Support</string>
     <string name="home">Home</string>
     <string name="about">About</string>
-    <string name="logout">Log out</string>
+    <string name="logout">Sign Out</string>
     <string name="bonus">Bonus</string>
     <string name="send">SEND</string>
 
@@ -188,16 +189,23 @@
     <string name="saveChanges">SAVE CHANGES</string>
     <string name="continueBooking">CONTINUE BOOKING</string>
     <string name="changePassword">Change Password</string>
-    <string name="currentPassword">CURRENT PASSWORD</string>
-    <string name="newPassword">NEW PASSWORD</string>
-    <string name="retypePassword">RETYPE PASSWORD</string>
-    <string name="name">NAME</string>
-    <string name="nameAndSurname">NAME AND SURNAME</string>
-    <string name="phoneNumber">PHONE NUMBER</string>
-    <string name="yourText">YOUR TEXT</string>
-
-    <string name="surname">SURNAME</string>
-    <string name="email">EMAIL</string>
+    <string name="currentPassword">Current Password</string>
+    <string name="newPassword">New Password</string>
+    <string name="retypePassword">Retype Password</string>
+    <string name="name">Name</string>
+    <string name="nameAndSurname">Name and Surname</string>
+    <string name="phoneNumber">Phone Number</string>
+    <string name="yourText">Your Text</string>
+    <string name="firstName">First Name</string>
+    <string name="middleName">Middle Name</string>
+    <string name="lastName">Last Name</string>
+    <string name="dateOfBirth">Date Of Birth</string>
+    <string name="passport">Passport №</string>
+    <string name="surname">Surname</string>
+    <string name="email">Mail Address</string>
+    <string name="signIn">Sign In</string>
+    <string name="signUp">Sign Up</string>
+    <string name="forgotPassword">Forgot Password?</string>
     <!-- /////////////// -->
 
 </resources>

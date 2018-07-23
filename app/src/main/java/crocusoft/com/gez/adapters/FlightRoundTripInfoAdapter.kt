@@ -13,13 +13,11 @@ import crocusoft.com.gez.R
 import crocusoft.com.gez.database.AppDatabase
 import crocusoft.com.gez.pojo.response.flight.AirportImageResponse
 import crocusoft.com.gez.pojo.response.flight.roundtripResponse.FreeBaggages
-import crocusoft.com.gez.view_model.OriginDestinationOptionItemViewModel
-import crocusoft.com.gez.view_model.TicketDataViewModel
+import crocusoft.com.gez.flight_view_model.OriginDestinationOptionItemViewModel
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import java.text.SimpleDateFormat
 import java.util.*
-import javax.crypto.AEADBadTagException
 
 class FlightRoundTripInfoAdapter(): RecyclerView.Adapter<FlightRoundTripInfoAdapter.ViewHolder>() {
 
@@ -85,15 +83,15 @@ class FlightRoundTripInfoAdapter(): RecyclerView.Adapter<FlightRoundTripInfoAdap
             doAsync {
                 //val image: List<AirportImageResponse> = db!!.imagesDataDAO().fetchAllImages()
                 val image: AirportImageResponse = db!!.imagesDataDAO().getImage(codeLine)
-                val t = image.airlineName.substring(image.airlineName.lastIndexOf("_")+1).substringBefore(".")
-                holder.airportName.text = t
+                val airname = image.airlineName.substring(image.airlineName.lastIndexOf("_")+1).substringBefore(".")
                 uiThread {
+                    holder.airportName.text = airname
                     Picasso.get().load("http://88.99.186.108:8888/Content/images/airline_logo/${image!!.airlineName}").into(holder.airportImage)
                 }
             }
             holder.arrivalAirport.text = flightSegmentItem.flightSegmentList[flightSegmentListSize-1].arrivalAirport.locationCode
             holder.arrivalTime.text= currentTicket.arrivalDateTime.substring(currentTicket.arrivalDateTime.lastIndexOf("T")+1).substring(0,5)
-            holder.departAirport.text = currentTicket.departureAirport.locationCode
+            holder.departAirport.text =  flightSegmentItem.flightSegmentList[0].departureAirport.locationCode
             holder.departTime.text = currentTicket.departureDateTime.substring(currentTicket.departureDateTime.lastIndexOf("T")+1).subSequence(0,5)
         }
     }

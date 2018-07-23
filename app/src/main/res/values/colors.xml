@@ -11,7 +11,7 @@
     <color name="lightGrey">#ededed</color>
     <color name="propertyColor">#ddefd2</color>
     <color name="blueButton">#1284f3</color>
-
+    <color name="background">#bcbcbc</color>
     <style name="RadioButtonStyle" parent="AppTheme">
         <item name="colorControlNormal">@color/white</item>
         <item name="colorAccent">@color/colorPrimary</item>

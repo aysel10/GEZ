@@ -42,7 +42,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editText7"
+                android:id="@+id/nameSurnameField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -61,7 +61,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editText10"
+                android:id="@+id/mailField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -80,7 +80,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editText11"
+                android:id="@+id/phoneField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -99,7 +99,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editText12"
+                android:id="@+id/yourTextField"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:layout_marginBottom="8dp"
@@ -111,7 +111,7 @@
                 android:textSize="15sp" />
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/sendButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -119,7 +119,8 @@
                 android:padding="15dp"
                 android:text="@string/send"
                 android:textAlignment="center"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textStyle="bold" />
         </LinearLayout>
 
 

@@ -13,13 +13,11 @@ import crocusoft.com.gez.R
 import crocusoft.com.gez.database.AppDatabase
 import crocusoft.com.gez.pojo.response.flight.AirportImageResponse
 import crocusoft.com.gez.pojo.response.flight.roundtripResponse.FreeBaggages
-import crocusoft.com.gez.view_model.OriginDestinationOptionItemViewModel
-import crocusoft.com.gez.view_model.TicketDataViewModel
+import crocusoft.com.gez.flight_view_model.OriginDestinationOptionItemViewModel
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import java.text.SimpleDateFormat
 import java.util.*
-import javax.crypto.AEADBadTagException
 
 class ReturnTicketsAdapter(): RecyclerView.Adapter<ReturnTicketsAdapter.ViewHolder>() {
 
@@ -68,8 +66,8 @@ class ReturnTicketsAdapter(): RecyclerView.Adapter<ReturnTicketsAdapter.ViewHold
         holder.departAirport.text = flightSegmentItem.flightSegmentList[0].departureAirport.locationCode
         val t = freeBaggages.baggage
 
-        for(i in 0 until flightSegmentListSize) {
-            val currentTicket = flightSegmentItem.flightSegmentList[i]
+       // for(i in 0 until flightSegmentListSize) {
+            val currentTicket = flightSegmentItem.flightSegmentList[0]
             val r = formatDate(currentTicket.flightDuration)
             val index = currentTicket.baggages.baggage.index
             for(j in 0..t.size-1){
@@ -79,14 +77,14 @@ class ReturnTicketsAdapter(): RecyclerView.Adapter<ReturnTicketsAdapter.ViewHold
             }
             holder.flightNumber.text = holder.view.context.resources.getString(R.string.flightNumber, currentTicket.flightNumber)
             holder.marketingAirline.text = holder.view.context.resources.getString(R.string.marketingAirline, currentTicket.marketingAirline.code)
-            val operatingAirLineCode = flightSegmentItem.flightSegmentList[i].operatingAirline.code.toString() // 0---------
+            val operatingAirLineCode = flightSegmentItem.flightSegmentList[0].operatingAirline.code.toString() // 0---------
             val codeLine = "%$operatingAirLineCode%"
             doAsync {
                 //val image: List<AirportImageResponse> = db!!.imagesDataDAO().fetchAllImages()
                 val image: AirportImageResponse = db!!.imagesDataDAO().getImage(codeLine)
                 val t = image.airlineName.substring(image.airlineName.lastIndexOf("_")+1).substringBefore(".")
-                holder.airportName.text = t
                 uiThread {
+                    holder.airportName.text = t
                     Picasso.get().load("http://88.99.186.108:8888/Content/images/airline_logo/${image!!.airlineName}").into(holder.airportImage)
                 }
             }
@@ -94,7 +92,7 @@ class ReturnTicketsAdapter(): RecyclerView.Adapter<ReturnTicketsAdapter.ViewHold
             holder.arrivalTime.text= currentTicket.arrivalDateTime.substring(currentTicket.arrivalDateTime.lastIndexOf("T")+1).substring(0,5)
             holder.departAirport.text = currentTicket.departureAirport.locationCode
             holder.departTime.text = currentTicket.departureDateTime.substring(currentTicket.departureDateTime.lastIndexOf("T")+1).subSequence(0,5)
-        }
+       // }
     }
 
 

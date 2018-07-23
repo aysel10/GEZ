@@ -6,8 +6,7 @@ import android.os.Parcelable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.annotations.SerializedName;
 
-public class FlightSegment implements Parcelable{
-
+public class FlightSegment implements Parcelable {
 	@JsonProperty("DepartureAirport")
 	@SerializedName("DepartureAirport")
 	private DepartureAirport departureAirport;

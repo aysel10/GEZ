@@ -2,8 +2,7 @@ package crocusoft.com.gez.models
 
 import android.os.Parcel
 import android.os.Parcelable
-import crocusoft.com.gez.pojo.response.flight.multiCityReponse.OriginDestinationCombinationItem
-import crocusoft.com.gez.view_model.OriginDestinationOptionItemViewModel
+import crocusoft.com.gez.flight_view_model.OriginDestinationOptionItemViewModel
 
 data class TicketCombination(var indexList: ArrayList<String> = ArrayList(), var originDestinations: ArrayList<OriginDestinationOptionItemViewModel> = ArrayList(), var combId: String = "", var segment: String="") : Parcelable {
     constructor(source: Parcel) : this(

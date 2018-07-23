@@ -14,10 +14,9 @@
         android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".activities.MainActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.LoginActivity"
             android:label="@string/app_name"
@@ -59,7 +58,7 @@
                 android:value=".activities.FlightTicketsActivity" />
         </activity>
         <activity
-            android:name=".activities.FlightBookTicketOneWay"
+            android:name=".activities.FlightBookTicketActivity"
             android:launchMode="singleTask"
             android:parentActivityName=".activities.FlightRDReturnActivity"
             android:screenOrientation="portrait"
@@ -101,12 +100,12 @@
         <activity
             android:name=".activities.FlightRoundTripInfo"
             android:launchMode="singleTask"
-            android:parentActivityName=".activities.FlightBookTicketOneWay"
+            android:parentActivityName=".activities.FlightBookTicketActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.FlightBookTicketOneWay" />
+                android:value=".activities.FlightBookTicketActivity" />
         </activity>
         <activity
             android:name=".activities.GezAzSelectedActivity"
@@ -116,9 +115,12 @@
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.FlightBookTicketOneWay" />
+                android:value=".activities.FlightBookTicketActivity" />
         </activity>
-        <activity android:name=".activities.FlightBookTicketRoundtrip"></activity>
+        <activity android:name=".activities.FlightBookTicketRoundtrip" />
+        <activity android:name=".activities.FlightFilterActivity" />
+        <activity android:name=".activities.FlightOneWaySorted" />
+        <activity android:name=".activities.FlightRoundTripSorted"></activity>
     </application>
 
 </manifest>

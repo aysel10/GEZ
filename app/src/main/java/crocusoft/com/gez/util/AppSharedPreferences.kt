@@ -14,6 +14,7 @@ class AppSharedPreferences(context: Context) {
         editor.remove("token")
         editor.apply()
     }
+
     fun getInt(key: String): Int {
         return sharedpreferences.getInt(key, -1)
     }

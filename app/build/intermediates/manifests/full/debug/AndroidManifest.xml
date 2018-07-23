@@ -22,9 +22,9 @@
         android:theme="@style/AppTheme.NoActionBar" >
         <activity
             android:name="crocusoft.com.gez.activities.MainActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="crocusoft.com.gez.activities.LoginActivity"
             android:label="@string/app_name"
@@ -66,7 +66,7 @@
                 android:value=".activities.FlightTicketsActivity" />
         </activity>
         <activity
-            android:name="crocusoft.com.gez.activities.FlightBookTicketOneWay"
+            android:name="crocusoft.com.gez.activities.FlightBookTicketActivity"
             android:launchMode="singleTask"
             android:parentActivityName="crocusoft.com.gez.activities.FlightRDReturnActivity"
             android:screenOrientation="portrait"
@@ -108,12 +108,12 @@
         <activity
             android:name="crocusoft.com.gez.activities.FlightRoundTripInfo"
             android:launchMode="singleTask"
-            android:parentActivityName="crocusoft.com.gez.activities.FlightBookTicketOneWay"
+            android:parentActivityName="crocusoft.com.gez.activities.FlightBookTicketActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.FlightBookTicketOneWay" />
+                android:value=".activities.FlightBookTicketActivity" />
         </activity>
         <activity
             android:name="crocusoft.com.gez.activities.GezAzSelectedActivity"
@@ -123,9 +123,12 @@
             android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.FlightBookTicketOneWay" />
+                android:value=".activities.FlightBookTicketActivity" />
         </activity>
         <activity android:name="crocusoft.com.gez.activities.FlightBookTicketRoundtrip" />
+        <activity android:name="crocusoft.com.gez.activities.FlightFilterActivity" />
+        <activity android:name="crocusoft.com.gez.activities.FlightOneWaySorted" />
+        <activity android:name="crocusoft.com.gez.activities.FlightRoundTripSorted" />
 
         <service
             android:name="com.robohorse.gpversionchecker.VersionCheckerService"
